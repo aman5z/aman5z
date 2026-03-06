@@ -86,6 +86,7 @@
   .cat-pill.cyber { border-color: var(--accent3); color: var(--accent3); }
   .cat-pill.infra { border-color: var(--accent2); color: var(--accent2); }
   .cat-pill.elec { border-color: #c77dff; color: #c77dff; }
+  .cat-pill.webapps { border-color: #ffd166; color: #ffd166; }
 
   /* MAIN */
   main {
@@ -130,6 +131,7 @@
   .tag-cyber { background: rgba(255,107,53,0.1); color: var(--accent3); border: 1px solid rgba(255,107,53,0.3); }
   .tag-infra { background: rgba(0,170,255,0.1); color: var(--accent2); border: 1px solid rgba(0,170,255,0.3); }
   .tag-elec { background: rgba(199,125,255,0.1); color: #c77dff; border: 1px solid rgba(199,125,255,0.3); }
+  .tag-web  { background: rgba(255,209,102,0.1); color: #ffd166; border: 1px solid rgba(255,209,102,0.3); }
 
   .section-title {
     font-family: var(--mono);
@@ -177,6 +179,32 @@
     font-size: 13px;
     color: var(--muted);
   }
+  .card-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .card-link {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,229,160,0.35);
+    color: var(--accent);
+    background: rgba(0,229,160,0.06);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+  }
+  .card-link:hover {
+    background: rgba(0,229,160,0.14);
+    border-color: var(--accent);
+  }
+  .card-link::before { content: '↗'; font-size: 11px; }
   .card-badge {
     font-family: var(--mono);
     font-size: 10px;
@@ -450,8 +478,9 @@
 </header>
 
 <nav class="cat-nav">
-  <a href="#iot" class="cat-pill iot">IoT &amp; Smart Home</a>
+  <a href="#webapps" class="cat-pill webapps">Web Apps &amp; Software</a>
   <a href="#cyber" class="cat-pill cyber">Cybersecurity</a>
+  <a href="#iot" class="cat-pill iot">IoT &amp; Smart Home</a>
   <a href="#infra" class="cat-pill infra">Infrastructure &amp; Networking</a>
   <a href="#elec" class="cat-pill elec">Electronics &amp; Repurposing</a>
 </nav>
@@ -459,6 +488,262 @@
 <main>
 
   <!-- ══════════════════════════════════════════ -->
+<!-- SECTION 1: WEB APPS & SOFTWARE            -->
+<!-- ══════════════════════════════════════════ -->
+<section class="section" id="webapps">
+  <div class="section-header">
+    <span class="section-index">01</span>
+    <div class="section-meta">
+      <span class="section-tag tag-web">Web Apps &amp; Software</span>
+      <div class="section-title">Browser-Based IT Tools &amp; Dashboards</div>
+      <div class="section-desc">Full-featured web applications built with Vanilla JS and Google Apps Script — from enterprise-style admin consoles to network monitoring dashboards and IT utility suites.</div>
+    </div>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Active Directory Console -->
+    <div class="project-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Active Directory Console — aman5z.in</div>
+          <div class="card-subtitle">Windows AD-style enterprise IT admin dashboard built entirely in the browser</div>
+          <div class="card-links">
+            <a href="https://aman5z.github.io/AD/users.html" target="_blank" class="card-link">Live Demo</a>
+          </div>
+        </div>
+        <span class="card-badge badge-freelance">Live Project</span>
+      </div>
+      <div class="card-body">
+        <p>A fully functional browser-based IT administration dashboard inspired by Windows Active Directory Users and Computers. Built as a single-page HTML application with a Windows-style UI — title bar, menu bar, toolbar, tabbed navigation, sidebar, and status bar — all running client-side with a Google Apps Script + Sheets backend.</p>
+
+        <div class="sub-items" style="margin-top:16px;">
+          <div class="sub-item">
+            <h4>User &amp; Access Management</h4>
+            <p>Role-based access control (Admin, Technician, User) with granular per-user permissions. Full user management: create, edit, enable/disable, delete accounts, reset passwords.</p>
+          </div>
+          <div class="sub-item">
+            <h4>IT Ticket System</h4>
+            <p>Priority levels, SLA tracking, and assignment workflow. Audit log with filtering, action tagging, and CSV export.</p>
+          </div>
+          <div class="sub-item">
+            <h4>Token Counter System</h4>
+            <p>Manages numbered queues with a live display output — suitable for service desks and front-office environments.</p>
+          </div>
+          <div class="sub-item">
+            <h4>File Drive</h4>
+            <p>Google Drive-backed file manager with folder navigation, upload, delete, grid/list views, and storage usage indicator.</p>
+          </div>
+          <div class="sub-item">
+            <h4>Built-in IT Tools Suite</h4>
+            <p>QR &amp; barcode generator, PDF tools (merge/split/compress/watermark/rotate), subnet calculator, ping monitor with live chart, Base64 encoder, hex/binary converter, password generator, MAC vendor lookup, DNS tools, and more.</p>
+          </div>
+          <div class="sub-item">
+            <h4>System Dashboard &amp; Terminal</h4>
+            <p>Live charts for user stats and ticket status. Fully functional terminal shell with command history. Dark/light theme toggle with persistent preference.</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhHOPuzWdA8GSr5bqN0Fn6dwEEtF7T52SlUnWCH4aXxIk7tpqstmgYA68Yy9RdGohgrAPurQWKh1VscOllxw53-507FmFdto_jDtRBLpdsO2_tmcX90LkWBHRi96t0bEAsSnChjWyk6YXl7lvf3v7t0wSm9bmEMlhTBZRhiumQpbThXs6MYiL823y_Lqw0" alt="AD Console - login">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjcj10JQtwkXN7ELnyWPFG0e7zuDPA-VlSfDg-7cBRsfWF8nV7f2JDt0jK9HI4Zl-QL_YGomupdS7EFdeV_DGO5pURFUjAkXWunkkTSlWsRgsJp0d4zHJ8V3LFsK90HOnLaMkLXgOo7RpC7vU9s0yPHciubagzVr6OoITHXWtVR8k8BuuZfcOD9_UM6XoU" alt="AD Console - dashboard">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEguNr9AEkCKXz-2E3kRa8EwcGK8lZYbuL8Bni933SP5j2k1Tc9qJYZb9ZXa89nlB-S25jy2psUrI1YZjdi6O09lWDaRXnNT6SDqzXoQY_DdN-DZrBEeJWpUSlRrhCdFtZMJi0Vqrl4hUu5pq7JxhxhvJr-xjda16LYTm4xdEm2C26LYC6VcqgXAnEFytuQ" alt="AD Console - users">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjymFjaRr5sBHzAQatpYoo9_9b2tjfWy91Lue1uF1kLJzpYZFL1vIEl0Phl3RNp76rdr__8wfyW9kmZf30Jm2-aEzIYg8jCEdQxWjtX3501-ECJ3OxldyTm1J2-n0lbKe8q3lJdT3bHpqIlD1uTVYaxZCjDeDZsJh2A1XpM14qOQ_YjE--gvEQ3OyEcgJo" alt="AD Console - tickets">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhyYRGZnTddaXqRCjtguat71qMkuKx4NR5ZQaZXhw7Vn4ZRCS_ON4-7nnyrVQE0JDGL5GZgbgv2CdYyy1B1idNKnE2LymCsAT36KHMZ0h6OClO3iGHxe7BC7NEob79nNuR3gU9i8GTKOjTsr6YdSaps9x45ByIWq4XOUQkM-Ps6Vl2cC3YjX7tpC4QrKvI" alt="AD Console - tools">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhhmIXFw6GE1mcVayJOape7I5yYs3cot9CkzTXGIt2tJcp9eMGv1U3l8VLaZRoOj8gyZUC3QMszhIVwSJWWh76aiuRwsOtY5tCGiP_mX6vUTqt4QkFjqDV44xlMushhREQD9Q8C0fQsRQuscctjILiV476_DRF3ggNN95wo07vc0v57R4cFmjFxp3ZOhX4" alt="AD Console - file drive">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEh7oi9KaTgQptKGdoSTkRsQy-qMyrhHKuE7AFriNTOE_KqJMbq1FnLn-m4Zkn3EzH6UhbS0oAUUnhKgCTpCcHdSnXpXYE7F2C5DVopwmnqympY8KTuoxB8sXc8ddDOWpAwzQLBlqd_cFQUX1uMngHZrqU2k3uls6cko_vLO3a0D6lojf6i6TkGpvVmH1yE" alt="AD Console - audit log">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhy6HICR9qiCIbalVSIdpQnsHH8AT3B8fhnX4tPwmjf5403B0Ws_MkgECOy7vjULdWmA-9e011Beq_VWa-Y0w5F6gk-WBJzHS5EgKfRwY3oJdaymQBZ_OWebTRgENkfkltZdF06iscVZ8slkNVklSueReox6lCtUMxOxmmYLvSFPqk-2vtNoB3Qg-lrlbw" alt="AD Console - terminal">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgMZ3jyvipp0XzkKksm8Tim99C27LVMKOlZh6fvhCwaU8D0LNabAyKrKXlr0j0duws7K4z7j8aSnabOY-6w8f4dAdAO4x_7UwAZLullmHLp1KJnybn6zYtAVfz_ndnQ6zJO9pPruGJHBhnxdPFpCaXjY_hjnfJSDcMQOJhFR_DSKPorE-7THdRvASqNl-8" alt="AD Console - PDF tools">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEh28y7C-pDkoYsD4h0Z2KHTTe3u23xqsg61go0NrYUIC9UsLdyKiexCbLWgIZBDRF7zxvo2D4vtnZJsFafF50SViPTiXpa4ARi2rjrYVCfixMONMjO1TBnqrOv0Iae-JOJA_nCgN8_WQEeuCdqE2nnONXvh6oAWTR117TdBg50X-iGbj-j0hCRbUUONhrE" alt="AD Console - subnet calc">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiSFdvDj1oDBU21cLCAzuq8zJ3JoUhC98WeeXEeqHXcPYRA_Qp9t_LFbJeJR3bXP9-lYLQ1gcPbIjND47PW5n2_jcXUdIt4c_iaQMGDZGCLSxWVmpps6xZyMiP0P2M1DnER5vxQglpvvfK6C_WSH1vqcHpy_qgr85P34qgVgR1rRmc3FGnCu9KtCEooio0" alt="AD Console - ping monitor">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhY174K7oDVNH2TcZinqjQ2k2JgDWb3VjOJULPXUctlCxfqwh4nViYoq-zCQT4Fb45h8UZ_nHSV93VM15g5Fq0N1lmM4A94rXkWKCSPhEpqX9Rosm6DjLo8sL-Irk0LvOEJ0YkIRMS2SkmzcYZuRBJqFAr_pLQ2eQbtJVnXaPVtQJYMs70ehpubvEcBSZA" alt="AD Console - light mode">
+        </div>
+        <div class="tech-stack">
+          <span class="tech">Vanilla JS</span><span class="tech">HTML5 / CSS3</span><span class="tech">Google Apps Script</span>
+          <span class="tech">Google Sheets (DB)</span><span class="tech">PDF-lib</span><span class="tech">JsBarcode</span>
+          <span class="tech">QRCode.js</span><span class="tech">Web Speech API</span><span class="tech">RBAC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT Helpdesk Ticket System -->
+    <div class="project-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">IT Helpdesk Ticket Management System</div>
+          <div class="card-subtitle">Web-based ticketing system with role-based access and SLA monitoring</div>
+          <div class="card-links">
+            <a href="https://aman5z.github.io/IT-Ticketing/it-tkt.html" target="_blank" class="card-link">Live Demo</a>
+          </div>
+        </div>
+        <span class="card-badge badge-diy">Open Source</span>
+      </div>
+      <div class="card-body">
+        <p>A browser-based IT ticket management system designed to streamline internal support workflows. Users submit issues while technicians manage, assign, and resolve tickets through a centralized dashboard. Powered by Google Apps Script as a serverless backend — no traditional server required.</p>
+        <ul class="feature-list">
+          <li>Role-based access: Users create/track; Technicians manage and resolve</li>
+          <li>Ticket creation with priority levels, description, and optional file attachments</li>
+          <li>SLA countdown, overdue detection, and dashboard analytics (open / closed / overdue)</li>
+          <li>Dark/light themes, live clock, weather display, auto-refresh, and search filtering</li>
+        </ul>
+        <div class="gallery">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgsvPGX0J1cPGyo__Fib3A5Yi0dxPx3YcvR_QZK2NemDKHJUGUh0vF9t7mZAkvqeSz94UFvIixhjH6_qoMPoRyCXuPfVHqnXPlTSUv7flqG6VBqpsiG_vjLK-SJQNVpxDk6gMCGmnT2UzO6fsaOzjUY4E1j923-LERF1muKoeEXpy0tN5hlZ8D0apPS4Go" alt="Helpdesk - dashboard">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEioAEtKLS4iZmJOmR1w7P1azfRJMXRS1ofkmZgpmID6L_bB96lN_gSRuGJBPN_PMvBo8Z3e3R_fx17IPp7YEToACEGtLkNXdxUmjXMx8HM84qjOgbKoB1FgH9bNOgXJP9deie5Ut3OCEWFPHVwCf316w4uLPPzoRjWbNMVzDwZGNskyOfYoXHtyh9bm3wQ" alt="Helpdesk - ticket list">
+        </div>
+        <div class="tech-stack">
+          <span class="tech">Vanilla JS</span><span class="tech">Google Apps Script</span><span class="tech">Fetch API</span>
+          <span class="tech">FileReader API</span><span class="tech">Geolocation API</span><span class="tech">Open-Meteo API</span>
+          <span class="tech">SLA Monitoring</span><span class="tech">RBAC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Token Queue Management System -->
+    <div class="project-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Token Queue Management System</div>
+          <div class="card-subtitle">Live queue display, ticket printing, and multi-counter support for service centers</div>
+          <div class="card-links">
+            <a href="https://aman5z.github.io/Token_System/TokenDisplay.html" target="_blank" class="card-link">Live Display</a>
+            <a href="https://aman5z.github.io/Token_System/TokenCounterSystem.html" target="_blank" class="card-link">Counter System</a>
+          </div>
+        </div>
+        <span class="card-badge badge-diy">Open Source</span>
+      </div>
+      <div class="card-body">
+        <p>A web-based token queue system for clinics, banks, offices, and service centers. Operators generate and manage tokens via an admin dashboard; a separate public display screen shows current tokens in real time with flash animations and voice announcements via Web Speech API. Backed by Google Apps Script for real-time sync without a dedicated server.</p>
+        <ul class="feature-list">
+          <li>Generate, repeat, and navigate tokens per counter with automatic prefix system</li>
+          <li>Admin controls: add, rename, and delete counters with role-based access</li>
+          <li>Public display with flash animation, beep alerts, and voice announcements</li>
+          <li>Printable service tickets with custom logo, heading, and timestamp</li>
+        </ul>
+        <div class="gallery">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjaicMEnu-7MAcSONqzgMXg0R-CJaoL7prHdM53qTUM1PWaJugARQFSLtCHpOks1MEfMQduNM-p2TqGCdVlEhx0RzXOV49Gi2yqzW5o8sQxp0CTl4N8p2T5BBNQsHt48SHK1_SOBFsjBJ-HLWvvCJG4RRfmgR2SsveWwIcuD8V5wCveIhXyYbuE00HGE9o" alt="Token system - display">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg38XZCydKbY4F89WCdYt0WhZDGFQYYV6C6yxoBLYdyr2RSpqYF1TiXQ6w6zskgUaP9S_jAqcz4nJdH3MtBSRm9ZpcfbW-IvYwZIhxOggRAMe-oF1QQIgLNTMVk04HSjrQeR0H9HakANtxNt8PGRK-LZdgZI1opUY0yvP4q6CRBQvllgfI6IM3aIg6U2YY" alt="Token system - operator">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhFyT-ntz8d9alJopA4CJA2FrZh1VqaWqvJCJzjK4fR1etM6SrKspRRs09i1NVO_kICZpfAf4_XJYZhCEfp5jDWlaveQ7qxvKQHXqwNsS8OTLLpmltRPtQUaYctnvJGMTfxIltv9wIqMlCGyVP0--WqQiHHIH0FnoGbCXXalqtGKHaSu4q9Is8OA5WQ2aY" alt="Token system - ticket print">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgQS0WMlLXIGeOUwkCxibzKnpQ3-I3aFHtJo4iIkw162K2HysRSzlDSBn12r97CUBRFVnLUSH9LmbNeAas28MNFuCSFpFyvVZgt4-cqtfHSwUqniS_1YR9rt7-iU2ecdy7i1B8XOoawqKF89Cp__Jvs_Eh3ldie9omxlsbyN6U1k2r4DQSjt76Y_6cALJU" alt="Token system - live board">
+        </div>
+        <div class="tech-stack">
+          <span class="tech">Vanilla JS</span><span class="tech">Google Apps Script</span><span class="tech">Web Speech API</span>
+          <span class="tech">Web Audio API</span><span class="tech">JSONP</span><span class="tech">Print API</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT Tools Dashboard -->
+    <div class="project-card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">IT Tools Dashboard</div>
+          <div class="card-subtitle">Swiss-army knife for IT admins — networking, security, and utility tools in one browser tab</div>
+          <div class="card-links">
+            <a href="https://aman5z.github.io/IT-Tools/IT-Tools.html" target="_blank" class="card-link">Live Demo</a>
+          </div>
+        </div>
+        <span class="card-badge badge-diy">Open Source</span>
+      </div>
+      <div class="card-body">
+        <p>A browser-based multi-tool dashboard combining commonly used IT utilities into a single interface. All processing is client-side for fast performance and better privacy. Features search filtering, favorites, keyboard shortcuts, usage history, and exportable logs — no installation required.</p>
+
+        <div class="sub-items" style="margin-top:16px;">
+          <div class="sub-item">
+            <h4>Utility Tools</h4>
+            <p>QR/barcode generator, Base64 encoder/decoder, hex/binary/decimal converter, password generator with strength analysis, text diff tool.</p>
+          </div>
+          <div class="sub-item">
+            <h4>Networking Tools</h4>
+            <p>IP info, DNS lookup, URL-to-IP resolution, hosting provider detection, URL shortener, subnet calculator, MAC vendor lookup.</p>
+          </div>
+          <div class="sub-item">
+            <h4>Monitoring &amp; Files</h4>
+            <p>Ping monitor with latency chart, real-time console output, Google Drive upload with QR sharing, client-side PDF editing.</p>
+          </div>
+        </div>
+
+        <div class="gallery">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiEhSR9HErZmh1auK2dlchsEkGVlnHcpsQgFcjdwBXyGiam8R61P2PbO2np2PcFODbtxrPoF07YI64KY4pc__Z0EWX7QgDdAcf75wY4uU7UD5LCyBVsyjbwYkkMahonFBmneFFBg3sXoDPvmaZQMZsolFlGNHyxuwsKajRQ1JR5unBseb4moCmkvsViZOs" alt="IT Tools Dashboard">
+        </div>
+        <div class="tech-stack">
+          <span class="tech">Vanilla JS</span><span class="tech">PDF-Lib</span><span class="tech">JsBarcode</span>
+          <span class="tech">QRCode.js</span><span class="tech">Google Apps Script</span>
+          <span class="tech">Battery API</span><span class="tech">Network Info API</span><span class="tech">Clipboard API</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+  <!-- SECTION 2: CYBERSECURITY                  -->
+  <!-- ══════════════════════════════════════════ -->
+  <section class="section" id="cyber">
+    <div class="section-header">
+      <span class="section-index">02</span>
+      <div class="section-meta">
+        <span class="section-tag tag-cyber">Cybersecurity</span>
+        <div class="section-title">Ethical Hacking &amp; Penetration Testing Tools</div>
+        <div class="section-desc">Custom hardware tools for Wi-Fi security research and HID exploitation — built for educational understanding of network vulnerabilities.</div>
+      </div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Wi-Fi Deauther + Wi-Fi Duck</div>
+            <div class="card-subtitle">Combined hardware toolkit for Wi-Fi DoS testing and HID injection</div>
+          </div>
+          <span class="card-badge badge-research">Research</span>
+        </div>
+        <div class="card-body">
+          <p>A dual-purpose device combining a Wi-Fi deauthentication tool and a USB HID injection platform ("Wi-Fi Duck"), built using a Pro Micro (ATmega32U4) and D1 Mini (ESP8266). The OLED display provides real-time feedback; an RGB LED indicates device state. Powered by a TP4056 Li-ion charging circuit for portability.</p>
+
+          <div class="sub-items" style="margin-top:16px;">
+            <div class="sub-item">
+              <h4>Wi-Fi Deauther</h4>
+              <p>Exploits the 802.11 deauthentication frame vulnerability to disconnect devices from a target Wi-Fi network. Used for DoS demonstration and network security auditing. For educational/authorized use only.</p>
+            </div>
+            <div class="sub-item">
+              <h4>Wi-Fi Duck (HID Injection)</h4>
+              <p>When plugged into a target via USB, emulates a keyboard/mouse (HID device). Remote scripts are delivered over the ESP8266 hotspot, allowing keystroke injection undetected by most antivirus software. Useful for security awareness demonstrations.</p>
+            </div>
+          </div>
+
+          <div class="card-divider"></div>
+          <div class="card-title" style="font-size:12px; margin-bottom:10px;">Components</div>
+          <div class="parts-list">
+            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">Pro Micro (ATmega32U4)</span><span class="part-desc">USB HID emulation (keyboard/mouse)</span></div></div>
+            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">D1 Mini (ESP8266)</span><span class="part-desc">Wi-Fi deauth attacks + hotspot</span></div></div>
+            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">0.96" OLED Display</span><span class="part-desc">Status &amp; network selection UI</span></div></div>
+            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">TP4056 Charger</span><span class="part-desc">Li-ion battery management</span></div></div>
+            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">External Antenna</span><span class="part-desc">Extended Wi-Fi range</span></div></div>
+            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">WS2811 RGB LED</span><span class="part-desc">Visual state indicator</span></div></div>
+          </div>
+
+          <div class="card-divider"></div>
+          <div class="card-title" style="font-size:12px; margin-bottom:10px;">Wiring</div>
+          <div class="conn-table">
+            <div class="conn-row"><span class="conn-key">SCL (3)</span><span>→ D1 (ESP8266)</span></div>
+            <div class="conn-row"><span class="conn-key">SDA (2)</span><span>→ D2 (ESP8266)</span></div>
+            <div class="conn-row"><span class="conn-key">GND</span><span>→ GND (shared)</span></div>
+            <div class="conn-row"><span class="conn-key">VIN</span><span>→ 5V</span></div>
+            <div class="conn-row"><span class="conn-key">Pin 7</span><span>→ LED Data (RGB)</span></div>
+            <div class="conn-row"><span class="conn-key">D5/D6/D7</span><span>→ OK / Up / Down buttons</span></div>
+          </div>
+
+          <div class="gallery">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHhci51NgI_8iTEonDgxJx3gQDvL3ciR9-hWE9MECbist1JnVt-ILWVZVA5rA2wnxfb88DRyFp-cDwGuiDvT6mSPO2dWh3FDpFcMPhweF0DHZSQp-BcpdlNV-G9WO77A1KlkEqZyLNWn2xMuLWJebLkLJ8qQtXrg0mfGc5VFWUuF9xJbHMlIckNWT5BSg/w480-h640/IMG_20210213_175929.jpg" alt="Deauther v1 build">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhphuJBUdhwBAWJ2GfXdOgxjb9lTFTst6L8jxPR0qOPF93gMjB4OhYiWjD5g6r33tGnsCPoQBqsCxLJDmCjjitJOHV6CdzoKIQymD0D0izVHdbGU5pMfHMIJIxFxq9XuwFjxGGicYdNH0C8aJjnb6w98Jf7bpoiqi1ruj26HDacuhWVqgd-CH7X9IuBK6U/w480-h640/20231010_045947.heic" alt="Deauther v2 build">
+            <iframe src="https://www.youtube.com/embed/yxYy-raUYgw" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/49yFmYKk45k" allowfullscreen></iframe>
+          </div>
+          <div class="tech-stack">
+            <span class="tech">ESP8266</span>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- SECTION 1: IoT & SMART HOME               -->
   <!-- ══════════════════════════════════════════ -->
   <section class="section" id="iot">
@@ -657,79 +942,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ══════════════════════════════════════════ -->
-  <!-- SECTION 2: CYBERSECURITY                  -->
-  <!-- ══════════════════════════════════════════ -->
-  <section class="section" id="cyber">
-    <div class="section-header">
-      <span class="section-index">02</span>
-      <div class="section-meta">
-        <span class="section-tag tag-cyber">Cybersecurity</span>
-        <div class="section-title">Ethical Hacking &amp; Penetration Testing Tools</div>
-        <div class="section-desc">Custom hardware tools for Wi-Fi security research and HID exploitation — built for educational understanding of network vulnerabilities.</div>
-      </div>
-    </div>
-
-    <div class="projects-grid">
-      <div class="project-card">
-        <div class="card-header">
-          <div>
-            <div class="card-title">Wi-Fi Deauther + Wi-Fi Duck</div>
-            <div class="card-subtitle">Combined hardware toolkit for Wi-Fi DoS testing and HID injection</div>
-          </div>
-          <span class="card-badge badge-research">Research</span>
-        </div>
-        <div class="card-body">
-          <p>A dual-purpose device combining a Wi-Fi deauthentication tool and a USB HID injection platform ("Wi-Fi Duck"), built using a Pro Micro (ATmega32U4) and D1 Mini (ESP8266). The OLED display provides real-time feedback; an RGB LED indicates device state. Powered by a TP4056 Li-ion charging circuit for portability.</p>
-
-          <div class="sub-items" style="margin-top:16px;">
-            <div class="sub-item">
-              <h4>Wi-Fi Deauther</h4>
-              <p>Exploits the 802.11 deauthentication frame vulnerability to disconnect devices from a target Wi-Fi network. Used for DoS demonstration and network security auditing. For educational/authorized use only.</p>
-            </div>
-            <div class="sub-item">
-              <h4>Wi-Fi Duck (HID Injection)</h4>
-              <p>When plugged into a target via USB, emulates a keyboard/mouse (HID device). Remote scripts are delivered over the ESP8266 hotspot, allowing keystroke injection undetected by most antivirus software. Useful for security awareness demonstrations.</p>
-            </div>
-          </div>
-
-          <div class="card-divider"></div>
-          <div class="card-title" style="font-size:12px; margin-bottom:10px;">Components</div>
-          <div class="parts-list">
-            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">Pro Micro (ATmega32U4)</span><span class="part-desc">USB HID emulation (keyboard/mouse)</span></div></div>
-            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">D1 Mini (ESP8266)</span><span class="part-desc">Wi-Fi deauth attacks + hotspot</span></div></div>
-            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">0.96" OLED Display</span><span class="part-desc">Status &amp; network selection UI</span></div></div>
-            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">TP4056 Charger</span><span class="part-desc">Li-ion battery management</span></div></div>
-            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">External Antenna</span><span class="part-desc">Extended Wi-Fi range</span></div></div>
-            <div class="part-item"><div class="part-dot"></div><div><span class="part-name">WS2811 RGB LED</span><span class="part-desc">Visual state indicator</span></div></div>
-          </div>
-
-          <div class="card-divider"></div>
-          <div class="card-title" style="font-size:12px; margin-bottom:10px;">Wiring</div>
-          <div class="conn-table">
-            <div class="conn-row"><span class="conn-key">SCL (3)</span><span>→ D1 (ESP8266)</span></div>
-            <div class="conn-row"><span class="conn-key">SDA (2)</span><span>→ D2 (ESP8266)</span></div>
-            <div class="conn-row"><span class="conn-key">GND</span><span>→ GND (shared)</span></div>
-            <div class="conn-row"><span class="conn-key">VIN</span><span>→ 5V</span></div>
-            <div class="conn-row"><span class="conn-key">Pin 7</span><span>→ LED Data (RGB)</span></div>
-            <div class="conn-row"><span class="conn-key">D5/D6/D7</span><span>→ OK / Up / Down buttons</span></div>
-          </div>
-
-          <div class="gallery">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHhci51NgI_8iTEonDgxJx3gQDvL3ciR9-hWE9MECbist1JnVt-ILWVZVA5rA2wnxfb88DRyFp-cDwGuiDvT6mSPO2dWh3FDpFcMPhweF0DHZSQp-BcpdlNV-G9WO77A1KlkEqZyLNWn2xMuLWJebLkLJ8qQtXrg0mfGc5VFWUuF9xJbHMlIckNWT5BSg/w480-h640/IMG_20210213_175929.jpg" alt="Deauther v1 build">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhphuJBUdhwBAWJ2GfXdOgxjb9lTFTst6L8jxPR0qOPF93gMjB4OhYiWjD5g6r33tGnsCPoQBqsCxLJDmCjjitJOHV6CdzoKIQymD0D0izVHdbGU5pMfHMIJIxFxq9XuwFjxGGicYdNH0C8aJjnb6w98Jf7bpoiqi1ruj26HDacuhWVqgd-CH7X9IuBK6U/w480-h640/20231010_045947.heic" alt="Deauther v2 build">
-            <iframe src="https://www.youtube.com/embed/yxYy-raUYgw" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/49yFmYKk45k" allowfullscreen></iframe>
-          </div>
-          <div class="tech-stack">
-            <span class="tech">ESP8266</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════════════════════════════════════ -->
   <!-- SECTION 3: INFRASTRUCTURE & NETWORKING    -->
   <!-- ══════════════════════════════════════════ -->
   <section class="section" id="infra">
@@ -809,6 +1021,9 @@
           <div>
             <div class="card-title">Villa Network — Multi-Compound Wi-Fi Deployment &amp; NOC Dashboard</div>
             <div class="card-subtitle">35-room, 160+ concurrent user network across two compounds · Freelance · Dec 2024</div>
+            <div class="card-links">
+              <a href="https://aman5z.github.io/villa_network/villanet.html" target="_blank" class="card-link">Live NOC Dashboard</a>
+            </div>
           </div>
           <span class="card-badge badge-freelance">Freelance</span>
         </div>
@@ -849,10 +1064,15 @@
             </div>
           </div>
 
-          <div class="gallery">
-            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPpI5vInBW-_8SToZmCa31rL__ZjXlMYZ4OHRk7NQzaBI51e8FNONwjXkgrpYj4TWqNqPYahtky9sRrbncCm6yL2r7_ZF423dZu0EjD5D6oiBkVxGgpcGHIxZB_Z6yu2NO71bPjrnDsGwwVamJGGPUo5Gz8OVhcSVChxEmwtv8hEfql9hPp9C37JtiYVQ" alt="Villa network infrastructure">
-            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiOhDa7DHgmeiRp-WWxmonBbfL6j_qWV0Va5_i284M-_6BzZWJTUXddx0Yf7C7vcXoWSHKOpzPMv2P4bcx6X6CV5uY7KpkRk6fCa6IDL65wI8ewnn33JK-gtlD6q93em1kcKlSfqOlyzydNz5vXqqOEB2Bi_HXYqmT4qsx8o2atgc0-7k31kjglbByUjPg" alt="Villa network deployment">
-          </div>
+        <div class="gallery">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPpI5vInBW-_8SToZmCa31rL__ZjXlMYZ4OHRk7NQzaBI51e8FNONwjXkgrpYj4TWqNqPYahtky9sRrbncCm6yL2r7_ZF423dZu0EjD5D6oiBkVxGgpcGHIxZB_Z6yu2NO71bPjrnDsGwwVamJGGPUo5Gz8OVhcSVChxEmwtv8hEfql9hPp9C37JtiYVQ" alt="Villa network infrastructure">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiOhDa7DHgmeiRp-WWxmonBbfL6j_qWV0Va5_i284M-_6BzZWJTUXddx0Yf7C7vcXoWSHKOpzPMv2P4bcx6X6CV5uY7KpkRk6fCa6IDL65wI8ewnn33JK-gtlD6q93em1kcKlSfqOlyzydNz5vXqqOEB2Bi_HXYqmT4qsx8o2atgc0-7k31kjglbByUjPg" alt="Villa network deployment">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhc3HBoh9eun-A6XtSWIAFPSKD3ViSBnVhltvhemeRubLzmXHbRSshuRcbc4U_ziQhm8w4Rguq58WBtDGBnvN9AR9mPzs7gYlcb6zntH8jgcbanV1id0gkB-1kIYAV21VtyQYIYxuoUASU3m2-9KKeamfg7-oekfP2IxA--aoL6Br4UWA9QanrmHrE4OZ8" alt="Villa network photo 3">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhsjkokhNXg-nOqVeZ5qyIAANeJuE9-fcQaORUPh4vZ636bcRoeAdVajZp7GXbL9RSlkyv4Fq6-augph_w2AZURK7PwABH5jalxzQ1RUpuHitgltrTB_kc4JUvDXnaZmnFGz_hGUvXyEuYbVliTkSzYY6aCc9QvJgcNaVY1M60ptc__iQC1aaj8j3Byo7Q" alt="Villa network photo 4">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiN4lSY5AfgG7UKekuXv5Hm2miY5yiqvyrCZQq_t6NuYiigfxk-76E5SpL4Cx2SRVb78w2tlQupBlSRCZOepgxj-JoNFQi0X8k-W4MDw1Rx6NHO9q27eCoedwMj6-bwYWI_QJudEBZHI2B9wkI5sLOjBQk3sAt4Zlbnwkb4yAFs9FMthm708sNZvTBb8_0" alt="Villa network photo 5">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiz7Pu9e2AGpf-DEjiA2tjyNcpMybcMJPrSgUc35DUYF8CwxKlTt4pBIKb9ZMXQGQY4pj0Xpr94prN_jRTyYwum4BaoyQ9DnpZhsh5npN5r0NegAz8ViRbTuumjdTyBIFhcDxK2P3Uyzsi2pMJ1SG2EjUhyTpI6K1ddeXanrAhsVJV146m48gGsFO-t_KY" alt="Villa network photo 6">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjortINVXtfxOp0W6KJUEqgtjxkzgqYvE1DuIXy36H_ibv5IX-MFnLGWMczpxWVml9iCemXhRfXMGk8-6A2nDqZqS0hcj8x4cyxbT0sBlvLfA0ULMqFm6wy8KqJHXMSqEGYHL0-xVXO_f9dB9WSVkFbdA6TXUmF2b-Ed8z5azT2PVa8K1aZG_T9WIZYMQQ" alt="Villa network photo 7">
+        </div>
 
           <div class="tech-stack">
             <span class="tech">TP-Link AX3000</span>
@@ -871,8 +1091,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ══════════════════════════════════════════ -->
   <!-- SECTION 4: ELECTRONICS & REPURPOSING      -->
   <!-- ══════════════════════════════════════════ -->
   <section class="section" id="elec">
