@@ -244,22 +244,33 @@
     border: 1px solid var(--border);
   }
 
-  /* MEDIA */
-  .media-grid {
+  /* UNIFIED MEDIA GALLERY */
+  .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 8px;
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid var(--border);
   }
-  .media-grid iframe {
+  .gallery iframe {
     width: 100%;
-    height: 200px;
+    height: 185px;
     border: none;
     border-radius: 4px;
     background: #000;
   }
+  .gallery img {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    display: block;
+    cursor: zoom-in;
+    transition: opacity 0.2s;
+  }
+  .gallery img:hover { opacity: 0.82; }
 
   /* PARTS LIST */
   .parts-list {
@@ -336,28 +347,6 @@
     font-family: var(--mono);
     font-size: 11px;
   }
-
-  /* PHOTO GRID */
-  .photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 8px;
-    margin-top: 16px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-  }
-  .photo-grid img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    display: block;
-    transition: opacity 0.2s;
-    cursor: zoom-in;
-  }
-  .photo-grid img:hover { opacity: 0.82; }
-  .photo-grid.tall img { height: 230px; }
 
   /* LIGHTBOX */
   #lb { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.93); z-index:9999; align-items:center; justify-content:center; }
@@ -531,7 +520,7 @@
             </div>
           </div>
 
-          <div class="photo-grid">
+          <div class="gallery">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0EWpZS1bj2vEZAJyimgCJgzqtxa9T9KghGVvSWJzSIwwSHdF5llayyvMGfsqnLPB8BFQYCO82RnmOeNgzcaOm9NbyDI3rNSZKfYmvI8gKvColjz3AQDobWRlSaV_R9_fL7s4JPtL1LwIDd0oPjnk3-qMoBm_7KODSkWPC91xLmaihx9AJlkfD0ItDhLw/w640-h480/IMG_20210308_233706.jpg" alt="Room 1 relay box">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgqBEGYQ9F8hXn5cndtr09vculD-TC_6SOkQzVhBjnH71xIS7ZESxlMkM10U4qE2TtE4rVj__wuT8jYDfNmFn3S2nPtFQesWou_nUtblc8yqOJtaTTfmqbZWK0hVnjFbMr43DJNOwRwPTictYlKfPNLKNKq7Pqnhqj8_k2mMlyB4MCtizkmfwdS08ZeNw4/w640-h480/IMG_20210311_004233.jpg" alt="Room 1 wiring">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhFSRVji37aGT1eQ9_JvWOe8va7xXkAl0RUiHwOhHEnApF5QDriSnbMoQIPrqAqP2Dg59FFOAUBGMXdVEjheORjSNt8NVA_-5R0DbUWCaKld0Tfs79tHUG87OHNu4h2ZElgFfNT_1pucFLyT3_iPucNmcPBRM5tvLODdfRZAsZiSJi2PzjPPL5BTWoLNn0/w640-h480/IMG_20210604_180912.jpg" alt="Room 1 setup">
@@ -539,6 +528,10 @@
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjz_dhdoefIS6jKPlOfcG9vNYsOgB3lWAxYWBf-vv71LDoCOJvY2jKzgsxp0YYdD_hVbQkmIglBgsD2gqRB2ahHxreIa0gjRuYgiD1AswCcWxi3Ck8tdjMX9_3O-M4cfPazUwHw7K54GFGoW0oTz5owdmyFNl6WFLBvR3U6xxQdtm1NXXDjRIV-x_bHaE0/w640-h480/IMG_20210626_004008.jpg" alt="Room setup 2">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIXWcUFsJMvpwWRFayGKJfeTtrj57pVRVZih0v6G0-fzc0xW_TR-Jo7vHUZJfdho-6L4or42HTm4x_2ktMkG1EQs81B2YqI0N1_uIgbs5tb-HDafnitWtQVIjzWfe4OX6pjV_fiBea8dl6rlsOgx6r1oiDMIJahB6e6Mgf5jnPRO1ccAOLmXTB9PrXWmg/w640-h481/IMG_3498.JPG" alt="Smart TV (Mi TV Box)">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhf8g4BLI6eKW_EQwD-k1m6PW9K5tpkr0CuHrjp4JTYpytHNUIwE_zmQJ-gxLz1sVt4aoaK2cRPVx0qkKATByxzHHp0TS8ytUJBCNLH2C9_kZVQnqUbNcpbOLkw8e6GSRfVlo4pGFn-fk6o-Lwna2dHdybPU9tP96Um75STdnkTraIY5CGE_McqJbIh81U/w640-h480/IMG_4515.jpg" alt="Living room setup">
+            <iframe src="https://www.youtube.com/embed/M3Lm0tNvhHg" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/JVbXGTMZsqY" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/KTtauZO1fFU" allowfullscreen></iframe>
+            <iframe src="https://www.youtube.com/embed/j9ytDHUP6wA" allowfullscreen></iframe>
           </div>
 
           <div class="tech-stack">
@@ -550,13 +543,6 @@
             <span class="tech">8-ch Relay</span>
             <span class="tech">Arduino Nano</span>
             <span class="tech">Homemate IR</span>
-          </div>
-
-          <div class="media-grid">
-            <iframe src="https://www.youtube.com/embed/M3Lm0tNvhHg" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/JVbXGTMZsqY" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/KTtauZO1fFU" allowfullscreen></iframe>
-            <iframe src="https://www.youtube.com/embed/j9ytDHUP6wA" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -578,16 +564,14 @@
             <li>Voice control via Alexa and Google Assistant</li>
             <li>External reset + reprogramming port for field updates</li>
           </ul>
-          <div class="photo-grid">
-            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhH7a_1f4Zw3Jbl83qQX4_MrzlVa-fH_NCMQHLy7qVbg2yuCvSnXP5tcFkBF1WKUUjdpboB6tX57_AeNItMjzb3xoHcZajWoY9v2gF3hOEA47yvIRS9RTKvnNaWZYF2g7u9QQSOpUVZUpFKzZH8FG_OEfCILbghRIwnNHYgcVwIiIVTmW26c61cwfpWg_I/w640-h480/IMG_3516.JPG" alt="Extension box internals">
+          <div class="gallery">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhH7a_1f4Zw3Jbl83qQX4_MrzlVa-fH_NCMQHLy7qVbg2yuCvSnXP5tcFkBF1WKUUjdpboB6tX57_AeNItMjzb3xoHcZajWoY9v2gF3hOEA47yvIRS9RTKvnNaWZYF2g7u9QQSOpUVZUpFKzZh8FG_OEfCILbghRIwnNHYgcVwIiIVTmW26c61cwfpWg_I/w640-h480/IMG_3516.JPG" alt="Extension box internals">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhHB_SoMNThszcCGgrdxfR-vN4GiLL8Y9DXS0mAd0T6JmHXT2dOuELQMAB3ZMZxmvB1CtGi1xMSmwQr8QyaaLbl-jfuvyFf9S4iP2cJCVKuviX_Ll2Uq030Lnl44cKL61MiAIxwSmlR29EHMvZI0FgweRhyphenhyphenviooQkyBCvfUDV8G4BUGB6i91PFLt-8ThxQ/w640-h480/IMG_3518.JPG" alt="Extension box assembled">
-          </div>
-          <div class="tech-stack">
-            <span class="tech">ESP32</span>
-          <div class="media-grid">
             <iframe src="https://www.youtube.com/embed/AbDBEdheORM" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/-SjZgLHQetY" allowfullscreen></iframe>
           </div>
+          <div class="tech-stack">
+            <span class="tech">ESP32</span>
         </div>
       </div>
 
@@ -608,18 +592,16 @@
             <li>Helmet-triggered start via Bluetooth receiver</li>
             <li>WearOS Alexa app integration</li>
           </ul>
-          <div class="photo-grid tall">
+          <div class="gallery">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh_9egomDXz4-LLQSEoZdKfYEUOaXqj-vAvD7g0MjH-gbLiD0MPP0LiyE1-OEYawoCxTRaNZdh150usl5LrOSRGIgq3uZHbRWSQpnKDXk_sOhc7EFLfEQ6NEIabHRWdo9zyvJoY1zNwZG0gIs3uixBX1g4UGD7D2suf7yv1rznixID0PWBF3i3JJH0cblc/w640-h480/IMG_20190227_012850.jpg" alt="Bike relay module">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEif8j4Y5hQal_66wYKS_lRkZ3DG6VDO66Y2weMdt3T662K-9xhsrvdQoHKmREtloolVD2CJrMEcCBQBpuSJPpHOISEIYqlU8OnHzRZYgQ4k7Q1lSysmgXJqsu8aCJmDEpGk2WwtTTPgXWfifo4k5d7JYbN-I-RuuUh31OHWhCE1O5yhTVTVOaR6_hncM4w/w480-h640/IMG_20210404_184812.jpg" alt="Bike wiring">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhQ-p7StVDoXiLuoaSSa9mb8FviYHglkiTZ3iXBJVm0B1crExrXnAYjpwgfJ69yP6hmRF3tyDQJqZ47t6mQ-gGqh3kofSj2fGF6iIKKp4pBArqngmJNTSlAHe3NWfHK70jiYcrGpQMkG1jLweucMjJ5DeDERBWGTAD8AfWpr8DSpVuvxQF0CVL6ZlXl7tc/w480-h640/IMG_20210406_165326.jpg" alt="Bike installed">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgpSCAzKimfywiuNxhMOvrIr61FCCt3tWCYEwkiE_-pNAk2P-H1_J2P8XHHZ0NRfx8MkIClt0MI-SurAxb84mBp6dgXKyY1usQ99P8chU8jbQn2u67xqstk-bGoDEQEw3Yqa1yyZYU7QY9k000C2D5RmBGOC10dRO8xIDZIH5YlCayNEtZXv1fD3S8b3PY/w480-h640/IMG_20210404_152327.jpg" alt="RF keychain module">
-          </div>
-          <div class="tech-stack">
-            <span class="tech">NodeMCU ESP8266</span>
-          <div class="media-grid">
             <iframe src="https://www.youtube.com/embed/uWKIfy4VlEw" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/q4sZrree7NM" allowfullscreen></iframe>
           </div>
+          <div class="tech-stack">
+            <span class="tech">NodeMCU ESP8266</span>
         </div>
       </div>
 
@@ -640,15 +622,13 @@
             <div class="part-item"><div class="part-dot"></div><div><span class="part-name">RC Car Gearbox + Wheels</span><span class="part-desc">Salvaged drivetrain from old RC car</span></div></div>
             <div class="part-item"><div class="part-dot"></div><div><span class="part-name">3.7V + 9V Batteries</span><span class="part-desc">Logic and motor power supply</span></div></div>
           </div>
-          <div class="photo-grid">
+          <div class="gallery">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhSG-SqPqwMwMGj05zAVZzSJDn6C2xL8ixSB4Gv9hqcH-HmDA6CF8_P3ohBIIi4gT8iBIRMa4WMb_SDnsr2I7SOffByxaIoeZ6lzU9qnWsaSlHU-ugDuXE2k5KSBMgKVkWK7OTVXd_lwKHHtxDD5jU27tReudwF9H5GgHgY6_LXUflayZgG6Jxr6eng_g0/w640-h480/IMG_20190320_021026.jpg" alt="IoT car build">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiVqTEEJznkSAK2xdH7Dewuv3FV8X27z3OKCKVGte3BdB1IjpSExVHhBI4OxyVXcUWSwonKxR8RnGcvvXkaKxeGcXkRyGIX5163LXwsrNCmwCU6ls4qwLAt1f_ygYnc1nJM0TVEHEHcCqfVur9ujmrOe7uarO4YcJz8svM4yU94mCsm2O1pcw3qO7Xq_2E/w640-h480/IMG_20190309_094600.jpg" alt="IoT car top view">
+            <iframe src="https://www.youtube.com/embed/JoTiOld-npY" allowfullscreen></iframe>
           </div>
           <div class="tech-stack">
             <span class="tech">NodeMCU ESP8266</span>
-          <div class="media-grid">
-            <iframe src="https://www.youtube.com/embed/JoTiOld-npY" allowfullscreen></iframe>
-          </div>
         </div>
       </div>
 
@@ -670,7 +650,7 @@
             <span class="tech">WearOS</span>
             <span class="tech">10,000 mAh Power Bank</span>
           </div>
-          <div class="media-grid">
+          <div class="gallery">
             <iframe src="https://www.youtube.com/embed/CLh-JNErU60" allowfullscreen></iframe>
           </div>
         </div>
@@ -736,17 +716,14 @@
             <div class="conn-row"><span class="conn-key">D5/D6/D7</span><span>→ OK / Up / Down buttons</span></div>
           </div>
 
-          <div class="photo-grid tall">
+          <div class="gallery">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjHhci51NgI_8iTEonDgxJx3gQDvL3ciR9-hWE9MECbist1JnVt-ILWVZVA5rA2wnxfb88DRyFp-cDwGuiDvT6mSPO2dWh3FDpFcMPhweF0DHZSQp-BcpdlNV-G9WO77A1KlkEqZyLNWn2xMuLWJebLkLJ8qQtXrg0mfGc5VFWUuF9xJbHMlIckNWT5BSg/w480-h640/IMG_20210213_175929.jpg" alt="Deauther v1 build">
             <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhphuJBUdhwBAWJ2GfXdOgxjb9lTFTst6L8jxPR0qOPF93gMjB4OhYiWjD5g6r33tGnsCPoQBqsCxLJDmCjjitJOHV6CdzoKIQymD0D0izVHdbGU5pMfHMIJIxFxq9XuwFjxGGicYdNH0C8aJjnb6w98Jf7bpoiqi1ruj26HDacuhWVqgd-CH7X9IuBK6U/w480-h640/20231010_045947.heic" alt="Deauther v2 build">
-          </div>
-          <div class="tech-stack">
-            <span class="tech">ESP8266</span>
-
-          <div class="media-grid">
             <iframe src="https://www.youtube.com/embed/yxYy-raUYgw" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/49yFmYKk45k" allowfullscreen></iframe>
           </div>
+          <div class="tech-stack">
+            <span class="tech">ESP8266</span>
         </div>
       </div>
     </div>
@@ -806,11 +783,13 @@
             </div>
           </div>
 
-          <div class="photo-grid">
-            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjKBrDcOtWpLdq4aG5JcaS8WS8b3dDvQoPYDxy2eWcrmtAdpRvPPr0LsMiZblTLltQj9D8Xjkwk4X2U0HlM6prLSVJB4uAlgO31cb5R4U6nXe0bQYFPHX7JYIuCwKXdaYRky0QF0mYVkWE3rFuYPFKb8NTZIdCEvuBygTh4NRoACWq8bmk3mv4NPj4-qmE=w632-h318" alt="AIO Server overview / Proxmox dashboard" style="height:180px;">
+          <div class="gallery">
+            <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjKBrDcOtWpLdq4aG5JcaS8WS8b3dDvQoPYDxy2eWcrmtAdpRvPPr0LsMiZblTLltQj9D8Xjkwk4X2U0HlM6prLSVJB4uAlgO31cb5R4U6nXe0bQYFPHX7JYIuCwKXdaYRky0QF0mYVkWE3rFuYPFKb8NTZIdCEvuBygTh4NRoACWq8bmk3mv4NPj4-qmE=w632-h318" alt="AIO Server overview / Proxmox dashboard">
+            <iframe src="https://www.youtube.com/embed/LFEARhLRYA8" allowfullscreen></iframe>
           </div>
           <div class="tech-stack">
             <span class="tech">Proxmox VE</span>
+            <span class="tech">Raspberry Pi 5</span>
             <span class="tech">Tailscale / WireGuard</span>
             <span class="tech">Cloudflare Tunnel</span>
             <span class="tech">Nextcloud</span>
@@ -820,9 +799,6 @@
             <span class="tech">Tasmota</span>
             <span class="tech">UmbrelOS / CasaOS</span>
             <span class="tech">Kali Linux</span>
-          </div>
-          <div class="media-grid">
-            <iframe src="https://www.youtube.com/embed/LFEARhLRYA8" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -873,7 +849,7 @@
             </div>
           </div>
 
-          <div class="photo-grid">
+          <div class="gallery">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPpI5vInBW-_8SToZmCa31rL__ZjXlMYZ4OHRk7NQzaBI51e8FNONwjXkgrpYj4TWqNqPYahtky9sRrbncCm6yL2r7_ZF423dZu0EjD5D6oiBkVxGgpcGHIxZB_Z6yu2NO71bPjrnDsGwwVamJGGPUo5Gz8OVhcSVChxEmwtv8hEfql9hPp9C37JtiYVQ" alt="Villa network infrastructure">
             <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiOhDa7DHgmeiRp-WWxmonBbfL6j_qWV0Va5_i284M-_6BzZWJTUXddx0Yf7C7vcXoWSHKOpzPMv2P4bcx6X6CV5uY7KpkRk6fCa6IDL65wI8ewnn33JK-gtlD6q93em1kcKlSfqOlyzydNz5vXqqOEB2Bi_HXYqmT4qsx8o2atgc0-7k31kjglbByUjPg" alt="Villa network deployment">
           </div>
@@ -926,7 +902,7 @@
             <span class="tech">Solar Panel</span>
             <span class="tech">Aux Audio</span>
           </div>
-          <div class="media-grid">
+          <div class="gallery">
             <iframe src="https://www.youtube.com/embed/EP3FhXvnBzw" allowfullscreen></iframe>
           </div>
         </div>
@@ -947,7 +923,7 @@
             <span class="tech">IP Camera App</span>
             <span class="tech">Wi-Fi Streaming</span>
           </div>
-          <div class="media-grid">
+          <div class="gallery">
             <iframe src="https://www.youtube.com/embed/cZS87dkC_hE" allowfullscreen></iframe>
           </div>
         </div>
@@ -979,7 +955,7 @@
             <span class="tech">10,000 mAh Power Bank</span>
             <span class="tech">Hardware Modding</span>
           </div>
-          <div class="media-grid">
+          <div class="gallery">
             <iframe src="https://www.youtube.com/embed/cU543wnm6vo" allowfullscreen></iframe>
             <iframe src="https://www.youtube.com/embed/F4dVhQ4d_AI" allowfullscreen></iframe>
           </div>
@@ -1000,7 +976,7 @@
 <script>
   const lb = document.getElementById('lb');
   const lbImg = document.getElementById('lb-img');
-  document.querySelectorAll('.photo-grid img').forEach(img => {
+  document.querySelectorAll('.gallery img').forEach(img => {
     img.addEventListener('click', () => { lbImg.src = img.src; lb.classList.add('open'); });
   });
   document.getElementById('lb-close').addEventListener('click', () => lb.classList.remove('open'));
