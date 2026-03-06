@@ -288,6 +288,42 @@
             color: #e0e7ff;
         }
         
+        /* Tooltips */
+        [data-tooltip] {
+            position: relative;
+            cursor: help;
+        }
+        
+        [data-tooltip]:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 15px;
+            background: rgba(0,0,0,0.9);
+            color: white;
+            border-radius: 6px;
+            white-space: pre-line;
+            font-size: 0.85em;
+            line-height: 1.4;
+            z-index: 1000;
+            min-width: 200px;
+            text-align: left;
+            margin-bottom: 10px;
+        }
+        
+        [data-tooltip]:hover::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(0,0,0,0.9);
+            margin-bottom: 4px;
+        }
+        
         /* Certifications */
         .cert-grid {
             display: grid;
@@ -348,7 +384,7 @@
             
             <div class="hero-badges">
                 <span class="badge">🔐 CEH Certified</span>
-                <span class="badge">☁️ AWS & Azure</span>
+                <span class="badge">💼 Freelance IT</span>
                 <span class="badge">🏢 Enterprise IT</span>
                 <span class="badge">🏠 IoT Expert</span>
                 <span class="badge">🌐 Network Engineer</span>
@@ -356,8 +392,8 @@
             
             <div class="contact-buttons">
                 <a href="https://www.linkedin.com/in/aman5z" class="btn btn-primary" target="_blank">LinkedIn</a>
-                <a href="https://aman5z.online" class="btn btn-secondary" target="_blank">Portfolio</a>
-                <a href="#" class="btn btn-secondary">WhatsApp</a>
+                <a href="https://aman5z.in" class="btn btn-secondary" target="_blank">Portfolio</a>
+                <a href="mailto:amanfaizal@outlook.com" class="btn btn-secondary">Email Me</a>
             </div>
         </div>
         
@@ -367,11 +403,11 @@
                 <span class="number">4+</span>
                 <span class="label">Years Experience</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" data-tooltip="6,500+ Students&#10;500+ Staff Members">
                 <span class="number">7,000+</span>
                 <span class="label">Users Supported</span>
             </div>
-            <div class="stat-card">
+            <div class="stat-card" data-tooltip="• Certified Ethical Hacker (CEH)&#10;• Advanced Penetration Tester&#10;• Google IT Support Professional&#10;• RHCE & AWS Solution Architect&#10;• Apple ATLAS (318 Courses)&#10;• Network Administration Diploma&#10;• CompTIA Security+&#10;• DevOps Fundamentals&#10;• Blockchain Foundation&#10;• IoT Workshop&#10;• Intel Network Academy&#10;• English Score - British Council">
                 <span class="number">15+</span>
                 <span class="label">Certifications</span>
             </div>
@@ -401,11 +437,17 @@
                     <h4>🏢 Enterprise IT Infrastructure</h4>
                     <ul>
                         <li>Managing 500+ staff, 6,500+ students</li>
-                        <li>HP ProLiant servers, QNAP NAS</li>
-                        <li>Sophos XGS 4500 firewall</li>
+                        <li>170+ PCs, 190+ smartboards/projectors</li>
+                        <li>HP ProLiant servers (ML350 Gen9, DL360 Gen10)</li>
+                        <li>QNAP NAS, CCTV systems, biometrics</li>
+                        <li>POS systems, printers, asset management</li>
                         <li>Windows Server, Active Directory</li>
-                        <li>Microsoft 365, AWS cloud services</li>
-                        <li>170+ PCs, 190+ smartboards</li>
+                        <li>Microsoft 365 Wi-Fi authentication</li>
+                        <li>AWS cloud services optimization</li>
+                        <li>PBX telephony system management</li>
+                        <li>Online exam platform support</li>
+                        <li>Campus-wide network troubleshooting</li>
+                        <li>Vendor coordination & support</li>
                     </ul>
                 </div>
                 
@@ -425,11 +467,17 @@
                     <h4>🏠 IoT & Home Automation</h4>
                     <ul>
                         <li>ESP8266/ESP32 development</li>
-                        <li>Multi-room smart home systems</li>
-                        <li>Voice assistant integration</li>
-                        <li>15% energy efficiency gains</li>
+                        <li>Multi-room smart home systems (4+ rooms)</li>
+                        <li>Alexa & Google Assistant integration</li>
+                        <li>ESP RainMaker platform</li>
+                        <li>Tasmota firmware customization</li>
+                        <li>Sinric Pro cloud integration</li>
+                        <li>IR/RF remote control systems</li>
+                        <li>15% energy efficiency improvements</li>
                         <li>Custom mobile apps & dashboards</li>
-                        <li>Repurposed electronics projects</li>
+                        <li>Voice-controlled automation scenes</li>
+                        <li>Arduino-based timer systems</li>
+                        <li>Repurposed electronics (smart displays)</li>
                     </ul>
                 </div>
                 
@@ -454,9 +502,10 @@
             <h3>Operating Systems</h3>
             <div class="skills-container">
                 <span class="skill-tag">Windows Server</span>
-                <span class="skill-tag">Linux (RHEL, Ubuntu)</span>
+                <span class="skill-tag">Linux (Ubuntu, RHEL, Kali)</span>
                 <span class="skill-tag">macOS</span>
                 <span class="skill-tag">Android</span>
+                <span class="skill-tag">Android TV OS</span>
             </div>
             
             <h3>Cloud & Virtualization</h3>
@@ -473,11 +522,13 @@
             <h3>Networking & Security</h3>
             <div class="skills-container">
                 <span class="skill-tag">TCP/IP</span>
+                <span class="skill-tag">DHCP & DNS</span>
                 <span class="skill-tag">VPN (WireGuard/Tailscale)</span>
-                <span class="skill-tag">Sophos Firewall</span>
                 <span class="skill-tag">Penetration Testing</span>
                 <span class="skill-tag">Network Hardening</span>
-                <span class="skill-tag">VLAN Configuration</span>
+                <span class="skill-tag">Wi-Fi Optimization</span>
+                <span class="skill-tag">Network Monitoring (Zabbix, Nagios)</span>
+                <span class="skill-tag">Static IP Configuration</span>
             </div>
             
             <h3>IoT & Automation</h3>
@@ -486,9 +537,14 @@
                 <span class="skill-tag">Arduino</span>
                 <span class="skill-tag">NodeMCU</span>
                 <span class="skill-tag">Tasmota</span>
+                <span class="skill-tag">ESP RainMaker</span>
+                <span class="skill-tag">Sinric Pro</span>
                 <span class="skill-tag">Home Assistant</span>
                 <span class="skill-tag">Alexa Integration</span>
                 <span class="skill-tag">Google Assistant</span>
+                <span class="skill-tag">IR/RF Control</span>
+                <span class="skill-tag">Relay Modules</span>
+                <span class="skill-tag">Solid State Relays (SSR)</span>
             </div>
         </div>
         
@@ -508,8 +564,8 @@
                 </div>
                 
                 <div class="project-card">
-                    <h4>🏢 Multi-Compound Network</h4>
-                    <p>Designed and deployed network for 35 rooms, 160+ users across two villa compounds. Budget-conscious TP-Link solution with centralized monitoring ensuring 24/7 uptime and 95%+ satisfaction.</p>
+                    <h4>🏢 Multi-Compound Villa Network</h4>
+                    <p>Designed and deployed budget-conscious network for 35 rooms, 160+ users across two villa compounds. Integrated TP-Link switches (LS1008G, DGS108G) with Archer AX53 router and 16 repurposed routers as APs. Implemented 24/7 monitoring using Proxmox, Tailscale, Zabbix, Nagios, and Ntopng. Optimized with static IPs and channel management, achieving stable 200-230 Mb/s speeds with 110+ concurrent Wi-Fi users.</p>
                 </div>
                 
                 <div class="project-card">
@@ -525,6 +581,11 @@
                 <div class="project-card">
                     <h4>⚡ Smart Extension Box V3</h4>
                     <p>Upgraded 6-socket extension with ESP32, individual IR control, and app/voice integration. Programmable timers and automation via ESP RainMaker and voice assistants.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h4>💧 Kitchen Water Pump Timer</h4>
+                    <p>Arduino Nano-based automated timer with 40A SSR for water pump control. Features 2-minute and 7-minute preset options plus reset button. Prevents overflow, ensures efficient water usage, and saves energy with simple button-based operation housed in custom 2-module electrical box.</p>
                 </div>
             </div>
         </div>
@@ -677,9 +738,13 @@
             
             <div class="contact-buttons" style="margin-top:30px;">
                 <a href="https://www.linkedin.com/in/aman5z" class="btn btn-primary" target="_blank">📧 LinkedIn</a>
-                <a href="https://aman5z.online" class="btn btn-primary" target="_blank">🌐 Portfolio</a>
-                <a href="#" class="btn btn-primary">💬 WhatsApp</a>
+                <a href="https://aman5z.in" class="btn btn-primary" target="_blank">🌐 Portfolio</a>
+                <a href="mailto:amanfaizal@outlook.com" class="btn btn-primary">✉️ Email</a>
             </div>
+            
+            <p style="margin-top:30px; font-size:0.9em; color:#888;">
+                📍 Hosted at: <a href="https://aman5z.github.io" target="_blank" style="color:#003ee6;">aman5z.github.io</a>
+            </p>
             
             <p style="margin-top:40px; font-style:italic; color:#888;">
                 Turning curiosity into capability, one project at a time.
