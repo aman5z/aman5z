@@ -1,9 +1,5 @@
 # PROFESSIONAL PROFILE SUMMARY
-## Aman Faizal
 
----
-
-## THE ESSENTIALS
 
 **Certified Ethical Hacker | IT Infrastructure Administrator | IoT Automation Specialist**
 
