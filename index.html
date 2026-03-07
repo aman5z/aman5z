@@ -1053,14 +1053,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
 </a>
 
 <!-- Theme Toggle -->
-<button id="theme-toggle" onclick="toggleTheme()" style="position:fixed; top:20px; right:24px; z-index:9000; display:flex; align-items:center; gap:8px; padding:9px 16px; border-radius:40px; background:var(--toggle-bg); border:1px solid var(--toggle-border); color:var(--toggle-c); font-family:var(--font-mono); font-size:11px; letter-spacing:0.5px; cursor:pointer; box-shadow:0 4px 16px rgba(0,0,0,0.25); transition:all 0.25s; white-space:nowrap; user-select:none;">
-  <span class="toggle-icon" id="toggle-icon">☀️</span>
-  <span id="toggle-label"></span>
-</button>
-<button id="theme-toggle" onclick="toggleTheme()">
-  <span class="toggle-icon" id="toggle-icon">🌙</span>
-  <span id="toggle-label"></span>
-</button>
+
 
 <!-- ══ HERO ══ -->
 <div class="hero">
@@ -1806,10 +1799,10 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
     localStorage.setItem('portfolio-theme', t);
     if (t === 'dark') {
       toggleIcon.textContent = '☀️';
-      toggleLabel.textContent = 'Light Mode';
+      toggleLabel.textContent = '';
     } else {
       toggleIcon.textContent = '🌙';
-      toggleLabel.textContent = 'Dark Mode';
+      toggleLabel.textContent = '';
     }
   }
 
