@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>aman5z — Quick Access</title>
 <link rel="icon" href="https://raw.githubusercontent.com/aman5z/aman5z.github.io/main/favcon.png">
+
+<!-- PWA -->
+<meta name="theme-color" content="#0a1628">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="aman5z">
+<link rel="apple-touch-icon" href="https://raw.githubusercontent.com/aman5z/aman5z.github.io/main/favcon.png">
+<link rel="manifest" href="launcher-manifest.json">
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -33,27 +43,23 @@ body{
   position:relative;
 }
 
-/* ── BACKGROUND ── */
 .bg-grid{
   position:fixed;inset:0;
   background-image:
     linear-gradient(rgba(0,120,215,.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0,120,215,.04) 1px, transparent 1px);
   background-size:44px 44px;
-  z-index:0;
-  pointer-events:none;
+  z-index:0;pointer-events:none;
 }
 .bg-glow{
-  position:fixed;
-  width:700px;height:700px;
+  position:fixed;width:700px;height:700px;
   background:radial-gradient(circle, rgba(0,120,215,.12) 0%, transparent 70%);
   top:-200px;right:-200px;
   pointer-events:none;z-index:0;
   animation:drift 12s ease-in-out infinite alternate;
 }
 .bg-glow2{
-  position:fixed;
-  width:500px;height:500px;
+  position:fixed;width:500px;height:500px;
   background:radial-gradient(circle, rgba(26,58,128,.18) 0%, transparent 70%);
   bottom:-150px;left:-100px;
   pointer-events:none;z-index:0;
@@ -62,21 +68,18 @@ body{
 @keyframes drift{0%{transform:translate(0,0)}100%{transform:translate(-60px,80px)}}
 @keyframes drift2{0%{transform:translate(0,0)}100%{transform:translate(80px,-60px)}}
 
-/* ── NOISE TEXTURE ── */
 body::after{
   content:"";position:fixed;inset:0;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events:none;z-index:0;opacity:.6;
 }
 
-/* ── WRAPPER ── */
 .wrapper{
   position:relative;z-index:1;
   max-width:900px;margin:0 auto;
   padding:48px 24px 60px;
 }
 
-/* ── HEADER ── */
 .header{
   display:flex;align-items:center;gap:16px;
   margin-bottom:56px;
@@ -92,8 +95,7 @@ body::after{
   flex-shrink:0;
 }
 .header-text h1{
-  font-size:26px;font-weight:800;
-  letter-spacing:-.5px;
+  font-size:26px;font-weight:800;letter-spacing:-.5px;
   background:linear-gradient(135deg,#e8edf5,#7aadee);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
   line-height:1;margin-bottom:4px;
@@ -120,7 +122,6 @@ body::after{
 }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* ── SECTION LABEL ── */
 .section-label{
   font-size:9px;font-weight:700;letter-spacing:1.5px;
   text-transform:uppercase;color:var(--sub);
@@ -132,46 +133,35 @@ body::after{
   background:linear-gradient(90deg,var(--bdr),transparent);
 }
 
-/* ── GRID ── */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:12px;
-  margin-bottom:36px;
+  gap:12px;margin-bottom:36px;
 }
 
-/* ── CARD ── */
 .card{
   background:var(--card);
   border:1px solid var(--bdr);
-  border-radius:10px;
-  padding:20px;
-  cursor:pointer;
-  text-decoration:none;
+  border-radius:10px;padding:20px;
+  cursor:pointer;text-decoration:none;
   display:flex;align-items:center;gap:14px;
   position:relative;overflow:hidden;
   transition:border-color .2s, transform .18s, box-shadow .2s;
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
 }
 .card::before{
-  content:"";
-  position:absolute;inset:0;
+  content:"";position:absolute;inset:0;
   background:linear-gradient(135deg,rgba(0,120,215,.07),transparent 60%);
   opacity:0;transition:opacity .2s;
 }
 .card:hover{
-  border-color:rgba(0,120,215,.45);
-  transform:translateY(-2px);
+  border-color:rgba(0,120,215,.45);transform:translateY(-2px);
   box-shadow:0 8px 32px rgba(0,120,215,.15),0 0 0 1px rgba(0,120,215,.15);
 }
 .card:hover::before{opacity:1}
 .card:active{transform:translateY(0)}
-
-/* accent line top */
 .card::after{
-  content:"";
-  position:absolute;top:0;left:20px;right:20px;height:1px;
+  content:"";position:absolute;top:0;left:20px;right:20px;height:1px;
   background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
 }
 
@@ -179,8 +169,7 @@ body::after{
   width:44px;height:44px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;
   font-size:22px;flex-shrink:0;
-  background:rgba(255,255,255,.05);
-  border:1px solid var(--bdr);
+  background:rgba(255,255,255,.05);border:1px solid var(--bdr);
   transition:transform .2s;
 }
 .card:hover .card-ico{transform:scale(1.08)}
@@ -188,8 +177,7 @@ body::after{
 .card-info{flex:1;min-width:0}
 .card-title{
   font-size:13px;font-weight:700;color:var(--white);
-  margin-bottom:3px;white-space:nowrap;
-  overflow:hidden;text-overflow:ellipsis;
+  margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .card-desc{
   font-size:10px;color:var(--sub);
@@ -202,7 +190,6 @@ body::after{
 }
 .card:hover .card-arrow{color:var(--blue2);transform:translateX(3px)}
 
-/* ── TAG COLORS ── */
 .tag-blue .card-ico{background:rgba(0,120,215,.15);border-color:rgba(0,120,215,.25)}
 .tag-green .card-ico{background:rgba(22,163,74,.12);border-color:rgba(22,163,74,.25)}
 .tag-red .card-ico{background:rgba(238,49,36,.12);border-color:rgba(238,49,36,.25)}
@@ -211,28 +198,19 @@ body::after{
 .tag-purple .card-ico{background:rgba(124,58,237,.12);border-color:rgba(124,58,237,.25)}
 .tag-indigo .card-ico{background:rgba(99,102,241,.12);border-color:rgba(99,102,241,.25)}
 
-/* ── FEATURED CARD (full width) ── */
 .card-wide{grid-column:1/-1}
 .card-wide .card-ico{width:52px;height:52px;font-size:28px}
 .card-wide .card-title{font-size:15px}
 .card-wide .card-desc{font-size:11px}
 
-/* ── FOOTER ── */
 .footer{
-  text-align:center;
-  color:var(--sub);
-  font-size:10px;
-  font-family:'JetBrains Mono',monospace;
-  letter-spacing:.5px;
-  padding-top:12px;
-  border-top:1px solid var(--bdr);
-  animation:fadeUp .6s .6s ease both;
-  opacity:0;
-  animation-fill-mode:both;
+  text-align:center;color:var(--sub);font-size:10px;
+  font-family:'JetBrains Mono',monospace;letter-spacing:.5px;
+  padding-top:12px;border-top:1px solid var(--bdr);
+  animation:fadeUp .6s .6s ease both;opacity:0;animation-fill-mode:both;
 }
 .footer a{color:var(--blue2);text-decoration:none}
 
-/* ── ANIMATIONS ── */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(18px)}
   to{opacity:1;transform:translateY(0)}
@@ -247,7 +225,6 @@ body::after{
 .card:nth-child(7){animation-delay:.38s}
 .section-label{opacity:0;animation:fadeUp .5s .05s ease both}
 
-/* ── SEARCH BAR ── */
 .search-wrap{
   position:relative;margin-bottom:32px;
   animation:fadeUp .5s .04s ease both;opacity:0;
@@ -261,8 +238,7 @@ body::after{
 }
 .search-wrap input::placeholder{color:var(--sub)}
 .search-wrap input:focus{
-  border-color:rgba(0,120,215,.45);
-  background:rgba(0,120,215,.06);
+  border-color:rgba(0,120,215,.45);background:rgba(0,120,215,.06);
 }
 .search-icon{
   position:absolute;left:14px;top:50%;transform:translateY(-50%);
@@ -273,7 +249,6 @@ body::after{
   font-size:10px;color:var(--sub);font-family:'JetBrains Mono',monospace;
 }
 
-/* ── RESPONSIVE ── */
 @media(max-width:600px){
   .wrapper{padding:28px 16px 40px}
   .header{margin-bottom:36px}
@@ -291,7 +266,6 @@ body::after{
 
 <div class="wrapper">
 
-  <!-- HEADER -->
   <div class="header" style="animation:fadeUp .6s ease both">
     <div class="header-logo" style="padding:0;overflow:hidden;">
       <img src="https://raw.githubusercontent.com/aman5z/aman5z.github.io/main/favcon.png" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
@@ -303,14 +277,12 @@ body::after{
     <div class="header-pill">● Online</div>
   </div>
 
-  <!-- SEARCH -->
   <div class="search-wrap">
     <span class="search-icon">🔍</span>
     <input type="text" id="searchInput" placeholder="Search tools..." oninput="filterCards()">
     <span class="search-count" id="searchCount"></span>
   </div>
 
-  <!-- PROFILE SECTION -->
   <div class="section-label" id="sec-profile">Profile</div>
   <div class="grid" id="grid-profile">
 
@@ -338,7 +310,6 @@ body::after{
 
   </div>
 
-  <!-- ADMIN SECTION -->
   <div class="section-label" id="sec-admin">Administration</div>
   <div class="grid" id="grid-admin">
 
@@ -354,7 +325,6 @@ body::after{
 
   </div>
 
-  <!-- NETWORK SECTION -->
   <div class="section-label" id="sec-network">Network Simulators</div>
   <div class="grid" id="grid-network">
 
@@ -380,7 +350,6 @@ body::after{
 
   </div>
 
-  <!-- TOOLS SECTION -->
   <div class="section-label" id="sec-tools">Tools & Systems</div>
   <div class="grid" id="grid-tools">
 
@@ -426,7 +395,6 @@ body::after{
 
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">
     aman5z.in &nbsp;·&nbsp; <a href="https://aman5z.github.io/AD/users.html" target="_blank">AD Console</a>
     &nbsp;·&nbsp; Built with ❤️
@@ -450,7 +418,6 @@ function filterCards(){
   const countEl = document.getElementById('searchCount');
   countEl.textContent = q ? vis + ' result' + (vis !== 1 ? 's' : '') : '';
 
-  // Hide/show section labels based on visible children
   document.querySelectorAll('.grid').forEach(grid => {
     const id = grid.id.replace('grid-', 'sec-');
     const secEl = document.getElementById(id);
@@ -460,7 +427,6 @@ function filterCards(){
   });
 }
 
-// Keyboard shortcut: / to focus search
 document.addEventListener('keydown', e => {
   if(e.key === '/' && document.activeElement.tagName !== 'INPUT'){
     e.preventDefault();
@@ -473,5 +439,12 @@ document.addEventListener('keydown', e => {
   }
 });
 </script>
+
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('launcher-sw.js').catch(()=>{});
+}
+</script>
+
 </body>
 </html>
