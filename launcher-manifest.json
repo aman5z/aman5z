@@ -2,7 +2,7 @@
   "name": "aman5z — Quick Access",
   "short_name": "aman5z",
   "description": "Quick access launcher for aman5z tools and systems",
-  "start_url": "./aman5z_launcher.html",
+  "start_url": "./links.html",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#0a1628",
