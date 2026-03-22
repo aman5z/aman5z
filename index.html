@@ -221,7 +221,6 @@ body {
 }
 .hero-inner { max-width: 1100px; margin: 0 auto; }
 
-/* Dark hero: left-aligned monospace style */
 [data-theme="dark"] .hero-inner { text-align: left; }
 [data-theme="dark"] .hero-label {
   font-family: var(--font-mono);
@@ -249,7 +248,6 @@ body {
 [data-theme="dark"] .hero-badges { justify-content: flex-start; }
 [data-theme="dark"] .hero-contact { justify-content: flex-start; }
 
-/* Light hero: centered gradient style */
 [data-theme="light"] .hero-inner { text-align: center; }
 [data-theme="light"] .hero-label {
   font-family: var(--font-body);
@@ -357,7 +355,6 @@ body {
 .stat-card .label { font-size: 13px; color: var(--stat-label); }
 [data-theme="light"] .stat-card .number { font-family: 'Poppins', sans-serif; }
 
-/* Tooltip */
 [data-tooltip] { position: relative; }
 [data-tooltip]:hover::after {
   content: attr(data-tooltip);
@@ -900,29 +897,6 @@ body {
 [data-theme="light"] .cert-item strong { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600; color: #121158; }
 .cert-item span { color: var(--cert-sub); font-size: 12px; }
 
-
-   
-<!-- EDUCATION remove hidden when needed -- >
-   <div class="bio-section" hidden>
-  <div class="section-h2">Education</div>
-  <div class="timeline-wrap">
-    <div class="timeline-item">
-      <h4>Master of Business Administration (MBA)</h4>
-      <div class="timeline-meta">Information Technology Project Management · Amity University · 2026–2028 (In Progress)</div>
-    </div>
-    <div class="timeline-item">
-      <h4>Bachelor of Arts — Sociology</h4>
-      <div class="timeline-meta">SVSU Distance · 2022–2025 · 67%</div>
-    </div>
-    <div class="timeline-item">
-      <h4>Diploma in Network Administration</h4>
-      <div class="timeline-meta">Jetking Infotrain · 2020–2022 · Grade A</div>
-      <p>MCSA, RHCSA, CCNA, CompTIA A+, Network+, Office 365</p>
-    </div>
-  </div>
-</div>
-
-   
 /* ══════════════════════════════════════════
    WHY WORK WITH ME
 ══════════════════════════════════════════ */
@@ -1039,6 +1013,66 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
 #lb-close:hover { opacity: 1; }
 
 /* ══════════════════════════════════════════
+   COLLAPSE / EXPAND PROJECT CARDS
+══════════════════════════════════════════ */
+.project-card { cursor: pointer; }
+
+/* 2-line preview shown when collapsed */
+.card-preview {
+  padding: 10px 28px 0;
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Body hidden when collapsed, preview hidden when expanded */
+.project-card.collapsed .card-body { display: none; }
+.project-card.collapsed .card-preview { display: -webkit-box; }
+.project-card:not(.collapsed) .card-preview { display: none; }
+
+/* Chevron row at bottom of card header area */
+.card-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 28px 14px;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  user-select: none;
+  transition: color 0.2s;
+}
+[data-theme="light"] .card-chevron {
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+}
+.card-chevron svg {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+/* Arrow points down (collapsed = show more) */
+.project-card.collapsed .card-chevron svg { transform: rotate(0deg); }
+/* Arrow points up (expanded = show less) */
+.project-card:not(.collapsed) .card-chevron svg { transform: rotate(180deg); }
+
+/* Subtle hover accent when collapsed */
+.project-card.collapsed:hover .card-chevron { color: var(--accent); }
+
+/* Separator line above chevron when expanded */
+.project-card:not(.collapsed) .card-chevron {
+  border-top: 1px solid var(--border);
+  margin: 0 28px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 680px) {
@@ -1107,7 +1141,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
   <div class="stats-grid">
     <div class="stat-card"><span class="number">4+</span><span class="label">Years Experience</span></div>
     <div class="stat-card" data-tooltip="6,500+ Students&#10;500+ Staff Members"><span class="number">7,000+</span><span class="label">Users Supported</span></div>
-    <div class="stat-card" data-tooltip="• CEH (EC-Council)&#10;• Advanced Penetration Tester&#10;• Google IT Support Professional&#10;• RHCE & AWS Solution Architect&#10;• Apple ATLAS (318 Courses)&#10;• Network Administration Diploma&#10;• CompTIA Security+&#10;• DevOps Fundamentals&#10;• And more..."><span class="number">15+</span><span class="label">Certifications</span></div>
+    <div class="stat-card" data-tooltip="• CEH (EC-Council)&#10;• Advanced Penetration Tester&#10;• Google IT Support Professional&#10;• RHCE &amp; AWS Solution Architect&#10;• Apple ATLAS (318 Courses)&#10;• Network Administration Diploma&#10;• CompTIA Security+&#10;• DevOps Fundamentals&#10;• And more..."><span class="number">15+</span><span class="label">Certifications</span></div>
     <div class="stat-card"><span class="number">95%</span><span class="label">Issue Resolution Rate</span></div>
   </div>
 </div>
@@ -1131,28 +1165,28 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <li>170+ PCs, 190+ smartboards/projectors</li>
         <li>HP ProLiant DL360 Gen10, Active Directory</li>
         <li>QNAP NAS, CCTV, biometrics, POS systems</li>
-        <li>Microsoft 365 & AWS administration</li>
-        <li>Campus-wide network & vendor coordination</li>
+        <li>Microsoft 365 &amp; AWS administration</li>
+        <li>Campus-wide network &amp; vendor coordination</li>
       </ul>
     </div>
     
     <div class="expertise-card">
-      <h4>🏠 IoT & Home Automation</h4>
+      <h4>🏠 IoT &amp; Home Automation</h4>
       <ul>
         <li>ESP8266/ESP32 firmware development</li>
         <li>Multi-room smart home systems (4+ rooms)</li>
         <li>Alexa, Google Assistant, Sinric Pro</li>
-        <li>Tasmota & ESP RainMaker platforms</li>
+        <li>Tasmota &amp; ESP RainMaker platforms</li>
         <li>IR/RF remote control systems</li>
         <li>~15% energy efficiency improvements</li>
       </ul>
     </div>
     <div class="expertise-card">
-      <h4>☁️ Cloud & Virtualization</h4>
+      <h4>☁️ Cloud &amp; Virtualization</h4>
       <ul>
         <li>Proxmox VE multi-OS hosting</li>
         <li>Private cloud storage (Nextcloud)</li>
-        <li>Tailscale VPN & Cloudflare Tunnel</li>
+        <li>Tailscale VPN &amp; Cloudflare Tunnel</li>
         <li>Media servers (Plex, Jellyfin)</li>
         <li>VoIP systems (Asterisk/FreePBX)</li>
         <li>24/7 monitoring (Zabbix, Nagios)</li>
@@ -1171,25 +1205,25 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
     </div>
   </div>
   <div class="skills-group">
-    <h3>Cloud & Virtualization</h3>
+    <h3>Cloud &amp; Virtualization</h3>
     <div class="skills-tags">
       <span class="skill-tag">AWS (EC2 · S3 · VPC)</span><span class="skill-tag">Microsoft 365</span><span class="skill-tag">Proxmox VE</span><span class="skill-tag">VMware</span><span class="skill-tag">Hyper-V</span><span class="skill-tag">Docker</span><span class="skill-tag">LXC</span>
     </div>
   </div>
   <div class="skills-group">
-    <h3>Networking & Security</h3>
+    <h3>Networking &amp; Security</h3>
     <div class="skills-tags">
       <span class="skill-tag">TCP/IP · DHCP · DNS</span><span class="skill-tag">VPN (WireGuard · Tailscale)</span><span class="skill-tag">Penetration Testing</span><span class="skill-tag">Wi-Fi Optimization</span><span class="skill-tag">Zabbix · Nagios · Ntopng</span><span class="skill-tag">Sophos XGS</span>
     </div>
   </div>
   <div class="skills-group">
-    <h3>IoT & Automation</h3>
+    <h3>IoT &amp; Automation</h3>
     <div class="skills-tags">
       <span class="skill-tag">ESP8266 · ESP32</span><span class="skill-tag">Arduino · NodeMCU</span><span class="skill-tag">Tasmota</span><span class="skill-tag">ESP RainMaker</span><span class="skill-tag">Sinric Pro</span><span class="skill-tag">Home Assistant</span><span class="skill-tag">Relay Modules · SSR</span>
     </div>
   </div>
   <div class="skills-group">
-    <h3>Web & Software</h3>
+    <h3>Web &amp; Software</h3>
     <div class="skills-tags">
       <span class="skill-tag">Vanilla JS · HTML5 · CSS3</span><span class="skill-tag">Google Apps Script</span><span class="skill-tag">REST APIs</span><span class="skill-tag">PDF-lib · QRCode.js</span><span class="skill-tag">Web Speech API</span>
     </div>
@@ -1241,8 +1275,6 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
   </div>
 </div>
 
-
-
 <!-- WHY WORK WITH ME -->
 <div class="bio-section">
   <div class="section-h2">Why Work With Me</div>
@@ -1280,7 +1312,6 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
     <span class="section-index">01</span>
     <div>
       <span class="section-tag tag-web">Web Apps &amp; Software</span>
-
       <div class="section-title">Browser-Based IT Tools &amp; Dashboards</div>
       <p class="section-desc">Full-featured web apps built with Vanilla JS and Google Apps Script — enterprise-style admin consoles, network monitoring dashboards, and IT utility suites.</p>
     </div>
@@ -1296,7 +1327,6 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <span class="card-badge badge-freelance">Live Project</span>
       </div>
       <div class="card-body">
-
         <p>A fully functional browser-based IT administration dashboard inspired by Windows Active Directory Users and Computers. Single-page HTML application with a Windows-style UI — title bar, menu bar, toolbar, tabbed navigation, sidebar, and status bar — all running client-side with a Google Apps Script + Sheets backend.</p>
         <div class="sub-items">
           <div class="sub-item"><h4>User &amp; Access Management</h4><p>Role-based access control (Admin, Technician, User) with granular per-user permissions. Full user management: create, edit, enable/disable, delete, reset passwords.</p></div>
@@ -1313,8 +1343,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEguNr9AEkCKXz-2E3kRa8EwcGK8lZYbuL8Bni933SP5j2k1Tc9qJYZb9ZXa89nlB-S25jy2psUrI1YZjdi6O09lWDaRXnNT6SDqzXoQY_DdN-DZrBEeJWpUSlRrhCdFtZMJi0Vqrl4hUu5pq7JxhxhvJr-xjda16LYTm4xdEm2C26LYC6VcqgXAnEFytuQ" alt="AD Console users">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjymFjaRr5sBHzAQatpYoo9_9b2tjfWy91Lue1uF1kLJzpYZFL1vIEl0Phl3RNp76rdr__8wfyW9kmZf30Jm2-aEzIYg8jCEdQxWjtX3501-ECJ3OxldyTm1J2-n0lbKe8q3lJdT3bHpqIlD1uTVYaxZCjDeDZsJh2A1XpM14qOQ_YjE--gvEQ3OyEcgJo" alt="AD Console tickets">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhhmIXFw6GE1mcVayJOape7I5yYs3cot9CkzTXGIt2tJcp9eMGv1U3l8VLaZRoOj8gyZUC3QMszhIVwSJWWh76aiuRwsOtY5tCGiP_mX6vUTqt4QkFjqDV44xlMushhREQD9Q8C0fQsRQuscctjILiV476_DRF3ggNN95wo07vc0v57R4cFmjFxp3ZOhX4" alt="AD Console file drive">
-          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEh7oi9KaTgQptKGdoSTkRsQy-qMyrhHKuE7AFriNTOE_KqJMbq1FnLn-m4Zkn3EzH6UhbS0oAUUnhKgCTpCcHdSnXpXYE7F2C5DVopwmnqympY8KTuoxB8sXc8ddDOWpAwzQLBlqd_cFQUX1uMngHZrqU2k3uls6cko_vLO3a0D6lojf6i6TkGpvVmH1yE" alt="AD Console audit log">
-          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhy6HICR9qiCIbalVSIdpQnsHH8AT3B8fhnX4tPwmjf5403B0Ws_MkgECOy7vjULdWgv2CdYyy1B1idNKnE2LymCsAT36KHMZ0h6OClO3iGHxe7BC7NEob79nNuR3gU9i8GTKOjTsr6YdSaps9x45ByIWq4XOUQkM-Ps6Vl2cC3YjX7tpC4QrKvI" alt="AD Console terminal" onerror="this.style.display='none'">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEh7oi9KaTgQptKGdoSTkRsQy-qMyrhHKuE7AFriNTOE_KqJMbq1FnLn-m4Zkn3EhB6UhbS0oAUUnhKgCTpCcHdSnXpXYE7F2C5DVopwmnqympY8KTuoxB8sXc8ddDOWpAwzQLBlqd_cFQUX1uMngHZrqU2k3uls6cko_vLO3a0D6lojf6i6TkGpvVmH1yE" alt="AD Console audit log">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgMZ3jyvipp0XzkKksm8Tim99C27LVMKOlZh6fvhCwaU8D0LNabAyKrKXlr0j0duws7K4z7j8aSnabOY-6w8f4dAdAO4x_7UwAZLullmHLp1KJnybn6zYtAVfz_ndnQ6zJO9pPruGJHBhnxdPFpCaXjY_hjnfJSDcMQOJhFR_DSKPorE-7THdRvASqNl-8" alt="AD Console PDF tools">
         </div>
         <div class="tech-stack">
@@ -1323,7 +1352,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
       </div>
     </div>
 
-<!-- ZKTeco Attendance Dashboard -->
+    <!-- ZKTeco Attendance Dashboard -->
     <div class="project-card">
       <div class="card-header">
         <div>
@@ -1334,47 +1363,26 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <span class="card-badge badge-freelance">Live Project</span>
       </div>
       <div class="card-body">
-        <p>A complete attendance management system built in Python, replacing the legacy Middle East Attendance software. Connects live to 4 ZKTeco biometric devices (G3 + iFace950) over LAN using the ZK protocol, cross-references against a .mdb database, and generates department-filtered absent/present reports. Features a dark-themed web dashboard with PWA support for mobile access.</p>
- 
+        <p>A complete attendance management system built in Python, replacing the legacy Middle East Attendance software. Connects live to 4 ZKTeco biometric devices (G3 + iFace950) over LAN using the ZK protocol, cross-references against a .mdb database, and generates department-filtered absent/present reports.</p>
         <div class="sub-items" style="margin-top:16px;">
-          <div class="sub-item">
-            <h4>Live Device Integration</h4>
-            <p>Pulls real-time punch data from 4 ZKTeco devices simultaneously using pyzk over port 4370. Per-device status monitoring with timeout detection (ping OK vs attendance fetch failure).</p>
-          </div>
-          <div class="sub-item">
-            <h4>Smart Absent Reporting</h4>
-            <p>Filters active employees (ATT=1) from .mdb database, cross-references live punches, and generates department-wise absent lists for Admin, Teaching, Support, Cleaning Staff, and Transport.</p>
-          </div>
-          <div class="sub-item">
-            <h4>Interactive Web Dashboard</h4>
-            <p>Flask-based single-page app with Overview, Today's Report, History, and Device Management tabs. Collapsible day-by-day history, searchable tables, and department bar charts.</p>
-          </div>
-          <div class="sub-item">
-            <h4>Excel Export</h4>
-            <p>One-click export of absent reports to formatted .xlsx with department grouping, alternating row colors, and summary sheet — for both today and any custom date range.</p>
-          </div>
-          <div class="sub-item">
-            <h4>PWA + Mobile Ready</h4>
-            <p>Installable as a home screen app on Android via PWA. Service worker caches the UI; API calls always fetch live data. Fully mobile-responsive layout.</p>
-          </div>
-          <div class="sub-item">
-            <h4>Device Management</h4>
-            <p>Per-device user count, serial number, firmware info, and punch log viewer for any date via modal popup.</p>
-          </div>
+          <div class="sub-item"><h4>Live Device Integration</h4><p>Pulls real-time punch data from 4 ZKTeco devices simultaneously using pyzk over port 4370. Per-device status monitoring with timeout detection (ping OK vs attendance fetch failure).</p></div>
+          <div class="sub-item"><h4>Smart Absent Reporting</h4><p>Filters active employees (ATT=1) from .mdb database, cross-references live punches, and generates department-wise absent lists for Admin, Teaching, Support, Cleaning Staff, and Transport.</p></div>
+          <div class="sub-item"><h4>Interactive Web Dashboard</h4><p>Flask-based single-page app with Overview, Today's Report, History, and Device Management tabs. Collapsible day-by-day history, searchable tables, and department bar charts.</p></div>
+          <div class="sub-item"><h4>Excel Export</h4><p>One-click export of absent reports to formatted .xlsx with department grouping, alternating row colors, and summary sheet — for both today and any custom date range.</p></div>
+          <div class="sub-item"><h4>PWA + Mobile Ready</h4><p>Installable as a home screen app on Android via PWA. Service worker caches the UI; API calls always fetch live data. Fully mobile-responsive layout.</p></div>
+          <div class="sub-item"><h4>Device Management</h4><p>Per-device user count, serial number, firmware info, and punch log viewer for any date via modal popup.</p></div>
         </div>
- 
         <div class="gallery">
           <img src="https://github.com/user-attachments/assets/bdef4f92-0485-4df9-8b10-8a35ac7000ba" alt="ZKTeco Dashboard - Overview">
           <img src="https://github.com/user-attachments/assets/7d449c19-b1a0-42b2-8008-9548b2bf08ce" alt="ZKTeco Dashboard - Report">
           <img src="https://github.com/user-attachments/assets/2ad1aca7-d2ca-45d7-bba4-4fe205032314" alt="ZKTeco Dashboard - Devices">
         </div>
- 
         <div class="tech-stack">
           <span class="tech">Python</span><span class="tech">Flask</span><span class="tech">pyzk</span><span class="tech">pyodbc</span><span class="tech">pandas</span><span class="tech">openpyxl</span><span class="tech">Microsoft Access (.mdb)</span><span class="tech">ZK Protocol</span><span class="tech">PWA</span><span class="tech">Service Worker</span><span class="tech">Vanilla JS</span>
         </div>
       </div>
     </div>
- 
+
     <!-- School Circular Email Automation -->
     <div class="project-card">
       <div class="card-header">
@@ -1387,7 +1395,6 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
       </div>
       <div class="card-body">
         <p>An end-to-end circular distribution system built for Gulf Asian English School. Extracts and deduplicates parent emails from Excel, splits into 500-email BCC batches respecting Gmail limits, and distributes across 6 Gmail accounts automatically. Includes a browser-based batch manager and a desktop GUI sender.</p>
- 
         <ul class="feature-list">
           <li>Extracts &amp; deduplicates emails from any Excel file</li>
           <li>Splits into 500-per-batch columns with comma-separated copy buttons</li>
@@ -1396,7 +1403,6 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
           <li>Converts to standalone <code>.exe</code> — no Python required on other machines</li>
           <li>Supports 6 Gmail accounts in rotation (2,000 emails/account/day)</li>
         </ul>
- 
         <div class="gallery">
           <img src="https://github.com/user-attachments/assets/a61717bf-522b-4093-a5d6-048e937d671a" alt="Circular Automation - GUI">
           <img src="https://github.com/user-attachments/assets/443a6c95-b2cd-4864-b245-055fa496bd0b" alt="Circular Automation - Batch Manager">
@@ -1405,13 +1411,12 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
           <img src="https://github.com/user-attachments/assets/455666dd-017b-4256-bf9d-e3e7c777aa42" alt="Circular Automation - Dashboard">
           <img src="https://github.com/user-attachments/assets/67354050-0905-4265-87fd-a22ecbbe2d91" alt="Circular Automation - Overview">
         </div>
- 
         <div class="tech-stack">
           <span class="tech">Python</span><span class="tech">Tkinter</span><span class="tech">openpyxl</span><span class="tech">smtplib</span><span class="tech">SMTP / Gmail</span><span class="tech">PyInstaller</span><span class="tech">Vanilla JS</span><span class="tech">HTML5 / CSS3</span>
         </div>
       </div>
     </div>
- 
+
     <!-- IT Helpdesk Ticket Management -->
     <div class="project-card">
       <div class="card-header">
@@ -1439,6 +1444,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         </div>
       </div>
     </div>
+
     <div class="project-card">
       <div class="card-header">
         <div>
@@ -1464,7 +1470,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjaicMEnu-7MAcSONqzgMXg0R-CJaoL7prHdM53qTUM1PWaJugARQFSLtCHpOks1MEfMQduNM-p2TqGCdVlEhx0RzXOV49Gi2yqzW5o8sQxp0CTl4N8p2T5BBNQsHt48SHK1_SOBFsjBJ-HLWvvCJG4RRfmgR2SsveWwIcuD8V5wCveIhXyYbuE00HGE9o" alt="Token display">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEg38XZCydKbY4F89WCdYt0WhZDGFQYYV6C6yxoBLYdyr2RSpqYF1TiXQ6w6zskgUaP9S_jAqcz4nJdH3MtBSRm9ZpcfbW-IvYwZIhxOggRAMe-oF1QQIgLNTMVk04HSjrQeR0H9HakANtxNt8PGRK-LZdgZI1opUY0yvP4q6CRBQvllgfI6IM3aIg6U2YY" alt="Token operator">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhFyT-ntz8d9alJopA4CJA2FrZh1VqaWqvJCJzjK4fR1etM6SrKspRRs09i1NVO_kICZpfAf4_XJYZhCEfp5jDWlaveQ7qxvKQHXqwNsS8OTLLpmltRPtQUaYctnvJGMTfxIltv9wIqMlCGyVP0--WqQiHHIH0FnoGbCXXalqtGKHaSu4q9Is8OA5WQ2aY" alt="Ticket print">
-                 </div>
+        </div>
         <div class="tech-stack">
           <span class="tech">Vanilla JS</span><span class="tech">Google Apps Script</span><span class="tech">Web Speech API</span><span class="tech">Web Audio API</span><span class="tech">JSONP</span><span class="tech">Print API</span>
         </div>
@@ -1544,7 +1550,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
           <div class="conn-row"><span class="conn-key">D5/D6/D7</span><span>→ OK / Up / Down buttons</span></div>
         </div>
         <div class="gallery">
-                   <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhphuJBUdhwBAWJ2GfXdOgxjb9lTFTst6L8jxPR0qOPF93gMjB4OhYiWjD5g6r33tGnsCPoQBqsCxLJDmCjjitJOHV6CdzoKIQymD0D0izVHdbGU5pMfHMIJIxFxq9XuwFjxGGicYdNH0C8aJjnb6w98Jf7bpoiqi1ruj26HDacuhWVqgd-CH7X9IuBK6U/w480-h640/20231010_045947.heic" alt="Deauther v2">
+          <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhphuJBUdhwBAWJ2GfXdOgxjb9lTFTst6L8jxPR0qOPF93gMjB4OhYiWjD5g6r33tGnsCPoQBqsCxLJDmCjjitJOHV6CdzoKIQymD0D0izVHdbGU5pMfHMIJIxFxq9XuwFjxGGicYdNH0C8aJjnb6w98Jf7bpoiqi1ruj26HDacuhWVqgd-CH7X9IuBK6U/w480-h640/20231010_045947.heic" alt="Deauther v2">
           <iframe src="https://www.youtube.com/embed/yxYy-raUYgw" allowfullscreen></iframe>
           <iframe src="https://www.youtube.com/embed/49yFmYKk45k" allowfullscreen></iframe>
         </div>
@@ -1624,7 +1630,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
           <li>External reset + reprogramming port for field updates</li>
         </ul>
         <div class="gallery">
-                   <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi-GHhzAeZ4QXFp0CjXHRrucEva-CalCyOG6_rYCRKvWiqdAYIotrHafvXkMZeC5DBxsKUE7nIGbBMdLG-cPd8rL6udpQTZcqatmtYguViEIBpGx29DwfI8AJc16y6IasR081S7KsPS4Y2r4paR5yjsbPt7rW7P2YbQTIHqemeW6nmEnW0taVGozMlrzJw" alt="Extension box assembled">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi-GHhzAeZ4QXFp0CjXHRrucEva-CalCyOG6_rYCRKvWiqdAYIotrHafvXkMZeC5DBxsKUE7nIGbBMdLG-cPd8rL6udpQTZcqatmtYguViEIBpGx29DwfI8AJc16y6IasR081S7KsPS4Y2r4paR5yjsbPt7rW7P2YbQTIHqemeW6nmEnW0taVGozMlrzJw" alt="Extension box assembled">
           <iframe src="https://www.youtube.com/embed/AbDBEdheORM" allowfullscreen></iframe>
           <iframe src="https://www.youtube.com/embed/-SjZgLHQetY" allowfullscreen></iframe>
         </div>
@@ -1641,7 +1647,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <span class="card-badge badge-diy">DIY</span>
       </div>
       <div class="card-body">
-        <p>A 4-channel relay + NodeMCU ESP8266 connected to the bike's ignition, kill switch, and self-start — controllable via Alexa, Google Assistant, or a WearOS app. Powered by 12V-to-USB adapter from the bike battery. Salvaged RF module from an RC car converted into a keychain remote for proximity auto-lock/unlock (locks beyond ~10m). Helmet-triggered engine start via Bluetooth receiver.</p>
+        <p>A 4-channel relay + NodeMCU ESP8266 connected to the bike's ignition, kill switch, and self-start — controllable via Alexa, Google Assistant, or a WearOS app. Powered by 12V-to-USB adapter from the bike battery. Salvaged RF module from an RC car converted into a keychain remote for proximity auto-lock/unlock (locks beyond ~10m).</p>
         <ul class="feature-list">
           <li>Ignition, kill switch, and self-start via app/voice</li>
           <li>Proximity auto-lock/unlock via salvaged RF module</li>
@@ -1694,7 +1700,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <span class="card-badge badge-diy">DIY</span>
       </div>
       <div class="card-body">
-        <p>A POCO M3 with a broken charging port, dead SIM, and broken GPS was repaired (display replaced), debloated (85–90% MIUI removed), and mounted in a custom holder with an integrated 5W speaker and 10,000 mAh power bank. Runs Alexa as a full voice assistant for smart home control and media playback. Also controllable from a WearOS watch.</p>
+        <p>A POCO M3 with a broken charging port, dead SIM, and broken GPS was repaired (display replaced), debloated (85–90% MIUI removed), and mounted in a custom holder with an integrated 5W speaker and 10,000 mAh power bank. Runs Alexa as a full voice assistant for smart home control and media playback.</p>
         <div class="gallery">
           <iframe src="https://www.youtube.com/embed/CLh-JNErU60" allowfullscreen></iframe>
         </div>
@@ -1725,7 +1731,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <span class="card-badge badge-diy">Self-Hosted</span>
       </div>
       <div class="card-body">
-        <p>Transformed an idle HP i3 laptop by upgrading SSD/RAM and modifying the power button for lid-closed booting. Installed Proxmox VE for full virtualization, running multiple OS instances with automated backups and snapshots. A Raspberry Pi 5 runs UmbrelOS/CasaOS with a 500 GB SSD for private cloud storage. All infrastructure is zero-cost using free, open-source software.</p>
+        <p>Transformed an idle HP i3 laptop by upgrading SSD/RAM and modifying the power button for lid-closed booting. Installed Proxmox VE for full virtualization, running multiple OS instances with automated backups and snapshots. A Raspberry Pi 5 runs UmbrelOS/CasaOS with a 500 GB SSD for private cloud storage.</p>
         <div class="sub-items">
           <div class="sub-item"><h4>Virtualization &amp; VMs</h4><p>Proxmox VE hosting Ubuntu Server, Kali Linux, Windows 11, Windows Server, Android TV OS, and multiple LXC containers. Accessible via VNC from any browser.</p></div>
           <div class="sub-item"><h4>Remote Access</h4><p>Cloudflare Tunnel for HTTPS public access via custom subdomains. Tailscale VPN (WireGuard) for secure mesh networking across all devices.</p></div>
@@ -1754,7 +1760,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <span class="card-badge badge-freelance">Freelance</span>
       </div>
       <div class="card-body">
-        <p>Designed and deployed a cost-effective enterprise-grade Wi-Fi network across two villa compounds with 35 rooms, supporting 110+ Wi-Fi users and 160+ peak concurrent users. All 16 routers repurposed from existing hardware, configured as APs with static IPs and non-overlapping channels. Achieved 200–230 Mb/s stable throughput — all monitoring at zero additional cost.</p>
+        <p>Designed and deployed a cost-effective enterprise-grade Wi-Fi network across two villa compounds with 35 rooms, supporting 110+ Wi-Fi users and 160+ peak concurrent users. All 16 routers repurposed from existing hardware, configured as APs with static IPs and non-overlapping channels. Achieved 200–230 Mb/s stable throughput.</p>
         <div class="card-divider"></div>
         <div class="card-title" style="font-size:12px; margin-bottom:10px;">Network Hardware</div>
         <table class="network-table">
@@ -1771,13 +1777,13 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <div class="sub-items">
           <div class="sub-item"><h4>WAN Monitoring</h4><p>Embedded Fast.com speed test, public uptime tracking, external network status monitoring.</p></div>
           <div class="sub-item"><h4>Planned Enhancements</h4><p>Prometheus + Grafana, Docker backend, SNMP, authentication layer, PWA deployment, AWS/Azure hosting.</p></div>
-          <div class="sub-item"><h4>Pi-hole DNS & Filtering</h4><p>Self-hosted Pi-hole for network-wide ad blocking, DNS filtering, and traffic monitoring — acts as a lightweight firewall layer across all 160+ users.</p></div>
+          <div class="sub-item"><h4>Pi-hole DNS &amp; Filtering</h4><p>Self-hosted Pi-hole for network-wide ad blocking, DNS filtering, and traffic monitoring — acts as a lightweight firewall layer across all 160+ users.</p></div>
         </div>
         <div class="gallery">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEi_n9ddawh5bMdle0BmrZQgGFV38aiaXakTp0vRdb6DKM77Au8lq8oNGaURqfKSsfr6SHOzzX8aUygUPzPle1n9TXijioSwhAXz9BFp2HajnLgZwEvch7EKQlAKhpuiM8g_PnnjE0Qvr36MiP_VgoSIKc-u0UZmrAyVuJhuk9nywbdkPxCln8kX9VAM0xM" alt="Villa network infrastructure">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEjPpI5vInBW-_8SToZmCa31rL__ZjXlMYZ4OHRk7NQzaBI51e8FNONwjXkgrpYj4TWqNqPYahtky9sRrbncCm6yL2r7_ZF423dZu0EjD5D6oiBkVxGgpcGHIxZB_Z6yu2NO71bPjrnDsGwwVamJGGPUo5Gz8OVhcSVChxEmwtv8hEfql9hPp9C37JtiYVQ" alt="Villa network infrastructure">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiOhDa7DHgmeiRp-WWxmonBbfL6j_qWV0Va5_i284M-_6BzZWJTUXddx0Yf7C7vcXoWSHKOpzPMv2P4bcx6X6CV5uY7KpkRk6fCa6IDL65wI8ewnn33JK-gtlD6q93em1kcKlSfqOlyzydNz5vXqqOEB2Bi_HXYqmT4qsx8o2atgc0-7k31kjglbByUjPg" alt="Villa network deployment">
-          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhc3HBoh9eun-A6XtSWIAFPSKD3ViSBnVhltvhemeRubLzmXHbRSshuRcbc4U_ziQhm8w4Rguq58WBtDGBnvN9AR9mPzs7gYlcb6zntH8jgcbanV1id0gkB-1kIYAV21VtyQYIYxuoUASU3m2-9KKeamfg7-oekfP2IxA--aoL6Br4UWA9QanrmHrE4OZ8" alt="Network photo 3">
+          <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhc3HBoh9eun-A6XtSWIAFPSBK3ViSBnVhltvhemeRubLzmXHbRSshuRcbc4U_ziQhm8w4Rguq58WBtDGBnvN9AR9mPzs7gYlcb6zntH8jgcbanV1id0gkB-1kIYAV21VtyQYIYxuoUASU3m2-9KKeamfg7-oekfP2IxA--aoL6Br4UWA9QanrmHrE4OZ8" alt="Network photo 3">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEhsjkokhNXg-nOqVeZ5qyIAANeJuE9-fcQaORUPh4vZ636bcRoeAdVajZp7GXbL9RSlkyv4Fq6-augph_w2AZURK7PwABH5jalxzQ1RUpuHitgltrTB_kc4JUvDXnaZmnFGz_hGUvXyEuYbVliTkSzYY6aCc9QvJgcNaVY1M60ptc__iQC1aaj8j3Byo7Q" alt="Network photo 4">
           <img src="https://blogger.googleusercontent.com/img/a/AVvXsEiN4lSY5AfgG7UKekuXv5Hm2miY5yiqvyrCZQq_t6NuYiigfxk-76E5SpL4Cx2SRVb78w2tlQupBlSRCZOepgxj-JoNFQi0X8k-W4MDw1Rx6NHO9q27eCoedwMj6-bwYWI_QJudEBZHI2B9wkI5sLOjBQk3sAt4Zlbnwkb4yAFs9FMthm708sNZvTBb8_0" alt="Network photo 5">
         </div>
@@ -1813,26 +1819,11 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         <p>A collection of electronics experiments and smartphone repurposing projects — proof-of-concept builds, zero-cost hardware upgrades, and creative mods using off-the-shelf or salvaged components.</p>
 
         <div class="sub-items" style="margin-top: 16px;">
-          <div class="sub-item">
-            <h4>💡 Li-Fi Audio Transmission</h4>
-            <p>Transmitted audio wirelessly using light modulation. Aux output drives a laser diode or LED; a solar panel on the receiver side converts the light signal back to audio via aux input. A proof-of-concept for Li-Fi using entirely off-the-shelf components.</p>
-          </div>
-          <div class="sub-item">
-            <h4>📷 Wi-Fi IP Camera</h4>
-            <p>Converted a retired Android phone into a Wi-Fi IP camera accessible over the local network. A zero-cost alternative to dedicated IP cameras — leveraging existing hardware and a streaming app.</p>
-          </div>
-          <div class="sub-item">
-            <h4>🖥️ Smart Home Display (Echo Show Clone)</h4>
-            <p>A POCO M3 with broken charging port, dead SIM, and broken GPS — repaired, debloated (85–90% MIUI removed), and mounted in a custom holder with an integrated 5W speaker and 10,000 mAh power bank. Runs Alexa for voice control; also operable from a WearOS watch.</p>
-          </div>
-          <div class="sub-item">
-            <h4>✨ Nothing Phone Glyph Clone</h4>
-            <p>Added a rear LED strip to a POCO M3 to replicate the aesthetic of the Nothing Phone (1) glyph interface — purely hardware, no software modifications required.</p>
-          </div>
-          <div class="sub-item">
-            <h4>🔊 Speaker + Battery Upgrade</h4>
-            <p>Integrated an external 5W speaker and 10,000 mAh power bank into a custom phone holder. Extended the power button externally for easy one-handed access in closed-lid configuration.</p>
-          </div>
+          <div class="sub-item"><h4>💡 Li-Fi Audio Transmission</h4><p>Transmitted audio wirelessly using light modulation. Aux output drives a laser diode or LED; a solar panel on the receiver side converts the light signal back to audio via aux input.</p></div>
+          <div class="sub-item"><h4>📷 Wi-Fi IP Camera</h4><p>Converted a retired Android phone into a Wi-Fi IP camera accessible over the local network. A zero-cost alternative to dedicated IP cameras.</p></div>
+          <div class="sub-item"><h4>🖥️ Smart Home Display (Echo Show Clone)</h4><p>A POCO M3 with broken charging port, dead SIM, and broken GPS — repaired, debloated (85–90% MIUI removed), and mounted with an integrated 5W speaker and 10,000 mAh power bank.</p></div>
+          <div class="sub-item"><h4>✨ Nothing Phone Glyph Clone</h4><p>Added a rear LED strip to a POCO M3 to replicate the aesthetic of the Nothing Phone (1) glyph interface — purely hardware, no software modifications required.</p></div>
+          <div class="sub-item"><h4>🔊 Speaker + Battery Upgrade</h4><p>Integrated an external 5W speaker and 10,000 mAh power bank into a custom phone holder with extended power button for easy one-handed access.</p></div>
         </div>
 
         <div class="gallery">
@@ -1844,18 +1835,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
         </div>
 
         <div class="tech-stack">
-          <span class="tech">Li-Fi</span>
-          <span class="tech">Laser Diode / LED</span>
-          <span class="tech">Solar Panel</span>
-          <span class="tech">Android</span>
-          <span class="tech">IP Camera App</span>
-          <span class="tech">POCO M3</span>
-          <span class="tech">Alexa</span>
-          <span class="tech">MIUI Debloat</span>
-          <span class="tech">WearOS</span>
-          <span class="tech">LED Strip</span>
-          <span class="tech">5W Speaker</span>
-          <span class="tech">10,000 mAh Power Bank</span>
+          <span class="tech">Li-Fi</span><span class="tech">Laser Diode / LED</span><span class="tech">Solar Panel</span><span class="tech">Android</span><span class="tech">IP Camera App</span><span class="tech">POCO M3</span><span class="tech">Alexa</span><span class="tech">MIUI Debloat</span><span class="tech">WearOS</span><span class="tech">LED Strip</span><span class="tech">5W Speaker</span><span class="tech">10,000 mAh Power Bank</span>
         </div>
       </div>
     </div>
@@ -1903,7 +1883,6 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
   const toggleIcon = document.getElementById('toggle-icon');
   const toggleLabel = document.getElementById('toggle-label');
 
-  // Persist theme
   const saved = localStorage.getItem('portfolio-theme') || 'dark';
   setTheme(saved);
 
@@ -1934,8 +1913,7 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
   lb.addEventListener('click', e => { if (e.target === lb) lb.classList.remove('open'); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
 
-
-// ── Smooth scroll for cat-nav ──
+  // ── Smooth scroll for cat-nav ──
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
@@ -1945,7 +1923,6 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
 
   // ── Hide/show social buttons on scroll ──
   const socialBtns = document.querySelectorAll('#github-btn, #linkedin-btn, #youtube-btn');
-
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
       socialBtns.forEach(btn => { btn.style.opacity = '0'; btn.style.pointerEvents = 'none'; });
@@ -1954,7 +1931,48 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
     }
   });
 
-</script>
+  // ── Collapse / Expand Project Cards ──
+  document.querySelectorAll('.project-card').forEach(card => {
+    // Build 2-line preview from first <p> or <ul> inside card-body
+    const firstEl = card.querySelector('.card-body > p, .card-body > ul');
+    if (firstEl) {
+      const preview = document.createElement('div');
+      preview.className = 'card-preview';
+      preview.textContent = firstEl.tagName === 'P'
+        ? firstEl.textContent
+        : Array.from(firstEl.querySelectorAll('li')).map(li => '• ' + li.textContent).join('  ');
+      card.querySelector('.card-header').insertAdjacentElement('afterend', preview);
+    }
+
+    // Chevron toggle indicator
+    const chevron = document.createElement('div');
+    chevron.className = 'card-chevron';
+    chevron.innerHTML =
+      '<span class="chev-lbl"></span>' +
+      '<svg width="14" height="14" viewBox="0 0 14 14" fill="none">' +
+      '<path d="M2 4.5L7 9.5L12 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>' +
+      '</svg>';
+
+    const body = card.querySelector('.card-body');
+    if (body) body.insertAdjacentElement('beforebegin', chevron);
+    else card.appendChild(chevron);
+
+    function sync() {
+      const collapsed = card.classList.contains('collapsed');
+      chevron.querySelector('.chev-lbl').textContent = collapsed ? 'expand' : 'collapse';
+    }
+
+    // Start collapsed
+    card.classList.add('collapsed');
+    sync();
+
+    // Toggle on click — skip link/iframe interactions
+    card.addEventListener('click', e => {
+      if (e.target.closest('a') || e.target.closest('iframe')) return;
+      card.classList.toggle('collapsed');
+      sync();
+    });
+  });
 
 </script>
 </body>
