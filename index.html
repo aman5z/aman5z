@@ -1347,36 +1347,49 @@ footer span { font-family: var(--font-mono); font-size: 11px; color: var(--muted
       </div>
     </div>
 
-    <!-- ZKTeco Attendance Dashboard -->
-    <div class="project-card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">ZKTeco Attendance Management Dashboard</div>
-          <div class="card-subtitle">Full-stack Python + Flask dashboard for biometric attendance tracking across 4 devices</div>
-          <div class="card-links"><a href="https://github.com/aman5z/zkteco" target="_blank" class="card-link">GitHub</a></div>
-        </div>
-        <span class="card-badge badge-freelance">Live Project</span>
-      </div>
-      <div class="card-body">
-        <p>A complete attendance management system built in Python, replacing the legacy Middle East Attendance software. Connects live to 4 ZKTeco biometric devices (G3 + iFace950) over LAN using the ZK protocol, cross-references against a .mdb database, and generates department-filtered absent/present reports.</p>
-        <div class="sub-items" style="margin-top:16px;">
-          <div class="sub-item"><h4>Live Device Integration</h4><p>Pulls real-time punch data from 4 ZKTeco devices simultaneously using pyzk over port 4370. Per-device status monitoring with timeout detection (ping OK vs attendance fetch failure).</p></div>
-          <div class="sub-item"><h4>Smart Absent Reporting</h4><p>Filters active employees (ATT=1) from .mdb database, cross-references live punches, and generates department-wise absent lists for Admin, Teaching, Support, Cleaning Staff, and Transport.</p></div>
-          <div class="sub-item"><h4>Interactive Web Dashboard</h4><p>Flask-based single-page app with Overview, Today's Report, History, and Device Management tabs. Collapsible day-by-day history, searchable tables, and department bar charts.</p></div>
-          <div class="sub-item"><h4>Excel Export</h4><p>One-click export of absent reports to formatted .xlsx with department grouping, alternating row colors, and summary sheet — for both today and any custom date range.</p></div>
-          <div class="sub-item"><h4>PWA + Mobile Ready</h4><p>Installable as a home screen app on Android via PWA. Service worker caches the UI; API calls always fetch live data. Fully mobile-responsive layout.</p></div>
-          <div class="sub-item"><h4>Device Management</h4><p>Per-device user count, serial number, firmware info, and punch log viewer for any date via modal popup.</p></div>
-        </div>
-        <div class="gallery">
-          <img src="https://github.com/user-attachments/assets/bdef4f92-0485-4df9-8b10-8a35ac7000ba" alt="ZKTeco Dashboard - Overview">
-          <img src="https://github.com/user-attachments/assets/7d449c19-b1a0-42b2-8008-9548b2bf08ce" alt="ZKTeco Dashboard - Report">
-          <img src="https://github.com/user-attachments/assets/2ad1aca7-d2ca-45d7-bba4-4fe205032314" alt="ZKTeco Dashboard - Devices">
-        </div>
-        <div class="tech-stack">
-          <span class="tech">Python</span><span class="tech">Flask</span><span class="tech">pyzk</span><span class="tech">pyodbc</span><span class="tech">pandas</span><span class="tech">openpyxl</span><span class="tech">Microsoft Access (.mdb)</span><span class="tech">ZK Protocol</span><span class="tech">PWA</span><span class="tech">Service Worker</span><span class="tech">Vanilla JS</span>
-        </div>
-      </div>
+  
+
+
+
+
+<!-- ZKBio Attendance Dashboard -->
+<div class="project-card">
+  <div class="card-header">
+    <div>
+      <div class="card-title">ZKBio Attendance Dashboard</div>
+      <div class="card-subtitle">Self-hosted Python + Flask dashboard for ZKTeco biometric devices — real-time attendance, reports, and device management</div>
+      <div class="card-links"><a href="https://github.com/aman5z/zkbio-attendance" target="_blank" class="card-link">GitHub</a></div>
     </div>
+    <span class="card-badge badge-freelance">Live Project</span>
+  </div>
+  <div class="card-body">
+    <p>A complete self-hosted attendance management system built in Python, replacing legacy ZKTeco Middle East Attendance software. Polls multiple ZKTeco biometric devices simultaneously over LAN or Tailscale, cross-references against an Access (.mdb) backup database, and serves a fully responsive single-file web dashboard with live reports, employee management, shift configuration, and remote punch support.</p>
+    <div class="sub-items" style="margin-top:16px;">
+      <div class="sub-item"><h4>Live Device Integration</h4><p>Polls all ZKTeco devices simultaneously over LAN or Tailscale using pyzk on port 4370. Per-device online/offline status monitoring, clock sync, user push, and raw punch log viewer — with timeout detection separating ping failures from attendance fetch failures.</p></div>
+      <div class="sub-item"><h4>Smart Absent Reporting</h4><p>Cross-references live device punches against the MDB employee database to generate department-wise present/absent splits. Supports late arrival and early departure detection with configurable grace periods per department.</p></div>
+      <div class="sub-item"><h4>Interactive Web Dashboard</h4><p>Flask-based single-page app with Overview, Today's Report, History, Employee Calendar, and Device Management tabs. 7-day trend chart, per-department absent bar chart with click-to-filter, searchable/sortable tables, and collapsible day-by-day history views.</p></div>
+      <div class="sub-item"><h4>Excel, WhatsApp & Image Export</h4><p>One-click export of absent reports to formatted .xlsx with department grouping, alternating row colors, and summary sheet — for both today and any custom date range. Also supports copy as WhatsApp text, save as image, and print.</p></div>
+      <div class="sub-item"><h4>Shift & Holiday Configuration</h4><p>Per-department shift start/end times, grace periods, and working day configuration (e.g. Sun–Thu). Per-employee overrides plus global, per-department, and per-employee holiday/break management.</p></div>
+      <div class="sub-item"><h4>Remote Punch & Missed Punch Requests</h4><p>Employees can self check-in/check-out from the browser. Missed punch requests include a reason field and go through admin approval before being applied — then pushed back to ZKTeco devices automatically.</p></div>
+      <div class="sub-item"><h4>Admin Panel & Audit Log</h4><p>Role-based access with granular per-user permission flags. Full audit log covering every login, export, and data change. Session management with configurable inactivity timeouts and active session termination.</p></div>
+      <div class="sub-item"><h4>PWA + Mobile Ready</h4><p>Installable as a home screen app on Android and desktop via PWA. Fully mobile-responsive layout with 10 built-in themes including Dark, Light, ZKBio Time, GitHub, Material 3, and Fluent/Mica — with auto dark/light switching by time of day.</p></div>
+    </div>
+    <div class="gallery">
+ <img width="1919" height="1079" alt="Screenshot 2026-03-22 154033" src="https://github.com/user-attachments/assets/9cbf3fc5-abbe-4be9-9306-fbb12cdff543" />
+<img width="1919" height="1079" alt="Screenshot 2026-03-22 154614" src="https://github.com/user-attachments/assets/c37a68b2-3cab-47d7-9289-ae5e8d95a733" />
+<img width="1158" height="869" alt="Screenshot 2026-03-22 154520" src="https://github.com/user-attachments/assets/25eb38bf-950a-40f2-b62b-eec74b17fa7e" />
+<img width="1158" height="876" alt="Screenshot 2026-03-22 154501" src="https://github.com/user-attachments/assets/d3572b1c-e060-4e35-badb-c88a168f3e00" />
+<img width="1919" height="1079" alt="Screenshot 2026-03-22 154329" src="https://github.com/user-attachments/assets/3acb59ea-edef-441f-8a7c-caef53d9760e" />
+<img width="1919" height="1079" alt="Screenshot 2026-03-22 154318" src="https://github.com/user-attachments/assets/ab73c4ed-9e72-4ff9-83a9-350438ae3a6e" />
+    </div>
+    <div class="tech-stack">
+      <span class="tech">Python</span><span class="tech">Flask</span><span class="tech">pyzk</span><span class="tech">pyodbc</span><span class="tech">pandas</span><span class="tech">openpyxl</span><span class="tech">SQLite</span><span class="tech">Microsoft Access (.mdb)</span><span class="tech">ZK Protocol</span><span class="tech">PWA</span><span class="tech">Service Worker</span><span class="tech">Vanilla JS</span><span class="tech">Werkzeug</span>
+    </div>
+  </div>
+</div>
+
+
+
 
     <!-- School Circular Email Automation -->
     <div class="project-card">
