@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="theme-color" content="#080c14">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="IT Tools">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/aman5z/aman5z.github.io/main/favcon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230a1628'/><circle cx='50' cy='50' r='14' fill='none' stroke='%230078d7' stroke-width='6'/><circle cx='50' cy='50' r='5' fill='%230078d7'/><rect x='47' y='22' width='6' height='12' rx='3' fill='%230078d7'/><rect x='47' y='66' width='6' height='12' rx='3' fill='%230078d7'/><rect x='22' y='47' width='12' height='6' rx='3' fill='%230078d7'/><rect x='66' y='47' width='12' height='6' rx='3' fill='%230078d7'/><rect x='28.5' y='28.5' width='12' height='6' rx='3' fill='%230078d7' transform='rotate(45 34.5 31.5)'/><rect x='59.5' y='59.5' width='12' height='6' rx='3' fill='%230078d7' transform='rotate(45 65.5 62.5)'/><rect x='59.5' y='28.5' width='12' height='6' rx='3' fill='%230078d7' transform='rotate(-45 65.5 31.5)'/><rect x='28.5' y='59.5' width='12' height='6' rx='3' fill='%230078d7' transform='rotate(-45 34.5 62.5)'/></svg>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IT Tools</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+/* ═══════════════════════════════════════
+   BASE DARK THEME (always-on, from Email Batch Manager)
+═══════════════════════════════════════ */
+:root {
+  --bg:#080c14;
+  --surface:#0f1520;
+  --card:#141b28;
+  --border:#1e2a3d;
+  --border2:#253347;
+  --blue:#3b82f6;
+  --blue2:#60a5fa;
+  --blue-glow:rgba(59,130,246,.2);
+  --green:#22c55e;
+  --red:#ef4444;
+  --amber:#f59e0b;
+  --text:#e2e8f5;
+  --muted:#64748b;
+  --sub:#94a3b8;
+  --accent:#3b82f6;
+  --accent2:#60a5fa;
+  --box-bg:#141b28;
+  --console-bg:#060a10;
+  --console-text:#4ade80;
+  --star:#f59e0b;
+  --ping-line:#60a5fa;
+  --diff-add:#14532d;
+  --diff-add-text:#4ade80;
+  --diff-rem:#7f1d1d;
+  --diff-rem-text:#fca5a5;
+  /* Email Batch extras */
+  --eb-surface:#0f1520;
+  --eb-card:#141b28;
+  --eb-border2:#253347;
+  --eb-blue:#3b82f6;
+  --eb-green:#22c55e;
+  --eb-red:#ef4444;
+  --eb-amber:#f59e0b;
+  --eb-muted:#64748b;
+  --eb-sub:#94a3b8;
+  --eb-mono:'JetBrains Mono',monospace;
+  --font:'Syne',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+
+/* Light mode override */
+body.light {
+  --bg:#f0f4ff;
+  --surface:#f8faff;
+  --card:#fff;
+  --border:#d1d5db;
+  --border2:#c7d2fe;
+  --blue:#4f46e5;
+  --blue2:#6366f1;
+  --blue-glow:rgba(79,70,229,.12);
+  --green:#16a34a;
+  --red:#dc2626;
+  --amber:#d97706;
+  --text:#1e1b4b;
+  --muted:#6b7280;
+  --sub:#6b7280;
+  --accent:#4f46e5;
+  --accent2:#6366f1;
+  --box-bg:#fff;
+  --console-bg:#0d1117;
+  --console-text:#4ade80;
+  --ping-line:#4f46e5;
+  --diff-add:#dcfce7;
+  --diff-add-text:#166534;
+  --diff-rem:#fee2e2;
+  --diff-rem-text:#991b1b;
+  --eb-surface:#f8faff;
+  --eb-card:#f0f4ff;
+  --eb-border2:#c7d2fe;
+  --eb-blue:#4f46e5;
+  --eb-green:#16a34a;
+  --eb-red:#dc2626;
+  --eb-amber:#d97706;
+  --eb-muted:#6b7280;
+  --eb-sub:#6b7280;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+html, body {
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  transition:background .3s, color .3s;
+}
+
+/* Grid background pattern from Email Batch Manager */
+body::before {
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(59,130,246,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,.03) 1px, transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+  z-index:0;
+}
+body.light::before {
+  background-image:
+    linear-gradient(rgba(79,70,229,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,70,229,.04) 1px, transparent 1px);
+}
+
+/* Everything above the grid */
+.topbar-sticky, .page-wrap, #kbToast { position:relative; z-index:1; }
+
+/* TOPBAR */
+.topbar-sticky{
+  position:sticky;top:0;z-index:1000;
+  background:rgba(8,12,20,.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  transition:background .3s;
+}
+body.light .topbar-sticky {
+  background:rgba(240,244,255,.88);
+}
+.topbar{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.topbar h2{
+  font-size:18px;
+  white-space:nowrap;
+  flex-shrink:0;
+  font-weight:800;
+  letter-spacing:-.3px;
+  background:linear-gradient(135deg,var(--text),var(--sub));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+#searchBar{
+  flex:1;padding:8px 14px;border-radius:20px;
+  border:1px solid var(--border);
+  background:var(--card);
+  color:var(--text);
+  font-size:13px;
+  font-family:var(--mono);
+  transition:border .2s, box-shadow .2s;
+}
+#searchBar:focus{
+  outline:none;
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px var(--blue-glow);
+}
+#searchBar::placeholder { color:var(--muted); }
+#themeToggle{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--card);color:var(--text);
+  border:1px solid var(--border);
+  font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  transition:.2s;
+}
+#themeToggle:hover { border-color:var(--border2); }
+
+/* PAGE */
+.page-wrap{max-width:1100px;margin:0 auto;padding:16px;}
+
+/* FAVORITES SECTION */
+#favSection{display:none;margin-bottom:16px;}
+#favSection h3{font-size:11px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1.2px;font-family:var(--mono);}
+
+/* TOOL BOX */
+.tool-box{
+  background:var(--card);
+  padding:20px;
+  margin-bottom:14px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  transition:background .3s, border .3s, box-shadow .2s;
+}
+.tool-box:hover { border-color:var(--border2); }
+.tool-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.tool-header h3{font-size:15px;font-weight:700;letter-spacing:-.2px;}
+.star-btn{background:none;border:none;font-size:20px;cursor:pointer;padding:2px 6px;color:var(--muted);transition:color .2s;margin-top:0;}
+.star-btn.active{color:var(--star);}
+.star-btn:hover{background:none;}
+
+/* INPUTS */
+input[type=text],input[type=number],input[type=password],textarea,select{
+  padding:9px 12px;margin:5px 0;width:100%;font-size:13px;
+  border-radius:8px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text);
+  font-family:var(--mono);
+  transition:border .2s, box-shadow .2s;
+}
+input:focus,textarea:focus,select:focus{
+  outline:none;border-color:var(--blue);
+  box-shadow:0 0 0 3px var(--blue-glow);
+}
+textarea{resize:vertical;min-height:80px;}
+
+/* BUTTONS */
+button{
+  cursor:pointer;background:var(--blue);color:#fff;
+  border:none;padding:9px 16px;border-radius:8px;
+  font-size:13px;font-weight:700;font-family:var(--font);
+  transition:background .2s,transform .1s,box-shadow .2s;
+  margin-top:6px;
+}
+button:hover{background:var(--blue2); transform:translateY(-1px);}
+button:active{transform:scale(.97);}
+.btn-green{background:#16a34a;} .btn-green:hover{background:#15803d;}
+.btn-red{background:#dc2626;} .btn-red:hover{background:#b91c1c;}
+.btn-orange{background:#ea580c;} .btn-orange:hover{background:#c2410c;}
+.btn-gray{background:var(--card);color:var(--sub);border:1px solid var(--border);}
+.btn-gray:hover{border-color:var(--border2);color:var(--text);background:var(--surface);}
+
+.button-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.button-row button{flex:1;min-width:90px;}
+
+/* OUTPUT */
+.output-wrapper{display:flex;flex-direction:column;gap:6px;margin-top:10px;}
+pre{
+  background:var(--console-bg)!important;
+  color:var(--console-text)!important;
+  padding:12px;border-radius:8px;
+  border:1px solid var(--border);
+  white-space:pre-wrap;overflow-x:auto;
+  font-size:13px;font-family:var(--mono);
+  line-height:1.6;
+}
+
+/* DROPZONE */
+.drop-zone{
+  border:2px dashed var(--border);padding:24px;text-align:center;
+  border-radius:10px;cursor:pointer;transition:border .2s, background .2s;
+  color:var(--sub);background:var(--surface);
+}
+.drop-zone:hover{border-color:var(--blue);background:rgba(59,130,246,.05);}
+
+/* PING CHART */
+#pingChart{width:100%;height:140px;border-radius:8px;background:var(--console-bg);margin-top:10px;display:block;}
+
+/* DIFF TOOL */
+.diff-output{font-family:var(--mono);font-size:13px;border-radius:8px;overflow:hidden;border:1px solid var(--border);margin-top:10px;}
+.diff-line{padding:3px 10px;white-space:pre-wrap;word-break:break-all;}
+.diff-add{background:var(--diff-add);color:var(--diff-add-text);}
+.diff-rem{background:var(--diff-rem);color:var(--diff-rem-text);}
+.diff-same{color:var(--muted);}
+
+/* HISTORY BADGE */
+.history-hint{font-size:11px;color:var(--muted);margin-top:4px;font-style:italic;font-family:var(--mono);}
+
+/* NO RESULTS */
+#noResults{display:none;text-align:center;color:var(--muted);padding:40px;font-size:16px;}
+
+/* QR COLOR ROW */
+.color-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:8px;}
+.color-row label{font-size:13px;color:var(--sub);}
+.color-row input[type=color]{width:44px;height:36px;padding:2px;border-radius:6px;cursor:pointer;}
+
+/* FAV PILL */
+.fav-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:5px 12px;font-size:12px;
+  cursor:pointer;transition:border .2s;
+  font-family:var(--mono);
+}
+.fav-pill:hover{border-color:var(--blue);}
+
+/* ═══════════════════════════════════════
+   EMAIL BATCH MANAGER — scoped styles
+═══════════════════════════════════════ */
+.eb-upload-zone{
+  border:2px dashed var(--border);padding:28px 20px;text-align:center;
+  border-radius:10px;cursor:pointer;transition:border .2s,background .2s;
+  color:var(--sub);background:var(--eb-surface);margin-bottom:14px;
+}
+.eb-upload-zone:hover,.eb-upload-zone.drag{border-color:var(--eb-blue);background:rgba(59,130,246,.06);}
+.eb-upload-zone.loaded{border-color:var(--eb-green);border-style:solid;}
+.eb-upload-icon{font-size:30px;margin-bottom:6px;}
+.eb-upload-zone h4{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text);}
+.eb-upload-zone p{font-size:12px;color:var(--sub);font-family:var(--eb-mono);}
+.eb-file-name{font-family:var(--eb-mono);font-size:11px;color:var(--eb-green);margin-top:6px;word-break:break-all;}
+
+.eb-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px;}
+.eb-stat{background:var(--eb-card);border:1px solid var(--eb-border2);border-radius:10px;padding:14px 12px;text-align:center;transition:.2s;}
+.eb-stat:hover{transform:translateY(-2px);}
+.eb-stat-val{font-size:22px;font-weight:800;font-family:var(--eb-mono);color:var(--eb-blue);display:block;}
+.eb-stat-val.green{color:var(--eb-green);} .eb-stat-val.red{color:var(--eb-red);} .eb-stat-val.amber{color:var(--eb-amber);}
+.eb-stat-label{font-size:10px;color:var(--eb-muted);letter-spacing:.7px;text-transform:uppercase;margin-top:3px;}
+
+.eb-actions{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.eb-btn{
+  padding:8px 16px;border-radius:8px;border:none;font-family:var(--font);
+  font-size:13px;font-weight:700;cursor:pointer;transition:.15s;
+  display:flex;align-items:center;gap:5px;margin-top:0;
+}
+.eb-btn:hover{transform:translateY(-1px);}
+.eb-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.eb-btn-export{background:var(--eb-green);color:#fff;}
+.eb-btn-export:hover:not(:disabled){background:#16a34a;}
+.eb-btn-ghost{background:var(--eb-card);color:var(--eb-sub);border:1px solid var(--border);}
+.eb-btn-ghost:hover:not(:disabled){border-color:var(--eb-border2);color:var(--text);}
+
+.eb-progress-wrap{background:var(--eb-card);border:1px solid var(--border);border-radius:8px;
+  padding:10px 14px;margin-bottom:14px;display:none;}
+.eb-progress-label{font-size:11px;color:var(--sub);font-family:var(--eb-mono);margin-bottom:6px;}
+.eb-progress-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;}
+.eb-progress-fill{height:100%;background:linear-gradient(90deg,var(--eb-blue),var(--accent2));
+  border-radius:3px;transition:width .3s;width:0%;}
+
+.eb-empty{text-align:center;padding:30px 20px;color:var(--sub);}
+.eb-empty-icon{font-size:36px;margin-bottom:10px;}
+.eb-empty h4{font-size:14px;font-weight:700;margin-bottom:4px;color:var(--sub);}
+.eb-empty p{font-size:12px;font-family:var(--eb-mono);}
+
+.eb-batches-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.eb-batches-header h4{font-size:14px;font-weight:700;}
+.eb-batch-count{font-family:var(--eb-mono);font-size:11px;color:var(--sub);
+  background:var(--eb-card);border:1px solid var(--border);padding:3px 9px;border-radius:20px;}
+
+.eb-batch-list{display:flex;flex-direction:column;gap:8px;}
+.eb-batch-card{background:var(--eb-card);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:.2s;}
+.eb-batch-card:hover{border-color:var(--eb-border2);}
+.eb-batch-header{display:flex;align-items:center;gap:10px;padding:11px 14px;cursor:pointer;user-select:none;}
+.eb-batch-num{background:var(--eb-blue);color:#fff;border-radius:5px;
+  padding:2px 9px;font-family:var(--eb-mono);font-size:11px;font-weight:700;flex-shrink:0;}
+.eb-batch-meta{flex:1;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.eb-batch-acc{font-size:11px;color:var(--sub);font-family:var(--eb-mono);}
+.eb-batch-count-pill{font-size:11px;color:var(--sub);font-family:var(--eb-mono);}
+.eb-batch-actions{display:flex;gap:6px;}
+.eb-btn-copy-sm{padding:5px 12px;border-radius:5px;border:none;
+  background:var(--eb-blue);color:#fff;font-size:11px;font-weight:700;
+  cursor:pointer;transition:.15s;font-family:var(--font);margin-top:0;}
+.eb-btn-copy-sm:hover{background:var(--accent2);}
+.eb-btn-copy-sm.copied{background:var(--eb-green);}
+.eb-btn-toggle-sm{padding:5px 10px;border-radius:5px;border:1px solid var(--border);
+  background:transparent;color:var(--sub);font-size:11px;cursor:pointer;transition:.15s;margin-top:0;}
+.eb-btn-toggle-sm:hover{border-color:var(--eb-border2);color:var(--text);background:transparent;}
+.eb-batch-body{display:none;border-top:1px solid var(--border);}
+.eb-comma-display{padding:10px 14px;font-size:11px;color:var(--sub);
+  font-family:var(--eb-mono);line-height:1.8;word-break:break-all;
+  background:rgba(0,0,0,.25);max-height:100px;overflow-y:auto;}
+body.light .eb-comma-display{background:rgba(0,0,0,.04);}
+.eb-email-rows{max-height:180px;overflow-y:auto;}
+.eb-email-row{padding:5px 14px;font-size:11px;font-family:var(--eb-mono);
+  color:var(--sub);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px;}
+.eb-email-row:last-child{border-bottom:none;}
+.eb-email-row::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--eb-blue);flex-shrink:0;}
+
+/* TOAST & SHORTCUT */
+#kbToast{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:var(--card);color:var(--text);
+  border:1px solid var(--border2);
+  padding:8px 18px;border-radius:20px;
+  font-size:12px;font-family:var(--mono);
+  opacity:0;pointer-events:none;transition:opacity .3s;z-index:9999;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+}
+#kbToast.show{opacity:1;}
+
+/* Export button in topbar */
+.topbar-export-btn {
+  background:var(--blue);color:#fff;border:none;
+  padding:7px 14px;border-radius:8px;cursor:pointer;
+  font-size:12px;font-weight:700;font-family:var(--font);
+  white-space:nowrap;flex-shrink:0;transition:.15s;
+}
+.topbar-export-btn:hover { background:var(--blue2); transform:translateY(-1px); }
+
+/* Section divider in Other Tools */
+hr { border:none; border-top:1px solid var(--border); margin:14px 0; }
+label { font-size:13px; color:var(--sub); }
+
+@media(max-width:600px){
+  .topbar{flex-wrap:wrap;}
+  #searchBar{order:3;flex-basis:100%;}
+  .button-row button{min-width:70px;font-size:12px;padding:7px;}
+  .tool-box{padding:14px;}
+  .eb-stats{grid-template-columns:1fr 1fr;}
+  .eb-actions{flex-direction:column;}
+}
+  </style>
+</head>
+<body>
+
+<div class="topbar-sticky">
+  <div class="topbar">
+    <h2>🛠️ IT Tools</h2>
+    <input type="text" id="searchBar" placeholder="🔍 Search tools..." oninput="filterTools()">
+    <button class="topbar-export-btn" onclick="exportAllOutputs()" title="Export all tool outputs (Ctrl+E)">⬇ Export</button>
+    <div id="themeToggle" onclick="toggleTheme()">☀️</div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+<div id="favSection">
+  <h3>⭐ Favorites</h3>
+  <div id="favPills" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+</div>
+
+<div id="noResults">😕 No tools match your search.</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     EMAIL BATCH MANAGER
+══════════════════════════════════════════════════════════ -->
+<div class="tool-box" data-tool="email batch manager excel xlsx bulker deduplicate split export 500 gmail">
+  <div class="tool-header">
+    <h3>📧 Email Batch Manager</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Email Batch Manager')">☆</button>
+  </div>
+
+  <div class="eb-upload-zone" id="ebUploadZone"
+       onclick="document.getElementById('eb-file-input').click()"
+       ondragover="ebEv(event,'drag')" ondragleave="ebEv(event,'')" ondrop="ebDrop(event)">
+    <div class="eb-upload-icon">📂</div>
+    <h4>Browse or Drop Excel File (.xlsx)</h4>
+    <p>Extracts, deduplicates &amp; splits into batches of 500 · processed in your browser</p>
+    <div class="eb-file-name" id="ebFileName"></div>
+    <input type="file" id="eb-file-input" accept=".xlsx" onchange="ebHandleFile(this.files[0])" style="display:none;">
+  </div>
+
+  <div class="eb-stats">
+    <div class="eb-stat"><span class="eb-stat-val"         id="eb-s-total">—</span><div class="eb-stat-label">Total Emails</div></div>
+    <div class="eb-stat"><span class="eb-stat-val green"   id="eb-s-unique">—</span><div class="eb-stat-label">Unique</div></div>
+    <div class="eb-stat"><span class="eb-stat-val red"     id="eb-s-dupes">—</span><div class="eb-stat-label">Duplicates</div></div>
+    <div class="eb-stat"><span class="eb-stat-val amber"   id="eb-s-batches">—</span><div class="eb-stat-label">Batches ×500</div></div>
+  </div>
+
+  <div class="eb-actions">
+    <button class="eb-btn eb-btn-export" id="ebBtnExport" disabled onclick="ebExportXlsx()">⬇ Export Excel</button>
+    <button class="eb-btn eb-btn-ghost"  id="ebBtnCopyAll" disabled onclick="ebCopyAll()">⎘ Copy All Emails</button>
+    <button class="eb-btn eb-btn-ghost"  id="ebBtnReset" disabled onclick="ebReset()">↺ Reset</button>
+  </div>
+
+  <div class="eb-progress-wrap" id="ebProgressWrap">
+    <div class="eb-progress-label" id="ebProgressLabel">Processing...</div>
+    <div class="eb-progress-bar"><div class="eb-progress-fill" id="ebProgressFill"></div></div>
+  </div>
+
+  <div class="eb-empty" id="ebEmptyState">
+    <div class="eb-empty-icon">📊</div>
+    <h4>No file loaded yet</h4>
+    <p>Browse or drag an Excel (.xlsx) file above to get started</p>
+  </div>
+
+  <div id="ebBatchSection" style="display:none;">
+    <div class="eb-batches-header">
+      <h4>Email Batches</h4>
+      <span class="eb-batch-count" id="ebBatchCountLabel">0 batches</span>
+    </div>
+    <div class="eb-batch-list" id="ebBatchList"></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     EXISTING TOOLS
+══════════════════════════════════════════════════════════ -->
+
+<div class="tool-box" data-tool="upload drive qr google file">
+  <div class="tool-header">
+    <h3>📁 Upload to Google Drive + QR</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Upload to Google Drive + QR')">☆</button>
+  </div>
+  <div class="drop-zone" id="dropArea">
+    Drag & drop or click to select file
+    <input type="file" id="fileInput" style="display:none">
+  </div>
+  <div class="button-row">
+    <button onclick="startUpload()">Upload</button>
+    <button class="btn-green" onclick="startUpload(true)">Upload + QR</button>
+  </div>
+  <div class="output-wrapper">
+    <pre id="uploadStatus">Waiting for file...</pre>
+  </div>
+  <div id="qrSection" style="display:none">
+    <h4 style="margin:10px 0 6px">QR Code:</h4>
+    <div id="qrOutput"></div>
+    <div class="button-row">
+      <button onclick="copyQR()">Copy</button>
+      <button onclick="downloadQR()">Download</button>
+      <button onclick="shareQR()">Share</button>
+    </div>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="qr code generator barcode">
+  <div class="tool-header">
+    <h3>📷 QR Code Generator</h3>
+    <button class="star-btn" onclick="toggleFav(this,'QR Code Generator')">☆</button>
+  </div>
+  <input type="text" id="qrcodeInput" placeholder="Enter text or URL" oninput="genQR()">
+  <div class="color-row">
+    <label>Foreground:</label>
+    <input type="color" id="qrFg" value="#000000" onchange="genQR()">
+    <label>Background:</label>
+    <input type="color" id="qrBg" value="#ffffff" onchange="genQR()">
+  </div>
+  <div id="qrcode" style="margin-top:10px;"></div>
+  <div class="button-row">
+    <button onclick="copyQRCode()">Copy</button>
+    <button onclick="downloadQRCode()">Download</button>
+    <button onclick="shareQRCode()">Share</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="barcode generator code128 scanner">
+  <div class="tool-header">
+    <h3>🔲 Barcode Generator</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Barcode Generator')">☆</button>
+  </div>
+  <input type="text" id="barcodeInput" placeholder="Enter text or number" oninput="genBarcode()">
+  <svg id="barcode" style="display:none;width:100%;margin-top:10px;"></svg>
+  <div class="button-row">
+    <button onclick="copyBarcode()">Copy</button>
+    <button onclick="downloadBarcode()">Download</button>
+    <button onclick="shareBarcode()">Share</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="pdf merge split compress watermark rotate pages">
+  <div class="tool-header">
+    <h3>📄 PDF Tools</h3>
+    <button class="star-btn" onclick="toggleFav(this,'PDF Tools')">☆</button>
+  </div>
+  <label style="font-size:13px;font-weight:bold;margin-top:8px;display:block;">Merge PDFs:</label>
+  <input type="file" id="mergeFiles" multiple accept=".pdf">
+  <button onclick="mergePDFs()">Merge</button>
+  <hr>
+  <label style="font-size:13px;font-weight:bold;display:block;">Split PDF:</label>
+  <input type="file" id="splitFile" accept=".pdf">
+  <input type="number" id="splitPage" placeholder="Split at page number" style="width:200px;">
+  <button onclick="splitPDF()">Split</button>
+  <hr>
+  <label style="font-size:13px;font-weight:bold;display:block;">Compress PDF:</label>
+  <input type="file" id="compressFile" accept=".pdf">
+  <button onclick="compressPDF()">Compress</button>
+  <hr>
+  <label style="font-size:13px;font-weight:bold;display:block;">Watermark PDF:</label>
+  <input type="file" id="watermarkFile" accept=".pdf">
+  <input type="text" id="watermarkText" placeholder="Watermark text (e.g. CONFIDENTIAL)">
+  <button onclick="watermarkPDF()">Add Watermark</button>
+  <hr>
+  <label style="font-size:13px;font-weight:bold;display:block;">Rotate PDF Pages:</label>
+  <input type="file" id="rotateFile" accept=".pdf">
+  <select id="rotateDeg" style="width:auto;">
+    <option value="90">90° clockwise</option>
+    <option value="180">180°</option>
+    <option value="270">90° counter-clockwise</option>
+  </select>
+  <button onclick="rotatePDF()">Rotate All Pages</button>
+  <div class="output-wrapper">
+    <pre id="pdfOutput">PDF output will appear here...</pre>
+    <button class="btn-gray" onclick="copyOutput('pdfOutput')">Copy Logs</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="diff text compare difference changes">
+  <div class="tool-header">
+    <h3>🔀 Text Diff Tool</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Text Diff Tool')">☆</button>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+    <div>
+      <label style="font-size:12px;color:var(--sub);">Original Text</label>
+      <textarea id="diffOriginal" placeholder="Paste original text here..." style="height:140px;"></textarea>
+    </div>
+    <div>
+      <label style="font-size:12px;color:var(--sub);">Modified Text</label>
+      <textarea id="diffModified" placeholder="Paste modified text here..." style="height:140px;"></textarea>
+    </div>
+  </div>
+  <div class="button-row">
+    <button onclick="runDiff()">Compare</button>
+    <button class="btn-gray" onclick="clearDiff()">Clear</button>
+  </div>
+  <div id="diffStats" style="font-size:13px;color:var(--sub);margin-top:8px;font-family:var(--mono);"></div>
+  <div class="diff-output" id="diffOutput" style="display:none;max-height:320px;overflow-y:auto;"></div>
+</div>
+
+<div class="tool-box" data-tool="network ip dns lookup hosting url shorten">
+  <div class="tool-header">
+    <h3>🌐 Network & Hosting Tools</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Network & Hosting Tools')">☆</button>
+  </div>
+  <input type="text" id="networkInput" placeholder="Enter IP, URL, or domain" oninput="saveHistory('networkInput')">
+  <div class="history-hint" id="networkHint"></div>
+  <div class="button-row">
+    <button onclick="getIpInfo()">IP Info</button>
+    <button onclick="urlToIp()">URL → IP</button>
+    <button onclick="dnsLookup()">DNS Lookup</button>
+    <button onclick="checkHosting()">Hosting</button>
+    <button onclick="shortenURL()">Shorten URL</button>
+  </div>
+  <div class="output-wrapper">
+    <pre id="networkOutput"></pre>
+    <button class="btn-gray" onclick="copyOutput('networkOutput')">Copy</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="subnet calculator ip cidr mask network">
+  <div class="tool-header">
+    <h3>🔢 Subnet Calculator</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Subnet Calculator')">☆</button>
+  </div>
+  <input type="text" id="ip" placeholder="IP address (e.g. 192.168.1.10)" oninput="saveHistory('ip')">
+  <input type="text" id="cidr" placeholder="CIDR (e.g. 24)" oninput="saveHistory('cidr')">
+  <div class="history-hint" id="ipHint"></div>
+  <button onclick="calculateSubnet()">Calculate</button>
+  <div class="output-wrapper">
+    <pre id="subnetOutput"></pre>
+    <button class="btn-gray" onclick="copyOutput('subnetOutput')">Copy</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="ping monitor latency uptime check url">
+  <div class="tool-header">
+    <h3>📡 Ping / Monitor</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Ping / Monitor')">☆</button>
+  </div>
+  <input type="text" id="pingInput" placeholder="e.g. https://api.github.com" oninput="saveHistory('pingInput')">
+  <div class="history-hint" id="pingHint"></div>
+  <input type="number" id="pingInterval" value="5" placeholder="Interval (seconds)" style="width:160px;">
+  <div class="button-row">
+    <button onclick="startMonitoring()">Start</button>
+    <button class="btn-red" onclick="stopMonitoring()">Stop</button>
+    <button class="btn-gray" onclick="clearPing()">Clear</button>
+  </div>
+  <canvas id="pingChart"></canvas>
+  <div id="pingStats" style="font-size:12px;color:var(--sub);margin-top:4px;font-family:var(--mono);"></div>
+  <div class="output-wrapper">
+    <pre id="pingOutput" style="max-height:180px;overflow-y:auto;">Results will appear here...</pre>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="base64 encode decode text">
+  <div class="tool-header">
+    <h3>🔐 Base64 Encode / Decode</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Base64 Encode / Decode')">☆</button>
+  </div>
+  <input type="text" id="b64input" placeholder="Enter text or Base64" oninput="saveHistory('b64input')">
+  <div class="history-hint" id="b64Hint"></div>
+  <div class="button-row">
+    <button onclick="encodeB64()">Encode</button>
+    <button onclick="decodeB64()">Decode</button>
+  </div>
+  <div class="output-wrapper">
+    <pre id="b64output"></pre>
+    <button class="btn-gray" onclick="copyOutput('b64output')">Copy</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="hex decimal binary converter number">
+  <div class="tool-header">
+    <h3>🔄 Hex / Dec / Binary Converter</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Hex / Dec / Binary Converter')">☆</button>
+  </div>
+  <input id="numberInput" placeholder="Enter decimal, 0xFF hex, or binary (e.g. 1010)" oninput="saveHistory('numberInput')">
+  <div class="history-hint" id="numHint"></div>
+  <button onclick="convertNumber()">Convert</button>
+  <div class="output-wrapper">
+    <pre id="numberResult"></pre>
+    <button class="btn-gray" onclick="copyOutput('numberResult')">Copy</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="password generator strong random secure">
+  <div class="tool-header">
+    <h3>🔑 Password Generator</h3>
+    <button class="star-btn" onclick="toggleFav(this,'Password Generator')">☆</button>
+  </div>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
+    <label style="font-size:13px;">Length:</label>
+    <input type="number" id="passLen" value="16" style="width:70px;">
+    <label><input type="checkbox" id="passUpper" checked> A-Z</label>
+    <label><input type="checkbox" id="passNum" checked> 0-9</label>
+    <label><input type="checkbox" id="passSym" checked> !@#$</label>
+  </div>
+  <button onclick="genPass()">Generate</button>
+  <div class="output-wrapper">
+    <pre id="passOut"></pre>
+    <div id="passStrength" style="font-size:13px;margin-top:4px;font-family:var(--mono);"></div>
+    <button class="btn-gray" onclick="copyOutput('passOut')">Copy</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="mac address vendor lookup network hardware">
+  <div class="tool-header">
+    <h3>🖧 MAC Vendor Lookup</h3>
+    <button class="star-btn" onclick="toggleFav(this,'MAC Vendor Lookup')">☆</button>
+  </div>
+  <input type="text" id="macInput" placeholder="e.g. 00:1A:2B:3C:4D:5E" oninput="saveHistory('macInput')">
+  <div class="history-hint" id="macHint"></div>
+  <button onclick="lookupMac()">Lookup</button>
+  <div class="output-wrapper">
+    <pre id="macOutput"></pre>
+    <button class="btn-gray" onclick="copyOutput('macOutput')">Copy</button>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="system info browser cpu ram gpu battery ip screen">
+  <div class="tool-header">
+    <h3>💻 System Info Viewer</h3>
+    <button class="star-btn" onclick="toggleFav(this,'System Info Viewer')">☆</button>
+  </div>
+  <button onclick="showSystemInfo()">Scan System Info</button>
+  <div class="output-wrapper">
+    <pre id="sysInfoOutput">Press button to scan...</pre>
+    <div class="button-row">
+      <button class="btn-gray" onclick="copyOutput('sysInfoOutput')">Copy All</button>
+    </div>
+  </div>
+</div>
+
+<div class="tool-box" data-tool="other tools links internet proxy croxyproxy fast pairdrop it-tools tinywow pdf tools io free remove bg canva polotno jpg web partition disk ai study text human krea speechify plagiarism sentencer handwriting typing test software downloads opendirectory archive filecr getintopc ftu apps ninite anygame fitgirl ocean of games poki gamaverse crazygames now gg games emulators fun fake update windows pcjs old emulator os system">
+  <div class="tool-header" onclick="toggleCollapse('otherToolsContent', 'otherToolsArrow')" style="cursor:pointer; user-select:none;" title="Click to expand/collapse">
+    <h3 style="display:flex;align-items:center;">🧰 Other Tools <span id="otherToolsArrow" style="font-size:10px;color:var(--muted);margin-left:8px;transition:transform 0.2s;transform:rotate(-90deg);">▼</span></h3>
+    <button class="star-btn" onclick="event.stopPropagation(); toggleFav(this,'Other Tools')">☆</button>
+  </div>
+  <div id="otherToolsContent" style="display:none; margin-top:10px;">
+    <label style="font-size:13px;font-weight:bold;display:block;color:var(--sub);">Internet:</label>
+    <div class="button-row">
+      <button class="btn-gray" onclick="window.open('https://proxyium.com/', '_blank')">Proxyium</button>
+      <button class="btn-gray" onclick="window.open('https://www.croxyproxy.com/', '_blank')">CroxyProxy</button>
+      <button class="btn-gray" onclick="window.open('https://fast.com/#', '_blank')">Fast.com</button>
+      <button class="btn-gray" onclick="window.open('https://pairdrop.net/', '_blank')">PairDrop</button>
+    </div>
+    <hr>
+    <label style="font-size:13px;font-weight:bold;display:block;color:var(--sub);">Online Tools:</label>
+    <div class="button-row">
+      <button class="btn-gray" onclick="window.open('https://it-tools.tech/', '_blank')">IT Tools</button>
+      <button class="btn-gray" onclick="window.open('https://tinywow.com/', '_blank')">TinyWow Tools</button>
+      <button class="btn-gray" onclick="window.open('https://tools.pdf24.org/en/all-tools', '_blank')">PDF Tools</button>
+      <button class="btn-gray" onclick="window.open('https://10015.io/', '_blank')">Tools io</button>
+      <button class="btn-gray" onclick="window.open('https://mrfreetools.com/tools/', '_blank')">All Free Tools</button>
+      <button class="btn-gray" onclick="window.open('https://www.remove.bg/', '_blank')">Remove BG</button>
+      <button class="btn-gray" onclick="window.open('https://studio.polotno.com/', '_blank')">Canva Alternative</button>
+      <button class="btn-gray" onclick="window.open('https://jpg2pdf.com/', '_blank')">JPG to PDF</button>
+      <button class="btn-gray" onclick="window.open('https://www.web2pdfconvert.com/', '_blank')">WEB to PDF</button>
+      <button class="btn-gray" onclick="window.open('https://partition.toolpie.com/', '_blank')">Disk Partition Calc</button>
+    </div>
+    <hr>
+    <label style="font-size:13px;font-weight:bold;display:block;color:var(--sub);">AI & Study Tools:</label>
+    <div class="button-row">
+      <button class="btn-gray" onclick="window.open('https://aitohumanconverter.com/', '_blank')">AI to Human Text</button>
+      <button class="btn-gray" onclick="window.open('https://www.krea.ai/', '_blank')">Krea AI</button>
+      <button class="btn-gray" onclick="window.open('https://speechify.com/', '_blank')">Speechify</button>
+      <button class="btn-gray" onclick="window.open('https://plagiarismdetector.net/', '_blank')">Plagiarism Check</button>
+      <button class="btn-gray" onclick="window.open('https://www.csgenerator.com/', '_blank')">Pro Sentencer</button>
+      <button class="btn-gray" onclick="window.open('https://texttohandwriting.com/', '_blank')">Text to Handwriting</button>
+      <button class="btn-gray" onclick="window.open('https://www.typing.com/student/tests', '_blank')">Typing Test</button>
+    </div>
+    <hr>
+    <label style="font-size:13px;font-weight:bold;display:block;color:var(--sub);">Software & Games:</label>
+    <div class="button-row">
+      <button class="btn-gray" onclick="window.open('https://ewasion.github.io/opendirectory-finder/', '_blank')">OpenDirectory</button>
+      <button class="btn-gray" onclick="window.open('https://archive.org/', '_blank')">Archive.org</button>
+      <button class="btn-gray" onclick="window.open('https://filecr.com/en/?id=878271680000', '_blank')">FileCR</button>
+      <button class="btn-gray" onclick="window.open('https://getintopc.com/', '_blank')">GetIntoPC</button>
+      <button class="btn-gray" onclick="window.open('https://ftuapps.dev', '_blank')">FTU Apps</button>
+      <button class="btn-gray" onclick="window.open('https://ninite.com/', '_blank')">Bundle pkg</button>
+      <button class="btn-gray" onclick="window.open('https://anygame.net/', '_blank')">AnyGame</button>
+      <button class="btn-gray" onclick="window.open('http://fitgirl-repacks.site/', '_blank')">FitGirl Games</button>
+      <button class="btn-gray" onclick="window.open('http://oceanofgames.com/', '_blank')">Ocean Of Games</button>
+      <button class="btn-gray" onclick="window.open('https://poki.com/', '_blank')">Online Games #1</button>
+      <button class="btn-gray" onclick="window.open('https://gamaverse.com/', '_blank')">Online Games #2</button>
+      <button class="btn-gray" onclick="window.open('https://www.crazygames.com/', '_blank')">Online Games #3</button>
+      <button class="btn-gray" onclick="window.open('https://now.gg/', '_blank')">Online Games #4</button>
+    </div>
+    <hr>
+    <label style="font-size:13px;font-weight:bold;display:block;color:var(--sub);">Emulators / Fun:</label>
+    <div class="button-row">
+      <button class="btn-gray" onclick="window.open('https://fakeupdate.net/', '_blank')">Fake Update</button>
+      <button class="btn-gray" onclick="window.open('https://anand-3399.github.io/Hactoberfest-Windows11/', '_blank')">Fake Windows</button>
+      <button class="btn-gray" onclick="window.open('https://www.pcjs.org/', '_blank')">Old Windows Emulator</button>
+    </div>
+  </div>
+</div>
+
+<div id="kbToast"></div>
+
+<footer style="text-align:center;padding:20px;color:var(--muted);font-size:12px;font-family:var(--mono);border-top:1px solid var(--border);margin-top:16px;letter-spacing:.5px;">
+  IT Tools — All processing done in your browser
+</footer>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib/dist/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script>
+/* ═══════════════════════════════════════
+   COLLAPSE TOGGLE
+═══════════════════════════════════════ */
+function toggleCollapse(contentId, arrowId) {
+  const el = document.getElementById(contentId);
+  const arrow = document.getElementById(arrowId);
+  if (el.style.display === "none") {
+    el.style.display = "block";
+    arrow.style.transform = "rotate(0deg)";
+  } else {
+    el.style.display = "none";
+    arrow.style.transform = "rotate(-90deg)";
+  }
+}
+
+/* ═══════════════════════════════════════
+   THEME — dark by default, toggle to light
+═══════════════════════════════════════ */
+function toggleTheme(){
+  document.body.classList.toggle("light");
+  const isLight = document.body.classList.contains("light");
+  document.getElementById("themeToggle").textContent = isLight ? "🌙" : "☀️";
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+}
+(()=>{
+  // Default is dark; only switch to light if explicitly saved
+  if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
+    document.getElementById("themeToggle").textContent = "🌙";
+  }
+})();
+
+/* ═══════════════════════════════════════
+   SEARCH / FILTER
+═══════════════════════════════════════ */
+function filterTools(){
+  const q = document.getElementById("searchBar").value.toLowerCase().trim();
+  const boxes = document.querySelectorAll(".tool-box");
+  let visible = 0;
+  boxes.forEach(b=>{
+    const tags = (b.getAttribute("data-tool")||"").toLowerCase();
+    const title = b.querySelector("h3")?.textContent.toLowerCase()||"";
+    const show = !q || tags.includes(q) || title.includes(q);
+    b.style.display = show ? "" : "none";
+    if(show) visible++;
+  });
+  document.getElementById("noResults").style.display = visible===0?"block":"none";
+}
+
+/* ═══════════════════════════════════════
+   FAVORITES
+═══════════════════════════════════════ */
+let favs = JSON.parse(localStorage.getItem("ittools_favs")||"[]");
+
+function toggleFav(btn, name){
+  const idx = favs.indexOf(name);
+  if(idx>=0){ favs.splice(idx,1); btn.textContent="☆"; btn.classList.remove("active"); }
+  else{ favs.push(name); btn.textContent="⭐"; btn.classList.add("active"); }
+  localStorage.setItem("ittools_favs", JSON.stringify(favs));
+  renderFavs();
+}
+
+function renderFavs(){
+  const sec = document.getElementById("favSection");
+  const pills = document.getElementById("favPills");
+  pills.innerHTML="";
+  if(favs.length===0){ sec.style.display="none"; return; }
+  sec.style.display="block";
+  favs.forEach(name=>{
+    const p = document.createElement("div");
+    p.className="fav-pill";
+    p.textContent="⭐ "+name;
+    p.onclick=()=>{
+      const all = document.querySelectorAll(".tool-box");
+      all.forEach(b=>{ if(b.querySelector("h3")?.textContent.includes(name.substring(0,10))){ b.scrollIntoView({behavior:"smooth",block:"start"}); }});
+    };
+    pills.appendChild(p);
+  });
+}
+
+(()=>{
+  document.querySelectorAll(".star-btn").forEach(btn=>{
+    const name = btn.getAttribute("onclick").match(/'([^']+)'\)/)?.[1];
+    if(name && favs.includes(name)){ btn.textContent="⭐"; btn.classList.add("active"); }
+  });
+  renderFavs();
+})();
+
+/* ═══════════════════════════════════════
+   USAGE HISTORY
+═══════════════════════════════════════ */
+function saveHistory(id){
+  const val = document.getElementById(id)?.value||"";
+  if(val.trim()) localStorage.setItem("hist_"+id, val);
+}
+
+function loadHistory(){
+  const fields = ['networkInput','ip','cidr','pingInput','b64input','numberInput','macInput'];
+  fields.forEach(id=>{
+    const saved = localStorage.getItem("hist_"+id);
+    const el = document.getElementById(id);
+    const hint = document.getElementById(id.replace("Input","")+"Hint") || document.getElementById(id+"Hint");
+    if(saved && el){
+      if(hint) hint.textContent = "Last used: "+saved.substring(0,60);
+    }
+  });
+}
+loadHistory();
+
+/* ═══════════════════════════════════════
+   COPY OUTPUT
+═══════════════════════════════════════ */
+function copyOutput(id){
+  const t = document.getElementById(id).textContent;
+  if(!t.trim()) return alert("Nothing to copy!");
+  navigator.clipboard.writeText(t).then(()=>alert("Copied!")).catch(()=>alert("Copy failed"));
+}
+
+/* ═══════════════════════════════════════
+   SUBNET CALCULATOR
+═══════════════════════════════════════ */
+function calculateSubnet(){
+  let ip=document.getElementById('ip').value.trim(), cidr=parseInt(document.getElementById('cidr').value.trim());
+  if(!ip||isNaN(cidr)||cidr<0||cidr>32){alert("Invalid IP or CIDR");return;}
+  let oct=ip.split('.').map(Number);
+  if(oct.length!==4||oct.some(o=>o<0||o>255)){alert("Invalid IP");return;}
+  let ipInt=((oct[0]<<24)>>>0)+(oct[1]<<16)+(oct[2]<<8)+oct[3];
+  let maskInt=cidr===0?0:(~0<<(32-cidr))>>>0;
+  let mask=[(maskInt>>>24)&255,(maskInt>>>16)&255,(maskInt>>>8)&255,maskInt&255].join('.');
+  let netInt=ipInt&maskInt, net=[(netInt>>>24)&255,(netInt>>>16)&255,(netInt>>>8)&255,netInt&255].join('.');
+  let bcInt=netInt|(~maskInt>>>0), bc=[(bcInt>>>24)&255,(bcInt>>>16)&255,(bcInt>>>8)&255,bcInt&255].join('.');
+  let hosts=cidr>=31?0:Math.pow(2,32-cidr)-2;
+  let firstHost=cidr>=31?net:[(netInt>>>24)&255,(netInt>>>16)&255,(netInt>>>8)&255,(netInt&255)+1].join('.');
+  let lastHost=cidr>=31?bc:[(bcInt>>>24)&255,(bcInt>>>16)&255,(bcInt>>>8)&255,(bcInt&255)-1].join('.');
+  document.getElementById('subnetOutput').textContent=
+`IP Address:        ${ip}
+CIDR:              /${cidr}
+Subnet Mask:       ${mask}
+Network Address:   ${net}
+Broadcast Address: ${bc}
+First Usable Host: ${firstHost}
+Last Usable Host:  ${lastHost}
+Usable Hosts:      ${hosts.toLocaleString()}`;
+}
+document.getElementById('ip').addEventListener('keypress',e=>{ if(e.key==="Enter") calculateSubnet(); });
+document.getElementById('cidr').addEventListener('keypress',e=>{ if(e.key==="Enter") calculateSubnet(); });
+
+/* ═══════════════════════════════════════
+   BASE64
+═══════════════════════════════════════ */
+function encodeB64(){ document.getElementById('b64output').textContent=btoa(document.getElementById('b64input').value); }
+function decodeB64(){ try{ document.getElementById('b64output').textContent=atob(document.getElementById('b64input').value); }catch{ document.getElementById('b64output').textContent="Invalid Base64"; } }
+document.getElementById('b64input').addEventListener('keypress',e=>{ if(e.key==="Enter") encodeB64(); });
+
+/* ═══════════════════════════════════════
+   QR CODE GENERATOR
+═══════════════════════════════════════ */
+let qrObj = null;
+function genQR(){
+  const val = document.getElementById('qrcodeInput').value.trim();
+  const fg = document.getElementById('qrFg').value;
+  const bg = document.getElementById('qrBg').value;
+  const el = document.getElementById('qrcode');
+  el.innerHTML=""; qrObj=null;
+  if(!val) return;
+  qrObj = new QRCode(el,{text:val,width:180,height:180,colorDark:fg,colorLight:bg});
+}
+function getQRImg(){ return document.querySelector('#qrcode img')||document.querySelector('#qrcode canvas'); }
+function copyQRCode(){ const img=getQRImg(); if(!img){alert("Generate a QR first!");return;} fetch(img.src||img.toDataURL()).then(r=>r.blob()).then(b=>navigator.clipboard.write([new ClipboardItem({"image/png":b})])).then(()=>alert("Copied!")).catch(()=>alert("Failed")); }
+function downloadQRCode(){ const img=getQRImg(); if(!img){alert("Generate a QR first!");return;} const a=document.createElement('a'); a.href=img.src||img.toDataURL(); a.download="qrcode.png"; a.click(); }
+async function shareQRCode(){ const img=getQRImg(); if(!img){alert("No QR to share!");return;} const blob=await fetch(img.src||img.toDataURL()).then(r=>r.blob()); const file=new File([blob],"QR.png",{type:"image/png"}); if(navigator.canShare&&navigator.canShare({files:[file]})) await navigator.share({files:[file],title:"QR Code"}); else alert("Sharing not supported. Download instead."); }
+
+/* ═══════════════════════════════════════
+   BARCODE
+═══════════════════════════════════════ */
+function genBarcode(){
+  const val=document.getElementById('barcodeInput').value.trim();
+  const svg=document.getElementById('barcode');
+  if(!val){svg.innerHTML="";svg.style.display="none";return;}
+  svg.style.display="block";
+  JsBarcode("#barcode",val,{format:"CODE128",displayValue:true,width:2,height:60,background:"transparent",lineColor:document.body.classList.contains("light")?"#1e1b4b":"#e2e8f5"});
+}
+function getSvgCanvas(cb){
+  const svg=document.getElementById('barcode');
+  if(!svg.innerHTML.trim()){alert("No barcode!");return;}
+  const svgData=new XMLSerializer().serializeToString(svg);
+  const canvas=document.createElement('canvas'), ctx=canvas.getContext('2d'), img=new Image();
+  const url=URL.createObjectURL(new Blob([svgData],{type:"image/svg+xml;charset=utf-8"}));
+  img.onload=()=>{canvas.width=img.width;canvas.height=img.height;ctx.fillStyle="#fff";ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0);URL.revokeObjectURL(url);cb(canvas);};
+  img.src=url;
+}
+function copyBarcode(){ getSvgCanvas(c=>c.toBlob(b=>navigator.clipboard.write([new ClipboardItem({"image/png":b})]).then(()=>alert("Copied!")))); }
+function downloadBarcode(){ getSvgCanvas(c=>{const a=document.createElement('a');a.href=c.toDataURL("image/png");a.download="barcode.png";a.click();}); }
+async function shareBarcode(){ getSvgCanvas(async c=>{const blob=await new Promise(r=>c.toBlob(r,"image/png"));const file=new File([blob],"barcode.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[file]}))await navigator.share({files:[file],title:"Barcode"});else alert("Sharing not supported.");}); }
+
+/* ═══════════════════════════════════════
+   PDF TOOLS
+═══════════════════════════════════════ */
+function pdfOut(msg){ document.getElementById('pdfOutput').textContent=msg; }
+function pdfLink(blob, filename){
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.textContent=`⬇ Download ${filename}`; a.style.color=getComputedStyle(document.body).getPropertyValue('--blue');
+  const out=document.getElementById('pdfOutput'); out.textContent=""; out.appendChild(a);
+}
+async function mergePDFs(){
+  const files=document.getElementById('mergeFiles').files;
+  if(files.length<2){alert("Select at least 2 PDFs");return;}
+  pdfOut("Merging...");
+  try{
+    const merged=await PDFLib.PDFDocument.create();
+    for(const f of files){ const pdf=await PDFLib.PDFDocument.load(await f.arrayBuffer()); (await merged.copyPages(pdf,pdf.getPageIndices())).forEach(p=>merged.addPage(p)); }
+    pdfLink(new Blob([await merged.save()],{type:"application/pdf"}),"merged.pdf");
+  }catch(e){pdfOut("Error: "+e);}
+}
+async function splitPDF(){
+  const file=document.getElementById('splitFile').files[0], n=parseInt(document.getElementById('splitPage').value);
+  if(!file||isNaN(n)){alert("Select file and page number");return;}
+  pdfOut("Splitting...");
+  try{
+    const src=await PDFLib.PDFDocument.load(await file.arrayBuffer()), total=src.getPageCount();
+    if(n<=0||n>=total){alert(`Page must be between 1 and ${total-1}`);return;}
+    async function part(idxs){ const d=await PDFLib.PDFDocument.create(); (await d.copyPages(src,idxs)).forEach(p=>d.addPage(p)); return new Blob([await d.save()],{type:"application/pdf"}); }
+    const b1=await part([...Array(n).keys()]), b2=await part([...Array(total-n).keys()].map(i=>i+n));
+    const out=document.getElementById('pdfOutput'); out.textContent="";
+    [["part1.pdf",b1],["part2.pdf",b2]].forEach(([name,blob])=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.textContent=`⬇ ${name}`; a.style.marginRight="14px"; a.style.color=getComputedStyle(document.body).getPropertyValue('--blue'); out.appendChild(a); });
+  }catch(e){pdfOut("Error: "+e);}
+}
+async function compressPDF(){
+  const file=document.getElementById('compressFile').files[0];
+  if(!file){alert("Select a PDF");return;}
+  pdfOut("Compressing...");
+  try{
+    const bytes=await file.arrayBuffer();
+    const pdf=await PDFLib.PDFDocument.load(bytes,{updateMetadata:false});
+    const compressed=await pdf.save({useObjectStreams:true});
+    const before=(bytes.byteLength/1024).toFixed(1), after=(compressed.byteLength/1024).toFixed(1);
+    const saved=(100-(compressed.byteLength/bytes.byteLength*100)).toFixed(1);
+    const blob=new Blob([compressed],{type:"application/pdf"});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download="compressed.pdf"; a.textContent=`⬇ Download compressed.pdf`; a.style.color=getComputedStyle(document.body).getPropertyValue('--blue');
+    const out=document.getElementById('pdfOutput'); out.textContent=`Before: ${before} KB → After: ${after} KB (${saved}% saved)\n`; out.appendChild(a);
+  }catch(e){pdfOut("Error: "+e);}
+}
+async function watermarkPDF(){
+  const file=document.getElementById('watermarkFile').files[0], text=document.getElementById('watermarkText').value.trim();
+  if(!file||!text){alert("Select a PDF and enter watermark text");return;}
+  pdfOut("Adding watermark...");
+  try{
+    const pdf=await PDFLib.PDFDocument.load(await file.arrayBuffer());
+    const pages=pdf.getPages(), font=await pdf.embedFont(PDFLib.StandardFonts.HelveticaBold);
+    pages.forEach(page=>{
+      const {width,height}=page.getSize();
+      page.drawText(text,{x:width/2-text.length*12,y:height/2,size:40,font,color:PDFLib.rgb(0.8,0.1,0.1),opacity:0.3,rotate:PDFLib.degrees(45)});
+    });
+    pdfLink(new Blob([await pdf.save()],{type:"application/pdf"}),"watermarked.pdf");
+  }catch(e){pdfOut("Error: "+e);}
+}
+async function rotatePDF(){
+  const file=document.getElementById('rotateFile').files[0], deg=parseInt(document.getElementById('rotateDeg').value);
+  if(!file){alert("Select a PDF");return;}
+  pdfOut("Rotating...");
+  try{
+    const pdf=await PDFLib.PDFDocument.load(await file.arrayBuffer());
+    pdf.getPages().forEach(p=>p.setRotation(PDFLib.degrees((p.getRotation().angle+deg)%360)));
+    pdfLink(new Blob([await pdf.save()],{type:"application/pdf"}),"rotated.pdf");
+  }catch(e){pdfOut("Error: "+e);}
+}
+
+/* ═══════════════════════════════════════
+   TEXT DIFF
+═══════════════════════════════════════ */
+function runDiff(){
+  const a=document.getElementById('diffOriginal').value.split('\n');
+  const b=document.getElementById('diffModified').value.split('\n');
+  const out=document.getElementById('diffOutput');
+  out.innerHTML=""; out.style.display="block";
+  let added=0,removed=0;
+  const lcs=buildLCS(a,b);
+  let ai=0,bi=0,li=0;
+  const lines=[];
+  while(ai<a.length||bi<b.length){
+    if(ai<a.length&&bi<b.length&&li<lcs.length&&a[ai]===lcs[li]&&b[bi]===lcs[li]){
+      lines.push({type:'same',text:a[ai]}); ai++;bi++;li++;
+    } else if(bi<b.length&&(li>=lcs.length||b[bi]!==lcs[li])){
+      lines.push({type:'add',text:b[bi]}); bi++; added++;
+    } else {
+      lines.push({type:'rem',text:a[ai]}); ai++; removed++;
+    }
+  }
+  lines.forEach(l=>{
+    const div=document.createElement('div');
+    div.className='diff-line '+(l.type==='add'?'diff-add':l.type==='rem'?'diff-rem':'diff-same');
+    div.textContent=(l.type==='add'?'+ ':l.type==='rem'?'− ':' ')+l.text;
+    out.appendChild(div);
+  });
+  document.getElementById('diffStats').textContent=`+${added} added  −${removed} removed`;
+}
+function buildLCS(a,b){
+  const m=a.length,n=b.length,dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=1;i<=m;i++) for(let j=1;j<=n;j++) dp[i][j]=a[i-1]===b[j-1]?dp[i-1][j-1]+1:Math.max(dp[i-1][j],dp[i][j-1]);
+  const res=[]; let i=m,j=n;
+  while(i>0&&j>0){ if(a[i-1]===b[j-1]){res.unshift(a[i-1]);i--;j--;} else if(dp[i-1][j]>dp[i][j-1]) i--; else j--; }
+  return res;
+}
+function clearDiff(){
+  document.getElementById('diffOriginal').value="";
+  document.getElementById('diffModified').value="";
+  document.getElementById('diffOutput').innerHTML="";
+  document.getElementById('diffOutput').style.display="none";
+  document.getElementById('diffStats').textContent="";
+}
+
+/* ═══════════════════════════════════════
+   PING + LIVE CHART
+═══════════════════════════════════════ */
+let monitorInterval=null, pingData=[], pingMax=40;
+
+function clearPing(){ pingData=[]; drawChart(); document.getElementById('pingOutput').textContent=""; document.getElementById('pingStats').textContent=""; }
+
+function startMonitoring(){
+  const url=document.getElementById('pingInput').value.trim(), ms=parseInt(document.getElementById('pingInterval').value)*1000;
+  if(!url||isNaN(ms)||ms<1000){alert("Enter valid target & interval (>=1s)");return;}
+  stopMonitoring(); pingServer(url); monitorInterval=setInterval(()=>pingServer(url),ms);
+}
+function stopMonitoring(){ clearInterval(monitorInterval); monitorInterval=null; }
+
+async function pingServer(url){
+  const out=document.getElementById('pingOutput');
+  try{
+    const t0=performance.now(), r=await fetch(url,{method:'HEAD',mode:'no-cors'}), ms=parseFloat((performance.now()-t0).toFixed(1));
+    pingData.push({ms,ok:true}); if(pingData.length>pingMax) pingData.shift();
+    const ts=new Date().toLocaleTimeString();
+    out.textContent=`[${ts}] ${ms}ms\n`+out.textContent;
+    out.textContent=out.textContent.split('\n').slice(0,30).join('\n');
+  }catch(e){
+    pingData.push({ms:null,ok:false}); if(pingData.length>pingMax) pingData.shift();
+    out.textContent=`[${new Date().toLocaleTimeString()}] FAILED\n`+out.textContent;
+  }
+  drawChart(); updatePingStats();
+}
+
+function drawChart(){
+  const canvas=document.getElementById('pingChart');
+  const ctx=canvas.getContext('2d');
+  canvas.width=canvas.offsetWidth||600; canvas.height=140;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  if(pingData.length<2) return;
+  const vals=pingData.map(d=>d.ms||0), maxVal=Math.max(...vals,1);
+  const w=canvas.width, h=canvas.height, pad=16;
+  ctx.strokeStyle="rgba(128,128,128,0.15)"; ctx.lineWidth=1;
+  [0.25,0.5,0.75,1].forEach(f=>{ ctx.beginPath(); ctx.moveTo(pad,h-pad-f*(h-2*pad)); ctx.lineTo(w-pad,h-pad-f*(h-2*pad)); ctx.stroke(); });
+  const isLight=document.body.classList.contains("light");
+  ctx.strokeStyle=isLight?"#4f46e5":"#60a5fa"; ctx.lineWidth=2; ctx.lineJoin="round";
+  ctx.beginPath();
+  pingData.forEach((d,i)=>{
+    const x=pad+(i/(pingData.length-1))*(w-2*pad);
+    const y=d.ok?h-pad-((d.ms/maxVal)*(h-2*pad)):h-pad;
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    ctx.save(); ctx.beginPath(); ctx.arc(x,y,3,0,Math.PI*2); ctx.fillStyle=d.ok?"#22c55e":"#ef4444"; ctx.fill(); ctx.restore();
+  });
+  ctx.stroke();
+  ctx.fillStyle=isLight?"#6b7280":"#94a3b8"; ctx.font="11px 'JetBrains Mono', monospace";
+  ctx.fillText(maxVal.toFixed(0)+"ms",2,pad+4);
+}
+
+function updatePingStats(){
+  const vals=pingData.filter(d=>d.ok).map(d=>d.ms);
+  if(!vals.length) return;
+  const avg=(vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);
+  const min=Math.min(...vals).toFixed(1), max=Math.max(...vals).toFixed(1);
+  const fails=pingData.filter(d=>!d.ok).length;
+  document.getElementById('pingStats').textContent=`Avg: ${avg}ms  Min: ${min}ms  Max: ${max}ms  Failures: ${fails}/${pingData.length}`;
+}
+
+window.addEventListener('resize',()=>{ if(pingData.length) drawChart(); });
+
+/* ═══════════════════════════════════════
+   HEX / DEC / BIN
+═══════════════════════════════════════ */
+function convertNumber(){
+  let v=document.getElementById("numberInput").value.trim(); if(!v) return;
+  let num=/^0x/i.test(v)?parseInt(v,16):/^[01]+$/.test(v)?parseInt(v,2):parseInt(v,10);
+  document.getElementById("numberResult").textContent=`Decimal : ${num}\nHex     : 0x${num.toString(16).toUpperCase()}\nBinary  : ${num.toString(2)}\nOctal   : ${num.toString(8)}`;
+}
+document.getElementById('numberInput').addEventListener('keypress',e=>{ if(e.key==="Enter") convertNumber(); });
+
+/* ═══════════════════════════════════════
+   PASSWORD GENERATOR
+═══════════════════════════════════════ */
+function genPass(){
+  let chars="abcdefghijklmnopqrstuvwxyz";
+  if(document.getElementById('passUpper').checked) chars+="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  if(document.getElementById('passNum').checked) chars+="0123456789";
+  if(document.getElementById('passSym').checked) chars+="!@#$%^&*()_+-=[]{}";
+  const len=parseInt(document.getElementById('passLen').value)||16;
+  const p=Array.from({length:len},()=>chars[Math.floor(Math.random()*chars.length)]).join('');
+  document.getElementById("passOut").textContent=p;
+  let score=0;
+  if(len>=12) score++; if(len>=16) score++; if(/[A-Z]/.test(p)) score++; if(/[0-9]/.test(p)) score++; if(/[^a-zA-Z0-9]/.test(p)) score++;
+  const labels=["","Weak 🔴","Fair 🟡","Good 🟢","Strong 💪","Very Strong 🔒"];
+  document.getElementById('passStrength').textContent="Strength: "+labels[Math.min(score,5)];
+}
+
+/* ═══════════════════════════════════════
+   MAC LOOKUP
+═══════════════════════════════════════ */
+function lookupMac(){
+  const mac=document.getElementById('macInput').value.trim(); if(!mac){alert('Enter a MAC');return;}
+  fetch(`https://api.macvendors.com/${mac}`).then(r=>r.text()).then(d=>document.getElementById('macOutput').textContent=d).catch(()=>document.getElementById('macOutput').textContent='Lookup failed');
+}
+
+/* ═══════════════════════════════════════
+   SYSTEM INFO
+═══════════════════════════════════════ */
+async function getLocalIP(){
+  return new Promise(resolve=>{
+    const rtc=new RTCPeerConnection({iceServers:[]});
+    rtc.createDataChannel(""); rtc.createOffer().then(o=>rtc.setLocalDescription(o)).catch(()=>{});
+    rtc.onicecandidate=evt=>{ if(!evt||!evt.candidate)return; const m=evt.candidate.candidate.match(/(\d{1,3}(\.\d{1,3}){3})/); if(m) resolve(m[1]); };
+    setTimeout(()=>resolve("Unavailable"),2000);
+  });
+}
+
+async function showSystemInfo(){
+  const out=document.getElementById('sysInfoOutput'); out.textContent="Gathering...";
+  let gpu="Unavailable";
+  try{ const gl=document.createElement('canvas').getContext('webgl'); const di=gl&&gl.getExtension('WEBGL_debug_renderer_info'); if(di) gpu=gl.getParameter(di.UNMASKED_RENDERER_WEBGL); }catch(e){}
+  let battery="Unavailable";
+  try{ const b=await navigator.getBattery(); battery=`${Math.round(b.level*100)}%  Charging: ${b.charging}`; }catch(e){}
+  let publicIP="Unavailable";
+  try{ publicIP=(await (await fetch('https://api.ipify.org?format=json')).json()).ip; }catch(e){}
+  let localIP="Unavailable";
+  try{ localIP=await getLocalIP(); }catch(e){}
+  const conn=navigator.connection||navigator.mozConnection||navigator.webkitConnection;
+  const connType=conn?(conn.effectiveType||conn.type||"Unknown"):"Unavailable";
+  const connSpeed=conn&&conn.downlink?conn.downlink+" Mbps":"?";
+  const ua=navigator.userAgent;
+  out.textContent=
+`=== SYSTEM INFO ===
+Public IP:        ${publicIP}
+Local IP:         ${localIP}
+Platform:         ${navigator.platform||"?"}
+CPU Cores:        ${navigator.hardwareConcurrency||"?"}
+RAM (approx):     ${navigator.deviceMemory||"?"} GB
+GPU:              ${gpu}
+Screen:           ${window.screen.width}x${window.screen.height} (${window.devicePixelRatio}x DPR)
+Timezone:         ${Intl.DateTimeFormat().resolvedOptions().timeZone}
+
+=== CONNECTION ===
+Type:             ${connType}
+Est. Speed:       ${connSpeed}
+
+=== BROWSER ===
+User Agent: ${ua}
+
+=== BATTERY ===
+${battery}`;
+}
+
+/* ═══════════════════════════════════════
+   NETWORK TOOLS
+═══════════════════════════════════════ */
+function getIpInfo(){
+  const i=document.getElementById('networkInput').value.trim(), out=document.getElementById('networkOutput');
+  if(!i){alert('Enter IP or domain');return;}
+  out.textContent='Fetching...';
+  fetch(/\d+\.\d+\.\d+\.\d+/.test(i)?`https://ipapi.co/${i}/json/`:"https://ipapi.co/json/").then(r=>r.json()).then(d=>out.textContent=JSON.stringify(d,null,2)).catch(()=>out.textContent='Failed');
+}
+function urlToIp(){
+  const i=document.getElementById('networkInput').value.trim(), out=document.getElementById('networkOutput');
+  if(!i){alert('Enter a URL');return;} out.textContent='Resolving...';
+  fetch(`https://dns.google/resolve?name=${i}`).then(r=>r.json()).then(d=>{ out.textContent=`IP for ${i}: ${d.Answer?d.Answer.map(a=>a.data).join(', '):'No IP found'}`; }).catch(()=>out.textContent='Failed');
+}
+function dnsLookup(){
+  const i=document.getElementById('networkInput').value.trim(), out=document.getElementById('networkOutput');
+  if(!i){alert('Enter a domain');return;} out.textContent='Looking up...';
+  fetch(`https://dns.google/resolve?name=${i}`).then(r=>r.json()).then(d=>out.textContent=JSON.stringify(d,null,2)).catch(()=>out.textContent='Failed');
+}
+async function checkHosting(){
+  const domain=document.getElementById('networkInput').value.trim(), out=document.getElementById('networkOutput');
+  if(!domain){alert('Enter a domain');return;} out.textContent='Checking...';
+  try{
+    const dns=await (await fetch(`https://dns.google/resolve?name=${domain}`)).json();
+    if(!dns.Answer){out.textContent='Could not resolve';return;}
+    const ip=dns.Answer.find(a=>a.type===1)?.data;
+    if(!ip){out.textContent='No IPv4 found';return;}
+    const info=await (await fetch(`https://ipwhois.app/json/${ip}`)).json();
+    out.textContent=`Domain:  ${domain}\nIP:      ${ip}\nISP:     ${info.isp||'?'}\nOrg:     ${info.org||'?'}\nCountry: ${info.country||'?'}\nRegion:  ${info.region||'?'}\nCity:    ${info.city||'?'}`;
+  }catch(e){out.textContent='Error: '+e;}
+}
+async function shortenURL(){
+  const i=document.getElementById('networkInput').value.trim(), out=document.getElementById('networkOutput');
+  if(!i){alert("Enter a URL");return;} out.textContent='Shortening...';
+  try{ out.textContent='Shortened:\n'+(await (await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(i)}`)).text()); }
+  catch(e){out.textContent='Failed';}
+}
+
+/* ═══════════════════════════════════════
+   GOOGLE DRIVE UPLOAD + QR
+═══════════════════════════════════════ */
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbxkrPFSj1BjAOL_Bs6FdccTSbsuvEY-__aFOgj1DmzTifJ-Apn594k0_nHG47J4XuLX/exec";
+let selectedFile=null, uploadedFileName="";
+const dropArea=document.getElementById("dropArea"), fileInput=document.getElementById("fileInput");
+dropArea.addEventListener("click",()=>fileInput.click());
+dropArea.addEventListener("dragover",e=>{e.preventDefault();dropArea.style.borderColor="var(--blue)";});
+dropArea.addEventListener("dragleave",()=>{dropArea.style.borderColor="";});
+dropArea.addEventListener("drop",e=>{e.preventDefault();dropArea.style.borderColor="";selectedFile=e.dataTransfer.files[0];document.getElementById("uploadStatus").textContent="Selected: "+selectedFile.name;});
+fileInput.addEventListener("change",()=>{selectedFile=fileInput.files[0];document.getElementById("uploadStatus").textContent="Selected: "+selectedFile.name;});
+
+function startUpload(makeQR=false){
+  if(!selectedFile){alert("Select a file first.");return;}
+  uploadedFileName=selectedFile.name;
+  document.getElementById("qrSection").style.display="none"; document.getElementById("qrOutput").innerHTML="";
+  document.getElementById("uploadStatus").textContent="Uploading...";
+  const reader=new FileReader();
+  reader.onload=e=>{
+    fetch(SCRIPT_URL,{method:"POST",body:new URLSearchParams({name:selectedFile.name,mimeType:selectedFile.type,file:e.target.result.split(",")[1]})})
+    .then(r=>r.text()).then(link=>{
+      document.getElementById("uploadStatus").textContent="Uploaded:\n"+link;
+      if(makeQR){
+        document.getElementById("qrSection").style.display="block";
+        document.getElementById("qrOutput").innerHTML="";
+        new QRCode(document.getElementById("qrOutput"),{text:link,width:200,height:200,correctLevel:QRCode.CorrectLevel.L});
+      }
+    })
+    .catch(err=>document.getElementById("uploadStatus").textContent="Upload failed: "+err);
+  };
+  reader.readAsDataURL(selectedFile);
+}
+
+function copyQR(){ const img=document.querySelector("#qrOutput img"); if(!img){alert("No QR!");return;} fetch(img.src).then(r=>r.blob()).then(b=>navigator.clipboard.write([new ClipboardItem({"image/png":b})])).then(()=>alert("Copied!")).catch(()=>alert("Failed")); }
+function downloadQR(){ const img=document.querySelector("#qrOutput img"); if(!img){alert("No QR!");return;} const a=document.createElement('a'); a.href=img.src; a.download=(uploadedFileName.replace(/\.[^/.]+$/,"")||"qr")+"_QR.png"; a.click(); }
+async function shareQR(){ const img=document.querySelector("#qrOutput img"); if(!img){alert("No QR!");return;} const blob=await fetch(img.src).then(r=>r.blob()); const file=new File([blob],"QR.png",{type:blob.type}); if(navigator.canShare&&navigator.canShare({files:[file]})) await navigator.share({files:[file],title:"QR Code"}); else alert("Sharing not supported."); }
+
+/* ═══════════════════════════════════════
+   KEYBOARD SHORTCUTS
+═══════════════════════════════════════ */
+function showToast(msg, dur=1800) {
+  const t = document.getElementById("kbToast");
+  t.textContent = msg; t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), dur);
+}
+
+document.addEventListener("keydown", function(e) {
+  if (e.ctrlKey && e.key === "k") { e.preventDefault(); document.getElementById("searchBar").focus(); document.getElementById("searchBar").select(); showToast("🔍 Search focused"); }
+  if (e.ctrlKey && e.key === "e") { e.preventDefault(); exportAllOutputs(); }
+  if (e.ctrlKey && e.key === "d") { e.preventDefault(); toggleTheme(); showToast("🌗 Theme toggled"); }
+  if (e.key === "Escape" && document.activeElement === document.getElementById("searchBar")) { document.getElementById("searchBar").value = ""; filterTools(); document.getElementById("searchBar").blur(); }
+});
+
+setTimeout(() => showToast("💡 Ctrl+K = Search  ·  Ctrl+E = Export  ·  Ctrl+D = Theme"), 2000);
+
+/* ═══════════════════════════════════════
+   EXPORT ALL OUTPUTS
+═══════════════════════════════════════ */
+function exportAllOutputs() {
+  const outputs = [
+    ["Subnet Calculator","subnetOutput"],["Base64","b64output"],
+    ["Hex/Dec/Bin","numberResult"],["Password","passOut"],
+    ["MAC Lookup","macOutput"],["Network Tools","networkOutput"],
+    ["Ping Monitor","pingOutput"],["System Info","sysInfoOutput"],
+    ["PDF Log","pdfOutput"],["Upload Status","uploadStatus"],
+  ];
+  const now = new Date().toLocaleString();
+  let report = `IT TOOLS EXPORT\nGenerated: ${now}\n${"═".repeat(50)}\n\n`;
+  let hasContent = false;
+  outputs.forEach(([label, id]) => {
+    const el = document.getElementById(id);
+    const text = el ? el.textContent.trim() : "";
+    if (text && !["Press button to scan...","Results will appear here...","Waiting for file...","PDF output will appear here..."].includes(text)) {
+      report += `[ ${label} ]\n${text}\n\n${"─".repeat(40)}\n\n`;
+      hasContent = true;
+    }
+  });
+  if (!hasContent) { showToast("⚠️ No outputs to export yet"); return; }
+  const blob = new Blob([report], { type: "text/plain" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `IT-Tools-Export-${Date.now()}.txt`; a.click();
+  showToast("✅ Exported!");
+}
+
+/* ═══════════════════════════════════════
+   EMAIL BATCH MANAGER
+═══════════════════════════════════════ */
+const EB_BATCH_SIZE = 500;
+const EB_EMAIL_REGEX = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g;
+let ebAllEmails = [], ebBatches = [];
+
+function ebEv(e, cls) {
+  e.preventDefault();
+  const z = document.getElementById('ebUploadZone');
+  z.className = 'eb-upload-zone' + (cls ? ' ' + cls : '');
+}
+
+function ebDrop(e) {
+  e.preventDefault();
+  document.getElementById('ebUploadZone').className = 'eb-upload-zone';
+  const f = e.dataTransfer.files[0];
+  if (f && f.name.endsWith('.xlsx')) ebHandleFile(f);
+  else alert('Please drop an .xlsx file');
+}
+
+function ebHandleFile(file) {
+  if (!file) return;
+  ebShowProgress('Reading Excel file...');
+  document.getElementById('ebFileName').textContent = '📄 ' + file.name;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const data = new Uint8Array(e.target.result);
+      const wb = XLSX.read(data, { type: 'array' });
+      const rawEmails = [];
+      wb.SheetNames.forEach(name => {
+        const ws = wb.Sheets[name];
+        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+        rows.forEach(row => {
+          row.forEach(cell => {
+            const found = String(cell).match(EB_EMAIL_REGEX);
+            if (found) found.forEach(em => rawEmails.push(em.toLowerCase()));
+          });
+        });
+      });
+      const totalRaw = rawEmails.length;
+      const unique = [...new Set(rawEmails)].sort();
+      const duplicates = totalRaw - unique.length;
+      const numBatches = Math.ceil(unique.length / EB_BATCH_SIZE);
+      ebBatches = Array.from({ length: numBatches }, (_, i) =>
+        unique.slice(i * EB_BATCH_SIZE, (i + 1) * EB_BATCH_SIZE));
+      ebAllEmails = unique;
+      ebHideProgress();
+      document.getElementById('ebUploadZone').classList.add('loaded');
+      document.getElementById('eb-s-total').textContent   = totalRaw.toLocaleString();
+      document.getElementById('eb-s-unique').textContent  = unique.length.toLocaleString();
+      document.getElementById('eb-s-dupes').textContent   = duplicates.toLocaleString();
+      document.getElementById('eb-s-batches').textContent = numBatches.toLocaleString();
+      document.getElementById('ebBtnExport').disabled  = false;
+      document.getElementById('ebBtnCopyAll').disabled = false;
+      document.getElementById('ebBtnReset').disabled   = false;
+      document.getElementById('ebEmptyState').style.display = 'none';
+      ebRenderBatches(ebBatches);
+    } catch(err) {
+      ebHideProgress();
+      showToast('❌ Failed to parse: ' + err.message, 3000);
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function ebRenderBatches(batches) {
+  const list = document.getElementById('ebBatchList');
+  list.innerHTML = '';
+  document.getElementById('ebBatchSection').style.display = 'block';
+  document.getElementById('ebBatchCountLabel').textContent = batches.length + ' batches';
+  batches.forEach((batch, i) => {
+    const accNum  = Math.ceil((i + 1) / 4);
+    const sendNum = (i % 4) + 1;
+    const comma   = batch.join(', ');
+    const rows    = batch.map(e => `<div class="eb-email-row">${e}</div>`).join('');
+    const card    = document.createElement('div');
+    card.className = 'eb-batch-card';
+    card.innerHTML = `
+      <div class="eb-batch-header" onclick="ebToggleBatch(${i})">
+        <span class="eb-batch-num">Batch ${i + 1}</span>
+        <div class="eb-batch-meta">
+          <span class="eb-batch-acc">Gmail Acc ${accNum} · Send ${sendNum}/4</span>
+          <span class="eb-batch-count-pill">${batch.length} emails</span>
+        </div>
+        <div class="eb-batch-actions" onclick="event.stopPropagation()">
+          <button class="eb-btn-copy-sm" id="ebCp${i}" onclick="ebCopyBatch(${i})">⎘ Copy</button>
+          <button class="eb-btn-toggle-sm" id="ebTg${i}">▼</button>
+        </div>
+      </div>
+      <div class="eb-batch-body" id="ebBody${i}">
+        <div class="eb-comma-display">${comma}</div>
+        <div class="eb-email-rows">${rows}</div>
+      </div>`;
+    card.querySelector(`#ebCp${i}`)._raw = comma;
+    list.appendChild(card);
+  });
+}
+
+function ebToggleBatch(i) {
+  const body = document.getElementById('ebBody' + i);
+  const btn  = document.getElementById('ebTg' + i);
+  const open = body.style.display === 'block';
+  body.style.display = open ? 'none' : 'block';
+  btn.textContent    = open ? '▼' : '▲';
+}
+
+function ebCopyBatch(i) {
+  const btn = document.getElementById('ebCp' + i);
+  navigator.clipboard.writeText(btn._raw).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '⎘ Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function ebCopyAll() {
+  navigator.clipboard.writeText(ebAllEmails.join(', ')).then(() => showToast('✓ All emails copied!'));
+}
+
+function ebExportXlsx() {
+  const wb = XLSX.utils.book_new();
+  const wsData = [];
+  const numCols = ebBatches.length;
+  for (let r = 0; r < EB_BATCH_SIZE; r++) {
+    const row = [];
+    for (let c = 0; c < numCols; c++) {
+      row.push(ebBatches[c] && ebBatches[c][r] ? ebBatches[c][r] : '');
+    }
+    wsData.push(row);
+  }
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+  ws['!cols'] = Array(numCols).fill({ wch: 38 });
+  XLSX.utils.book_append_sheet(wb, ws, 'Emails');
+  XLSX.writeFile(wb, 'emails_output.xlsx');
+  showToast('✅ Excel exported!');
+}
+
+function ebReset() {
+  ebAllEmails = []; ebBatches = [];
+  document.getElementById('ebUploadZone').className = 'eb-upload-zone';
+  document.getElementById('ebFileName').textContent = '';
+  document.getElementById('eb-file-input').value = '';
+  ['eb-s-total','eb-s-unique','eb-s-dupes','eb-s-batches'].forEach(id =>
+    document.getElementById(id).textContent = '—');
+  document.getElementById('ebBtnExport').disabled  = true;
+  document.getElementById('ebBtnCopyAll').disabled = true;
+  document.getElementById('ebBtnReset').disabled   = true;
+  document.getElementById('ebBatchSection').style.display = 'none';
+  document.getElementById('ebEmptyState').style.display   = 'block';
+  document.getElementById('ebBatchList').innerHTML = '';
+}
+
+function ebShowProgress(msg) {
+  const w = document.getElementById('ebProgressWrap');
+  w.style.display = 'block';
+  document.getElementById('ebProgressLabel').textContent = msg;
+  document.getElementById('ebProgressFill').style.width  = '70%';
+}
+function ebHideProgress() {
+  document.getElementById('ebProgressFill').style.width = '100%';
+  setTimeout(() => { document.getElementById('ebProgressWrap').style.display = 'none'; }, 400);
+}
+</script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+</script>
+</body>
+</html>
