@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Asset Gallery</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --success: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      padding-bottom: 5rem;
+    }
+
+    header { margin-bottom: 2rem; }
+    header h1 { font-size: 2rem; font-weight: 700; color: var(--text); }
+    header p { color: var(--text-muted); margin-top: 0.5rem; }
+
+    .category { margin-top: 3rem; }
+    .category h2 {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .img-wrap {
+      height: 220px;
+      background: #000;
+      position: relative;
+    }
+
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .img-wrap img:hover { opacity: 0.8; }
+
+    .actions {
+      padding: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .url-input {
+      flex: 1;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      outline: none;
+    }
+
+    .copy-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover { background: var(--accent-hover); }
+    .copy-btn.success { background: var(--success); }
+
+    /* Lightbox Styles */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    #lightbox img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 4px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    }
+    #lightbox:target { display: flex; }
+    .close-lightbox {
+      position: absolute;
+      top: 1rem; right: 2rem;
+      color: white;
+      font-size: 2rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--success);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 2000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    #toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Asset Library</h1>
+    <p>Click an image to expand it. Use the copy button to grab the exact HTML tag: <code>&lt;img src="..." alt="..."&gt;</code></p>
+  </header>
+
+  <div id="gallery-container"></div>
+
+  <div id="lightbox" onclick="closeLightbox(event)">
+    <a href="#" class="close-lightbox">&times;</a>
+    <img id="lightbox-img" src="" alt="Full size preview">
+  </div>
+
+  <div id="toast">✅ HTML Tag Copied!</div>
+
+  <script>
+    // I have extracted just the raw URLs to make formatting cleaner
+    const assets = {
+      "ERP": [
+        "https://github.com/user-attachments/assets/6c291473-75cd-4f0a-b634-afcc75cbdc84",
+        "https://github.com/user-attachments/assets/f0d928be-4d1b-4734-8e00-04b0df7f1097",
+        "https://github.com/user-attachments/assets/a3e2ae7e-5724-43a8-b68b-9e6c7fc3c6b5",
+        "https://github.com/user-attachments/assets/33247b6e-dec4-4f83-9b63-8d9d577368ae",
+        "https://github.com/user-attachments/assets/5ee74551-b9e5-44d4-906d-88317393e6c4",
+        "https://github.com/user-attachments/assets/2e95a033-1456-4a70-ba1b-cba16c7ebd58"
+      ],
+      "DEAUTH": [
+        "https://github.com/user-attachments/assets/61e83650-d1a9-4f64-956a-73821e8ab92c",
+        "https://github.com/user-attachments/assets/66674368-3ac9-480b-a75d-7cb0ebcace9e"
+      ],
+      "VILLA": [
+        "https://github.com/user-attachments/assets/7d128bf0-9e4d-48bf-ac27-666126aae4a8",
+        "https://github.com/user-attachments/assets/da4dba08-e3d8-4d66-9054-2252266a81bb",
+        "https://github.com/user-attachments/assets/c39c02c7-5532-4db1-b851-0cb5efd89389",
+        "https://github.com/user-attachments/assets/428d6f5e-89b9-4624-bacb-d1ffd9263634",
+        "https://github.com/user-attachments/assets/70bc7940-0a8b-4969-86e4-a306e6a5c039",
+        "https://github.com/user-attachments/assets/322cdd6c-8658-4ee7-8e38-4e10d752b2b5",
+        "https://github.com/user-attachments/assets/7de9dc22-352d-4f18-a2ae-6241fe41adfd",
+        "https://github.com/user-attachments/assets/34c542d9-32d1-4c73-951d-8b9cee7db5ff"
+      ],
+      "IOT": [
+        "https://github.com/user-attachments/assets/d0be9eba-0ef4-4f32-98a3-0c69c008b71e",
+        "https://github.com/user-attachments/assets/237e2b13-2264-42ed-a0b6-254da94fd6bf",
+        "https://github.com/user-attachments/assets/8561c240-72d6-4f1b-ba6d-18d6fc92f8fe",
+        "https://github.com/user-attachments/assets/8b1e92be-25d1-401c-bfc4-19262e979fd0",
+        "https://github.com/user-attachments/assets/c6bcff7f-ae99-41e4-95b8-08805f890211",
+        "https://github.com/user-attachments/assets/e158ecc4-8f6c-4edc-9e2f-aad308c6d415",
+        "https://github.com/user-attachments/assets/5412da56-6eb3-4dc0-8d80-d5d6e2724ce1",
+        "https://github.com/user-attachments/assets/4e0b77b3-6078-4687-a82e-5426b22235b0",
+        "https://github.com/user-attachments/assets/e12c7b9d-530f-4d54-9828-e7b2d4534518",
+        "https://github.com/user-attachments/assets/8d6a2c53-3220-46e5-84d7-4cf4a011ea59",
+        "https://github.com/user-attachments/assets/23a01407-c903-4636-97c8-b50a0d334327",
+        "https://github.com/user-attachments/assets/4dfeeca6-89dc-4a79-9e3e-35f5955ab0f1",
+        "https://github.com/user-attachments/assets/99f304e5-de93-49ae-a8ba-3ad4013386cd",
+        "https://github.com/user-attachments/assets/cac47e85-987c-4a39-9a94-53f3c51ccb8f",
+        "https://github.com/user-attachments/assets/54b86a8e-9bea-4ef4-89e0-3bc726256ef4",
+        "https://github.com/user-attachments/assets/5bd905b8-b556-4512-ae0d-0466f648557f",
+        "https://github.com/user-attachments/assets/358f6cf6-d342-41a7-b6e9-23ce1a5e5a14",
+        "https://github.com/user-attachments/assets/e9c187cd-d016-4156-8f96-107bf1c1bccc",
+        "https://github.com/user-attachments/assets/f7efff28-c176-4323-afb8-589dcb54dfca",
+        "https://github.com/user-attachments/assets/ae0b3608-02f8-418a-86fc-22fe585ec64e",
+        "https://github.com/user-attachments/assets/baee22df-9cd6-421b-a719-ea115f030670",
+        "https://github.com/user-attachments/assets/645bb752-4d5c-4964-a1c4-3da03b0684cd",
+        "https://github.com/user-attachments/assets/d6736664-087f-496b-b023-b16bc1a70720"
+      ]
+    };
+
+    const container = document.getElementById('gallery-container');
+
+    // Helper to safely display HTML tags in text inputs
+    function escapeHtml(text) {
+      return text.replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+    }
+
+    // Build the DOM
+    Object.entries(assets).forEach(([categoryName, urls]) => {
+      const section = document.createElement('div');
+      section.className = 'category';
+      
+      const title = document.createElement('h2');
+      title.textContent = `${categoryName} (${urls.length})`;
+      section.appendChild(title);
+
+      const grid = document.createElement('div');
+      grid.className = 'grid';
+
+      urls.forEach((url, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        // This creates the exact HTML string format you requested
+        const formattedHtmlTag = `<img src="${url}" alt="${categoryName}">`;
+
+        card.innerHTML = `
+          <div class="img-wrap" onclick="openLightbox('${url}')">
+            <img src="${url}" loading="lazy" alt="${categoryName}">
+          </div>
+          <div class="actions">
+            <input type="text" class="url-input" value="${escapeHtml(formattedHtmlTag)}" readonly onclick="this.select()">
+            <button class="copy-btn" data-raw="${escapeHtml(formattedHtmlTag)}" onclick="copyRaw(this)">Copy</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      section.appendChild(grid);
+      container.appendChild(section);
+    });
+
+    // Interactions
+    let toastTimeout;
+
+    function copyRaw(btn) {
+      // Decode HTML entities before copying so it pastes as proper HTML, not as &lt;img ...&gt;
+      const textarea = document.createElement("textarea");
+      textarea.innerHTML = btn.getAttribute('data-raw');
+      const textToCopy = textarea.value;
+
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        btn.classList.add('success');
+        
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('success');
+          toast.classList.remove('show');
+        }, 2000);
+      }).catch(err => {
+        alert('Failed to copy. Your browser might not support this feature.');
+      });
+    }
+
+    function openLightbox(url) {
+      document.getElementById('lightbox-img').src = url;
+      window.location.hash = 'lightbox';
+    }
+
+    function closeLightbox(e) {
+      if(e.target.id === 'lightbox' || e.target.className === 'close-lightbox') {
+        e.preventDefault();
+        window.location.hash = '';
+        setTimeout(() => document.getElementById('lightbox-img').src = '', 200);
+      }
+    }
+
+    // Handle escape key for lightbox
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && window.location.hash === '#lightbox') {
+        window.location.hash = '';
+      }
+    });
+  </script>
+</body>
+</html>
