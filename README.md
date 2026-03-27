@@ -20,9 +20,8 @@ name: Aman Faizal
 location: Sharjah, UAE 🇦🇪
 role: IT Administrator @ Gulf Asian English School
 users_supported: 7,000+
-experience: 4+ years (self-taught)
-certifications: [CEH, RHCE, Google IT Support, CompTIA Security+, DevOps IBM]
-philosophy: "Technology should empower, not complicate."
+experience: 4+ years
+certifications: [CEH, RHCE, Google IT Support, Udemy CompTIA Security+, DevOps IBM]
 ```
 
 ---
