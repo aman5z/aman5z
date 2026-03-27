@@ -21,23 +21,11 @@ location: Sharjah, UAE 🇦🇪
 role: IT Administrator @ Gulf Asian English School
 users_supported: 7,000+
 experience: 4+ years (self-taught)
-currently_learning: [AZ-104, FortiGate NSE 4, MBA IT Project Management]
 certifications: [CEH, RHCE, Google IT Support, CompTIA Security+, DevOps IBM]
 philosophy: "Technology should empower, not complicate."
 ```
 
 ---
-
-## 🏆 GitHub Trophies
-
-<p align="center">
-  <a href="https://github.com/ryo-ma/github-profile-trophy">
-    <img src="https://github-profile-trophy.vercel.app/?username=aman5z&column=7&margin-w=10&no-bg=true&theme=onestar" />
-  </a>
-</p>
-
----
-
 ## 🔥 What I Do
 
 <table>
@@ -118,19 +106,6 @@ philosophy: "Technology should empower, not complicate."
   <img src="https://img.shields.io/badge/DevOps-IBM_Coursera-052FAD?style=for-the-badge&logo=ibm&logoColor=white" />
   <img src="https://img.shields.io/badge/Apple_ATLAS-318_Courses-555555?style=for-the-badge&logo=apple&logoColor=white" />
 </p>
-
----
-
-## 📊 GitHub Stats
-
-<div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=aman5z&theme=dark&hide_border=true" width="48%" />
-  <img src="https://github-readme-stats.vercel.app/api?username=aman5z&show_icons=true&theme=tokyonight&hide_border=true" width="48%" />
-</div>
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aman5z&layout=compact&theme=chartreuse-dark&hide_border=true&langs_count=8" width="50%" />
-</div>
 
 ---
 
