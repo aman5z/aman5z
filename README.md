@@ -104,19 +104,6 @@ Custom keyless ignition system using ESP8266, RF modules, and relay controls—i
 
 ---
 
-## EDUCATION
-
-**Master of Business Administration (MBA)** - Information Technology Project Management  
-Amity University | 2026 - 2028 (In Progress)
-
-**Bachelor of Arts** - Sociology  
-SVSU Distance | 2022 - 2025 | 67%
-
-**Diploma** - Network Administration  
-Jetking Infotrain | 2020 - 2022 | Grade A
-
----
-
 ## PROFESSIONAL JOURNEY
 
 **IT Administrator** | Gulf Asian English School, Sharjah, UAE | Nov 2024 - Present  
