@@ -1,154 +1,163 @@
-# PROFESSIONAL PROFILE SUMMARY
+<h1 align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&pause=1000&color=00D9FF&center=true&vCenter=true&width=700&lines=Hi+%F0%9F%91%8B%2C+I'm+Aman+Faizal;Certified+Ethical+Hacker+%7C+CEH;IT+Infrastructure+Administrator;IoT+%26+Automation+Specialist;Self-Taught+%E2%86%92+Enterprise+Ready" alt="Typing SVG" />
+</h1>
 
+<h3 align="center">🔐 Securing networks. ⚙️ Building infrastructure. 🏠 Automating everything.</h3>
 
-**Certified Ethical Hacker | IT Infrastructure Administrator | IoT Automation Specialist**
-
-Self-taught technology professional with 4+ years of hands-on experience managing enterprise IT infrastructure, securing networks, and building innovative IoT solutions. Currently administering IT operations for 7,000+ users across educational campuses in the UAE, while pursuing an MBA in IT Project Management.
-
-**Location:** Sharjah, UAE  
-**Contact:** [LinkedIn](https://www.linkedin.com/in/aman5z) | [Portfolio](https://aman5z.in)
-
----
-
-## WHO I AM
-
-I'm a technology enthusiast who transformed curiosity into expertise—without a traditional tech degree. My journey began with a simple question: *"How does this work?"* That question led me from disassembling gadgets as a hobbyist to managing mission-critical infrastructure for thousands of users.
-
-What sets me apart is my **hybrid approach**: I combine enterprise-level IT administration with hands-on maker skills, cybersecurity expertise, and a passion for automation. Whether I'm managing HP ProLiant servers and Sophos firewalls at work or building ESP8266-powered smart home systems at home, I bring the same level of precision and innovation.
+<p align="center">
+  <a href="https://www.linkedin.com/in/aman5z"><img src="https://img.shields.io/badge/LinkedIn-aman5z-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>
+  <a href="https://aman5z.in"><img src="https://img.shields.io/badge/Portfolio-aman5z.in-00D9FF?style=for-the-badge&logo=google-chrome&logoColor=white" /></a>
+  <a href="mailto:amanfaizal@outlook.com"><img src="https://img.shields.io/badge/Email-amanfaizal@outlook.com-D14836?style=for-the-badge&logo=gmail&logoColor=white" /></a>
+  <img src="https://komarev.com/ghpvc/?username=aman5z&label=Profile+Views&color=00D9FF&style=for-the-badge" />
+</p>
 
 ---
 
-## WHAT I DO
+## 🧑‍💻 Who Am I?
 
-### 🏢 **Enterprise IT Infrastructure**
-Currently managing complete IT operations at Gulf Asian English School, supporting 500+ staff and 6,500+ students:
-- **Infrastructure:** HP ProLiant servers (ML350 Gen9, DL360 Gen10), QNAP NAS, Sophos XGS 4500 firewall
-- **Systems:** Windows Server, Active Directory, Microsoft 365, AWS cloud services
-- **Network:** Campus-wide wired/wireless infrastructure, PBX telephony, online exam systems
-- **Hardware:** 170+ PCs, 190+ smartboards/projectors, CCTV, biometrics, POS terminals
-
-### 🔐 **Cybersecurity & Penetration Testing**
-**Certified Ethical Hacker (CEH)** with practical experience in:
-- Network security auditing and vulnerability assessment
-- Penetration testing methodologies and tools
-- Custom security tool development (WiFi Deauther, WiFi Duck)
-- Security hardening for enterprise and home networks
-
-### 🏠 **IoT & Home Automation**
-Designed and deployed complete smart home ecosystems using ESP8266/ESP32:
-- Multi-room automation with app, voice (Alexa/Google), and web dashboard control
-- Energy-efficient scheduling reducing power consumption by ~15%
-- Custom IoT solutions for clients with integrated mobile apps and voice assistants
-- Repurposed old electronics into functional smart devices
-
-### ☁️ **Cloud & Virtualization**
-Built personal cloud infrastructure using recycled hardware:
-- Proxmox VE hosting Ubuntu, Kali Linux, Windows 11, macOS VMs
-- Nextcloud and OpenMediaVault for private cloud storage
-- Secure remote access via Tailscale VPN and Cloudflare Tunnel
-- Media servers (Plex, Jellyfin), VoIP (Asterisk/FreePBX), monitoring (Zabbix, Nagios)
-
-### 🌐 **Network Engineering**
-Designed and deployed multi-compound network for 160+ users:
-- Budget-conscious solutions using TP-Link hardware and repurposed equipment
-- 24/7 uptime monitoring with Proxmox, Tailscale, Zabbix, Nagios
-- Optimized performance while managing cost constraints
-- Achieved 95%+ user satisfaction and stable connectivity
+```yaml
+name: Aman Faizal
+location: Sharjah, UAE 🇦🇪
+role: IT Administrator @ Gulf Asian English School
+users_supported: 7,000+
+experience: 4+ years (self-taught)
+currently_learning: [AZ-104, FortiGate NSE 4, MBA IT Project Management]
+certifications: [CEH, RHCE, Google IT Support, CompTIA Security+, DevOps IBM]
+philosophy: "Technology should empower, not complicate."
+```
 
 ---
 
-## TECHNICAL EXPERTISE
+## 🏆 GitHub Trophies
 
-**Operating Systems:** Windows Server, Linux (RHEL, Ubuntu), macOS, Android  
-**Virtualization:** Proxmox VE, VMware, Hyper-V, LXC containers  
-**Cloud Platforms:** AWS (EC2, S3, VPC), Microsoft 365, Google Workspace  
-**Networking:** TCP/IP, DHCP, DNS, VLANs, VPN (WireGuard/Tailscale), Firewall (Sophos)  
-**Security:** Penetration testing, vulnerability assessment, network hardening, CEH certified  
-**IoT Platforms:** ESP8266/ESP32, Arduino, NodeMCU, Tasmota, ESPHome, Sinric Pro  
-**Automation:** Home Assistant, Alexa, Google Assistant, IFTTT  
-**Tools & Services:** Active Directory, Docker, Git, Ansible, Cloudflare, SSH, TeamViewer  
-**Hardware:** PC assembly, server maintenance, soldering, microelectronics, CCTV, VoIP  
+<p align="center">
+  <a href="https://github.com/ryo-ma/github-profile-trophy">
+    <img src="https://github-profile-trophy.vercel.app/?username=aman5z&column=7&margin-w=10&no-bg=true&theme=onestar" />
+  </a>
+</p>
 
 ---
 
-## CERTIFICATIONS & TRAINING
+## 🔥 What I Do
 
-- **Certified Ethical Hacker (CEH)** - EC-Council (2025)
-- **Advanced Penetration Tester** - RedTeam Hacker Academy (2024)
-- **Google IT Support Professional** - Google (2024)
-- **RHCE & AWS Solution Architect** - Scope India (2023)
-- **Apple Technical Learning (318 Courses)** - Apple ATLAS (2022)
-- **Network Administration Diploma** - Jetking (MCSA, RHCSA, CCNA, CompTIA A+/N+) (2022)
-- **CompTIA Security+** - Udemy (2023)
-- **DevOps Fundamentals** - IBM Coursera (2023)
-- **Blockchain Foundation** - Kerala Blockchain Academy (2021)
+<table>
+<tr>
+<td valign="top" width="50%">
 
----
+### 🏢 Enterprise IT Infrastructure
+- HP ProLiant servers (DL360 Gen10, ML350 Gen9)
+- Sophos XGS 4500 HA Firewall
+- Aruba 5406R zl2 switches + QNAP NAS
+- Windows Server, Active Directory, M365
+- 170+ PCs, 190+ smartboards, CCTV, biometrics
 
-## SIGNATURE PROJECTS
+</td>
+<td valign="top" width="50%">
 
-### 🏠 **Multi-Room Smart Home Ecosystem**
-Custom automation system controlling 15+ devices across 4 rooms using ESP8266/ESP32, integrated with Alexa, Google Assistant, mobile apps, and web dashboards. Features intelligent scheduling, energy optimization, and repurposed electronics (old phone as Echo Show alternative).
+### 🔐 Cybersecurity & Penetration Testing
+- **Certified Ethical Hacker (CEH)** — EC-Council 2025
+- Network auditing & vulnerability assessments
+- Custom tools: WiFi Deauther, WiFi Duck
+- Enterprise & home network hardening
 
-### 🖥️ **AIO Personal Cloud Server**
-Transformed old HP laptop + Raspberry Pi 5 into complete cloud infrastructure: Proxmox virtualization, Nextcloud storage, Plex/Jellyfin media servers, VoIP system, all accessible remotely via Tailscale VPN and Cloudflare Tunnel—zero monthly costs.
+</td>
+</tr>
+<tr>
+<td valign="top" width="50%">
 
-### 🏢 **Multi-Compound Network Deployment**
-Designed and implemented network infrastructure for 35 rooms, 160+ users across two villa compounds. Budget-conscious solution using TP-Link hardware with centralized monitoring (Zabbix, Nagios) ensuring 24/7 uptime.
+### 🏠 IoT & Home Automation
+- ESP8266/ESP32 multi-room smart ecosystems
+- Alexa / Google Assistant / mobile app integration
+- Custom keyless motorcycle ignition (WearOS)
+- ~15% energy reduction via intelligent scheduling
 
-### 🔐 **WiFi Security Testing Tools**
-Built custom WiFi Deauther and WiFi Duck using ESP8266 and Arduino for ethical penetration testing, demonstrating 802.11 vulnerabilities and HID-based attack vectors.
+</td>
+<td valign="top" width="50%">
 
-### 🏍️ **Motorcycle IoT Keyless Entry**
-Custom keyless ignition system using ESP8266, RF modules, and relay controls—integrated with voice assistants and WearOS for futuristic vehicle control.
+### ☁️ Cloud & Homelab
+- Proxmox VE | Nextcloud | OpenMediaVault
+- Plex, Jellyfin, Asterisk/FreePBX
+- Tailscale VPN + Cloudflare Tunnel (zero cost)
+- Docker stack: Pi-hole, Grafana, Prometheus, Guacamole
 
----
-
-## PROFESSIONAL JOURNEY
-
-**IT Administrator** | Gulf Asian English School, Sharjah, UAE | Nov 2024 - Present  
-Managing enterprise IT infrastructure for 7,000+ users
-
-**Office Coordinator** | Soon Holidays, Dubai, UAE | Jan 2024 - Oct 2024  
-Customer service and documentation
-
-**Freelance IT Support** | Self-Employed | May 2021 - Present  
-PC assembly, networking, troubleshooting, IoT automation projects
-
-**Technical Support** | Ample Technologies (Apple iCare), India | Feb 2022 - Oct 2023  
-iOS/macOS diagnostics and repair with 90% first-time resolution rate
-
----
-
-## WHY WORK WITH ME
-
-✅ **Hands-On Problem Solver:** I don't just manage systems—I build, repair, and optimize them from scratch  
-✅ **Continuous Learner:** 15+ certifications, 318 Apple courses, constantly exploring new technologies  
-✅ **Cost-Effective Innovator:** Proven track record of delivering enterprise solutions on tight budgets  
-✅ **Security-First Mindset:** CEH certified with practical penetration testing experience  
-✅ **Full-Stack IT Skills:** From soldering circuits to managing cloud infrastructure  
-✅ **Documentation & Teaching:** Active creator of technical content and project documentation  
+</td>
+</tr>
+</table>
 
 ---
 
-## WHAT DRIVES ME
+## 🛠️ Tech Stack & Tools
 
-*"Technology should empower, not complicate."*
-
-I believe the best solutions combine security, efficiency, and user experience. Whether I'm hardening a school network against threats, automating a home to save energy, or repurposing old hardware into something useful, my goal is always the same: **make technology work smarter, not harder**.
-
-My journey from curious hobbyist to certified ethical hacker and IT administrator proves that passion and persistence can rival any formal degree. I'm constantly learning, building, and sharing—because technology is too exciting to keep to yourself.
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=linux,windows,python,bash,docker,ansible,git,aws,azure,proxmox,raspberrypi,arduino,html,css,js,php,mysql,flask,grafana,nginx&theme=dark&perline=10" />
+</p>
 
 ---
 
-## LET'S CONNECT
+## 🚀 Signature Projects
 
-Whether you need enterprise IT support, cybersecurity consulting, custom IoT solutions, or just want to talk tech—I'm always up for a conversation.
-
-📧 **Email:** [amanfaizal@outlook.com]  
-🔗 **LinkedIn:** [linkedin.com/in/aman5z](https://www.linkedin.com/in/aman5z)  
-🌐 **Portfolio:** [aman5z.in](https://aman5z.in)  
+| Project | Description | Stack |
+|---------|-------------|-------|
+| 🏠 **Multi-Room Smart Home** | 15+ devices, 4 rooms, voice + app + web control | ESP8266, ESPHome, Alexa, Google |
+| 🖥️ **AIO Personal Cloud** | Proxmox + Nextcloud + Plex + VoIP, zero monthly cost | RPi 5, HP Laptop, Tailscale |
+| 🏢 **Multi-Compound Network** | 160+ users, 35 rooms, 24/7 uptime monitoring | TP-Link, Zabbix, Nagios |
+| 🔐 **WiFi Security Tools** | Ethical deauth + HID attack tools (802.11 demos) | ESP8266, Arduino |
+| 📊 **ZKTeco Attendance Dashboard** | Flask web app replacing legacy attendance system | Python, Flask, ZKTeco SDK |
+| 🏍️ **Motorcycle IoT Ignition** | Keyless start via voice/WearOS/RF | ESP8266, RF modules, Relay |
 
 ---
 
-*Turning curiosity into capability, one project at a time.*
+## 📜 Certifications
+
+<p align="center">
+  <img src="https://img.shields.io/badge/CEH-Certified_Ethical_Hacker-red?style=for-the-badge&logo=ec-council&logoColor=white" />
+  <img src="https://img.shields.io/badge/Google_IT_Support-Professional-4285F4?style=for-the-badge&logo=google&logoColor=white" />
+  <img src="https://img.shields.io/badge/CompTIA-Security%2B-E00000?style=for-the-badge&logo=comptia&logoColor=white" />
+  <img src="https://img.shields.io/badge/RHCE-Red_Hat-EE0000?style=for-the-badge&logo=redhat&logoColor=white" />
+  <img src="https://img.shields.io/badge/AWS-Solutions_Architect-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white" />
+  <img src="https://img.shields.io/badge/DevOps-IBM_Coursera-052FAD?style=for-the-badge&logo=ibm&logoColor=white" />
+  <img src="https://img.shields.io/badge/Apple_ATLAS-318_Courses-555555?style=for-the-badge&logo=apple&logoColor=white" />
+</p>
+
+---
+
+## 📊 GitHub Stats
+
+<div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=aman5z&theme=dark&hide_border=true" width="48%" />
+  <img src="https://github-readme-stats.vercel.app/api?username=aman5z&show_icons=true&theme=tokyonight&hide_border=true" width="48%" />
+</div>
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=aman5z&layout=compact&theme=chartreuse-dark&hide_border=true&langs_count=8" width="50%" />
+</div>
+
+---
+
+## 📈 Activity Graph
+
+[![Aman's GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=aman5z&theme=react-dark&hide_border=true)](https://github.com/aman5z)
+
+---
+
+## 🌐 Connect With Me
+
+<p align="center">
+  <a href="https://www.linkedin.com/in/aman5z">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin" />
+  </a>
+  <a href="https://aman5z.in">
+    <img src="https://img.shields.io/badge/Portfolio-Visit-00D9FF?style=for-the-badge&logo=google-chrome" />
+  </a>
+  <a href="mailto:amanfaizal@outlook.com">
+    <img src="https://img.shields.io/badge/Email-Say_Hello-EA4335?style=for-the-badge&logo=gmail" />
+  </a>
+</p>
+
+<p align="center">
+  <i>"Turning curiosity into capability, one project at a time."</i>
+</p>
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=00D9FF&height=100&section=footer" />
+</p>
