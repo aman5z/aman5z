@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RDP File Generator</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖥️</text></svg>">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f1117; color: #e0e0e0; min-height: 100vh; padding: 32px 16px; }
+  .container { max-width: 780px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-bottom: 4px; letter-spacing: -0.5px; }
+  .subtitle { font-size: 0.85rem; color: #6b7280; margin-bottom: 20px; }
+
+  .tabs { display: flex; gap: 6px; margin-bottom: 24px; background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 10px; padding: 5px; }
+  .tab { flex: 1; padding: 9px; border-radius: 7px; border: none; background: transparent; color: #6b7280; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .tab.active { background: #2563eb; color: #fff; }
+  .tab:not(.active):hover { color: #d1d5db; }
+
+  .card { background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  .card h2 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #4f9cf9; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .full { grid-column: 1 / -1; }
+
+  label { display: block; font-size: 0.78rem; color: #9ca3af; margin-bottom: 5px; font-weight: 500; }
+  input, select, textarea { width: 100%; background: #0f1117; border: 1px solid #2a2d3a; border-radius: 7px; color: #e0e0e0; font-size: 0.88rem; padding: 9px 12px; outline: none; transition: border-color 0.15s; font-family: inherit; }
+  input:focus, select:focus, textarea:focus { border-color: #4f9cf9; }
+  select option { background: #1a1d27; }
+  textarea { resize: vertical; min-height: 110px; font-family: 'Consolas', monospace; font-size: 0.82rem; line-height: 1.6; }
+
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1f2230; }
+  .toggle-row:last-child { border-bottom: none; }
+  .toggle-label { font-size: 0.85rem; color: #d1d5db; }
+  .toggle-desc { font-size: 0.72rem; color: #6b7280; margin-top: 1px; }
+
+  .switch { position: relative; width: 40px; height: 22px; flex-shrink: 0; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .slider { position: absolute; inset: 0; background: #2a2d3a; border-radius: 22px; cursor: pointer; transition: background 0.2s; }
+  .slider::before { content: ''; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px; background: #6b7280; border-radius: 50%; transition: transform 0.2s, background 0.2s; }
+  .switch input:checked + .slider { background: #1d4ed8; }
+  .switch input:checked + .slider::before { transform: translateX(18px); background: #fff; }
+
+  .actions { display: flex; gap: 10px; margin-top: 24px; }
+  .btn { flex: 1; padding: 12px; border-radius: 8px; border: none; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: background 0.15s, transform 0.1s; }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: #2563eb; color: #fff; }
+  .btn-primary:hover { background: #1d4ed8; }
+  .btn-secondary { background: #1f2230; color: #9ca3af; border: 1px solid #2a2d3a; }
+  .btn-secondary:hover { color: #e0e0e0; }
+  .btn-green { background: #16a34a; color: #fff; }
+  .btn-green:hover { background: #15803d; }
+
+  .preview { display: none; background: #0a0c12; border: 1px solid #2a2d3a; border-radius: 8px; padding: 16px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #7dd3fc; white-space: pre-wrap; word-break: break-all; max-height: 280px; overflow-y: auto; margin-top: 16px; }
+  .preview.visible { display: block; }
+
+  .bulk-panel { display: none; }
+  .bulk-panel.active { display: block; }
+  .single-panel.hidden { display: none; }
+
+  /* filename preview badge */
+  .fname-preview {
+    margin-top: 10px;
+    background: #0f1a0f;
+    border: 1px solid #1a3a1a;
+    border-radius: 7px;
+    padding: 9px 14px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.82rem;
+    color: #4ade80;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .fname-preview span { color: #6b7280; font-size: 0.75rem; font-family: inherit; }
+
+  /* host table */
+  .host-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 0.83rem; }
+  .host-table th { text-align: left; color: #6b7280; font-weight: 500; font-size: 0.72rem; padding: 6px 6px; border-bottom: 1px solid #2a2d3a; text-transform: uppercase; letter-spacing: 0.5px; }
+  .host-table td { padding: 5px 4px; vertical-align: middle; }
+  .host-table tr:not(:last-child) td { border-bottom: 1px solid #1f2230; }
+  .host-table input { padding: 6px 8px; font-size: 0.82rem; border-radius: 5px; }
+
+  /* filename cell */
+  .fname-cell { font-family: 'Consolas', monospace; font-size: 0.78rem; color: #4ade80; padding: 0 6px; white-space: nowrap; }
+
+  .row-del { background: none; border: none; color: #4b5563; cursor: pointer; font-size: 1rem; padding: 4px 8px; border-radius: 5px; transition: color 0.15s, background 0.15s; }
+  .row-del:hover { color: #f87171; background: #1f1215; }
+
+  .add-row-btn { margin-top: 10px; background: #1f2230; border: 1px dashed #2a2d3a; color: #6b7280; border-radius: 7px; padding: 8px 14px; font-size: 0.82rem; cursor: pointer; width: 100%; transition: color 0.15s, border-color 0.15s; }
+  .add-row-btn:hover { color: #d1d5db; border-color: #4f9cf9; }
+
+  .bulk-hint { font-size: 0.75rem; color: #6b7280; margin-bottom: 10px; line-height: 1.7; }
+  .bulk-count { display: inline-block; background: #1e3a5f; color: #7dd3fc; font-size: 0.72rem; padding: 2px 8px; border-radius: 99px; margin-left: 6px; }
+
+  .progress-wrap { display: none; margin-top: 14px; background: #0f1117; border: 1px solid #2a2d3a; border-radius: 8px; padding: 12px 16px; }
+  .progress-wrap.visible { display: block; }
+  .progress-label { font-size: 0.8rem; color: #9ca3af; margin-bottom: 8px; }
+  .progress-bar-outer { background: #1f2230; border-radius: 99px; height: 6px; overflow: hidden; }
+  .progress-bar-inner { height: 100%; background: #2563eb; border-radius: 99px; width: 0%; transition: width 0.2s; }
+
+  .paste-wrap { position: relative; margin-bottom: 14px; }
+  .paste-clear { position: absolute; top: 8px; right: 8px; background: #1f2230; border: 1px solid #2a2d3a; color: #6b7280; font-size: 0.72rem; padding: 2px 8px; border-radius: 5px; cursor: pointer; }
+  .paste-clear:hover { color: #f87171; }
+
+  code { background: #1f2230; padding: 1px 5px; border-radius: 4px; font-family: 'Consolas', monospace; font-size: 0.78rem; color: #7dd3fc; }
+
+  /* credential card highlight */
+  .cred-card { border-color: #2a3a5a; }
+  .cred-card h2 { color: #7dd3fc; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🖥️ RDP File Generator</h1>
+  <p class="subtitle">Build custom .rdp files — single or bulk. Filename auto-set to <code>host-username.rdp</code>.</p>
+
+  <div class="tabs">
+    <button class="tab active" id="tab-single" onclick="setMode('single')">⬛ Single Host</button>
+    <button class="tab" id="tab-bulk" onclick="setMode('bulk')">⊞ Bulk <span class="bulk-count" id="bulk-count">0</span></button>
+  </div>
+
+  <!-- ── CREDENTIALS (always visible, shared) ── -->
+  <div class="card cred-card">
+    <h2>🔑 Credentials <span style="color:#6b7280;font-weight:400;font-size:0.72rem;text-transform:none;letter-spacing:0">&nbsp;— applied to all files</span></h2>
+    <div class="grid">
+      <div>
+        <label>Username</label>
+        <input id="username" type="text" placeholder="admin / student / DOMAIN\user" oninput="refreshAll()">
+      </div>
+      <div>
+        <label>Password <span style="color:#6b7280;font-size:0.72rem">(saved in plaintext)</span></label>
+        <input id="password" type="password" placeholder="Optional" oninput="refreshAll()">
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SINGLE PANEL ── -->
+  <div class="single-panel" id="single-panel">
+    <div class="card">
+      <h2>Connection</h2>
+      <div class="grid">
+        <div>
+          <label>Host / IP Address</label>
+          <input id="host" type="text" placeholder="192.168.1.100 or BOYS1" oninput="refreshSingleName()">
+        </div>
+        <div>
+          <label>Port</label>
+          <input id="port" type="number" value="3389" min="1" max="65535">
+        </div>
+      </div>
+      <div id="single-fname" class="fname-preview" style="display:none">
+        <span>📄 Filename:</span> <strong id="single-fname-text"></strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BULK PANEL ── -->
+  <div class="bulk-panel" id="bulk-panel">
+    <div class="card">
+      <h2>Hosts <span class="bulk-count" id="bulk-count2">0 hosts</span></h2>
+      <p class="bulk-hint">
+        Paste list (one per line) or add rows manually.<br>
+        Format: <code>host</code> &nbsp;or&nbsp; <code>host:port</code><br>
+        Filename auto-generated as <code>host-username.rdp</code> using the credential above.
+      </p>
+      <div class="paste-wrap">
+        <textarea id="paste-area" placeholder="192.168.1.10&#10;192.168.1.11:3390&#10;BOYS1&#10;BOYS2&#10;server.domain.com" oninput="parsePaste()"></textarea>
+        <button class="paste-clear" onclick="clearPaste()">✕ Clear</button>
+      </div>
+      <table class="host-table">
+        <thead>
+          <tr>
+            <th style="width:38%">Host / IP</th>
+            <th style="width:12%">Port</th>
+            <th style="width:50%">Filename (auto)</th>
+            <th style="width:5%"></th>
+          </tr>
+        </thead>
+        <tbody id="host-rows"></tbody>
+      </table>
+      <button class="add-row-btn" onclick="addRow()">+ Add Row</button>
+    </div>
+  </div>
+
+  <!-- ── DISPLAY ── -->
+  <div class="card">
+    <h2>Display</h2>
+    <div class="grid three">
+      <div><label>Width (px)</label><input id="width" type="number" value="1920"></div>
+      <div><label>Height (px)</label><input id="height" type="number" value="1080"></div>
+      <div><label>Color Depth</label>
+        <select id="colordepth">
+          <option value="32">32-bit (True Color)</option>
+          <option value="24">24-bit</option>
+          <option value="16">16-bit</option>
+          <option value="15">15-bit</option>
+          <option value="8">8-bit</option>
+        </select>
+      </div>
+    </div>
+    <div style="margin-top:14px">
+      <div class="toggle-row"><div><div class="toggle-label">Full Screen</div></div><label class="switch"><input type="checkbox" id="fullscreen" checked><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Span Multiple Monitors</div></div><label class="switch"><input type="checkbox" id="multimon"><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Smart Sizing</div><div class="toggle-desc">Scale desktop to fit window</div></div><label class="switch"><input type="checkbox" id="smartsize"><span class="slider"></span></label></div>
+    </div>
+  </div>
+
+  <!-- ── LOCAL RESOURCES ── -->
+  <div class="card">
+    <h2>Local Resources</h2>
+    <div class="toggle-row"><div><div class="toggle-label">Clipboard</div></div><label class="switch"><input type="checkbox" id="clipboard" checked><span class="slider"></span></label></div>
+    <div class="toggle-row"><div><div class="toggle-label">Printers</div></div><label class="switch"><input type="checkbox" id="printers" checked><span class="slider"></span></label></div>
+    <div class="toggle-row"><div><div class="toggle-label">Drives / Disk Redirection</div></div><label class="switch"><input type="checkbox" id="drives"><span class="slider"></span></label></div>
+    <div class="toggle-row"><div><div class="toggle-label">Smart Cards</div></div><label class="switch"><input type="checkbox" id="smartcard"><span class="slider"></span></label></div>
+    <div class="toggle-row"><div><div class="toggle-label">Ports (COM/LPT)</div></div><label class="switch"><input type="checkbox" id="ports"><span class="slider"></span></label></div>
+    <div class="toggle-row"><div><div class="toggle-label">Audio Playback</div></div><label class="switch"><input type="checkbox" id="audio" checked><span class="slider"></span></label></div>
+    <div class="toggle-row"><div><div class="toggle-label">Audio Recording</div></div><label class="switch"><input type="checkbox" id="audiocapture"><span class="slider"></span></label></div>
+  </div>
+
+  <!-- ── PERFORMANCE ── -->
+  <div class="card">
+    <h2>Performance</h2>
+    <div class="grid">
+      <div><label>Connection Type</label>
+        <select id="conntype">
+          <option value="7">Auto Detect</option>
+          <option value="1">Modem (56 Kbps)</option>
+          <option value="2">Low Speed Broadband</option>
+          <option value="3">Satellite</option>
+          <option value="4">High Speed Broadband</option>
+          <option value="5">WAN</option>
+          <option value="6">LAN</option>
+        </select>
+      </div>
+      <div><label>Network Autodetect</label>
+        <select id="netauto"><option value="1">Enabled</option><option value="0">Disabled</option></select>
+      </div>
+    </div>
+    <div style="margin-top:14px">
+      <div class="toggle-row"><div><div class="toggle-label">Desktop Background</div></div><label class="switch"><input type="checkbox" id="wallpaper"><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Font Smoothing (ClearType)</div></div><label class="switch"><input type="checkbox" id="fontsmooth" checked><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Desktop Composition (Aero)</div></div><label class="switch"><input type="checkbox" id="aero"><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Show Window Contents While Dragging</div></div><label class="switch"><input type="checkbox" id="drag"><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Menu &amp; Window Animations</div></div><label class="switch"><input type="checkbox" id="animations"><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Visual Styles (Themes)</div></div><label class="switch"><input type="checkbox" id="themes" checked><span class="slider"></span></label></div>
+    </div>
+  </div>
+
+  <!-- ── SECURITY ── -->
+  <div class="card">
+    <h2>Security &amp; Gateway</h2>
+    <div class="grid">
+      <div><label>Authentication Level</label>
+        <select id="authlevel">
+          <option value="2">Require NLA (recommended)</option>
+          <option value="1">Warn if auth fails</option>
+          <option value="0">No auth required</option>
+        </select>
+      </div>
+      <div><label>RD Gateway Host</label><input id="gateway" type="text" placeholder="gateway.domain.com (optional)"></div>
+    </div>
+    <div style="margin-top:14px">
+      <div class="toggle-row"><div><div class="toggle-label">Prompt for Credentials on Client</div></div><label class="switch"><input type="checkbox" id="promptcreds"><span class="slider"></span></label></div>
+      <div class="toggle-row"><div><div class="toggle-label">Negotiate Security Layer</div></div><label class="switch"><input type="checkbox" id="negotiate" checked><span class="slider"></span></label></div>
+    </div>
+  </div>
+
+  <!-- ── EXTRA ── -->
+  <div class="card">
+    <h2>Extra</h2>
+    <div class="grid">
+      <div><label>Remote App Name (optional)</label><input id="remoteapp" type="text" placeholder="mstsc"></div>
+      <div><label>Start Program (optional)</label><input id="startprog" type="text" placeholder="C:\path\to\app.exe"></div>
+      <div><label>Work Dir (optional)</label><input id="workdir" type="text" placeholder="C:\path\to\workdir"></div>
+      <div><label>Session Timeout (minutes, 0=none)</label><input id="timeout" type="number" value="0" min="0"></div>
+    </div>
+  </div>
+
+  <!-- ── ACTIONS ── -->
+  <div class="actions" id="single-actions">
+    <button class="btn btn-secondary" onclick="togglePreview()">Preview</button>
+    <button class="btn btn-primary" onclick="downloadSingle()">⬇ Download .rdp</button>
+  </div>
+  <div class="actions" id="bulk-actions" style="display:none">
+    <button class="btn btn-secondary" onclick="previewBulkList()">Preview List</button>
+    <button class="btn btn-green" onclick="downloadBulkZip()">⬇ Download All as .zip</button>
+  </div>
+
+  <pre class="preview" id="preview"></pre>
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-label" id="progress-label">Generating…</div>
+    <div class="progress-bar-outer"><div class="progress-bar-inner" id="progress-bar"></div></div>
+  </div>
+</div>
+
+<script>
+// ── helpers ───────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+const val = id => $(id).value.trim();
+const chk = id => $(id).checked ? 1 : 0;
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+
+function makeFilename(host, username) {
+  const h = (host || 'host').replace(/[^a-z0-9_\-\.]/gi, '_').replace(/_+/g,'_').replace(/^_|_$/g,'');
+  const u = (username || '').replace(/[^a-z0-9_\-\.]/gi, '_').replace(/_+/g,'_').replace(/^_|_$/g,'');
+  return u ? `${h}-${u}.rdp` : `${h}.rdp`;
+}
+
+// ── MODE ──────────────────────────────────────────────────────────
+let currentMode = 'single';
+
+function setMode(mode) {
+  currentMode = mode;
+  $('tab-single').classList.toggle('active', mode === 'single');
+  $('tab-bulk').classList.toggle('active', mode === 'bulk');
+  $('single-panel').classList.toggle('hidden', mode !== 'single');
+  $('bulk-panel').classList.toggle('active', mode === 'bulk');
+  $('single-actions').style.display = mode === 'single' ? 'flex' : 'none';
+  $('bulk-actions').style.display   = mode === 'bulk'   ? 'flex' : 'none';
+  $('preview').classList.remove('visible');
+}
+
+// ── FILENAME LIVE PREVIEW ─────────────────────────────────────────
+function refreshSingleName() {
+  const host = val('host');
+  const user = val('username');
+  const box  = $('single-fname');
+  if (host || user) {
+    box.style.display = 'flex';
+    $('single-fname-text').textContent = makeFilename(host || 'host', user);
+  } else {
+    box.style.display = 'none';
+  }
+}
+
+function refreshAll() {
+  refreshSingleName();
+  refreshBulkFilenames();
+}
+
+// ── BULK HOST TABLE ───────────────────────────────────────────────
+let rowId = 0;
+
+function addRow(host='', port='3389') {
+  const tbody = $('host-rows');
+  const id = rowId++;
+  const tr = document.createElement('tr');
+  tr.id = `row-${id}`;
+  tr.innerHTML = `
+    <td><input type="text" placeholder="192.168.1.x or BOYS1" value="${esc(host)}" oninput="refreshRowName(${id})"></td>
+    <td><input type="number" value="${esc(port)}" min="1" max="65535" style="width:72px"></td>
+    <td class="fname-cell" id="fname-${id}">${makeFilename(host, val('username'))}</td>
+    <td><button class="row-del" onclick="delRow(${id})">✕</button></td>
+  `;
+  tbody.appendChild(tr);
+  updateCounts();
+}
+
+function refreshRowName(id) {
+  const tr   = $(`row-${id}`);
+  if (!tr) return;
+  const host = tr.querySelectorAll('input')[0].value.trim();
+  $(`fname-${id}`).textContent = makeFilename(host || 'host', val('username'));
+}
+
+function refreshBulkFilenames() {
+  document.querySelectorAll('#host-rows tr').forEach(tr => {
+    const id   = tr.id.replace('row-','');
+    const host = tr.querySelectorAll('input')[0].value.trim();
+    const cell = $(`fname-${id}`);
+    if (cell) cell.textContent = makeFilename(host || 'host', val('username'));
+  });
+}
+
+function delRow(id) {
+  const el = $(`row-${id}`);
+  if (el) el.remove();
+  updateCounts();
+}
+
+function updateCounts() {
+  const n = $('host-rows').querySelectorAll('tr').length;
+  $('bulk-count').textContent  = n;
+  $('bulk-count2').textContent = `${n} host${n===1?'':'s'}`;
+}
+
+function parsePaste() {
+  const raw = $('paste-area').value.trim();
+  if (!raw) return;
+  const lines = raw.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+  $('host-rows').innerHTML = '';
+  rowId = 0;
+  lines.forEach(line => {
+    const parts = line.split(':');
+    const host  = parts[0] || '';
+    const port  = parts[1] || '3389';
+    if (host) addRow(host, port || '3389');
+  });
+}
+
+function clearPaste() {
+  $('paste-area').value = '';
+  $('host-rows').innerHTML = '';
+  rowId = 0;
+  updateCounts();
+}
+
+// ── RDP BUILDER ───────────────────────────────────────────────────
+function buildRDP(host, port) {
+  const user = val('username');
+  const lines = [];
+
+  lines.push(`full address:s:${host}:${port}`);
+  if (user) lines.push(`username:s:${user}`);
+
+  lines.push(`screen mode id:i:${chk('fullscreen') ? 2 : 1}`);
+  lines.push(`desktopwidth:i:${val('width') || 1920}`);
+  lines.push(`desktopheight:i:${val('height') || 1080}`);
+  lines.push(`session bpp:i:${val('colordepth')}`);
+  lines.push(`span monitors:i:${chk('multimon')}`);
+  lines.push(`smart sizing:i:${chk('smartsize')}`);
+  lines.push(`use multimon:i:${chk('multimon')}`);
+
+  lines.push(`audiomode:i:${chk('audio') ? 0 : 2}`);
+  lines.push(`audiocapturemode:i:${chk('audiocapture') ? 1 : 0}`);
+
+  lines.push(`redirectclipboard:i:${chk('clipboard')}`);
+  lines.push(`redirectprinters:i:${chk('printers')}`);
+  lines.push(`redirectdrives:i:${chk('drives')}`);
+  lines.push(`redirectsmartcards:i:${chk('smartcard')}`);
+  lines.push(`redirectcomports:i:${chk('ports')}`);
+  lines.push(`redirectposdevices:i:0`);
+
+  lines.push(`connection type:i:${val('conntype')}`);
+  lines.push(`networkautodetect:i:${val('netauto')}`);
+  lines.push(`bandwidthautodetect:i:${val('netauto')}`);
+  lines.push(`disable wallpaper:i:${chk('wallpaper') ? 0 : 1}`);
+  lines.push(`allow font smoothing:i:${chk('fontsmooth')}`);
+  lines.push(`allow desktop composition:i:${chk('aero')}`);
+  lines.push(`disable full window drag:i:${chk('drag') ? 0 : 1}`);
+  lines.push(`disable menu anims:i:${chk('animations') ? 0 : 1}`);
+  lines.push(`disable themes:i:${chk('themes') ? 0 : 1}`);
+  lines.push(`bitmapcachepersistenable:i:1`);
+
+  lines.push(`authentication level:i:${val('authlevel')}`);
+  lines.push(`prompt for credentials:i:${chk('promptcreds')}`);
+  lines.push(`negotiate security layer:i:${chk('negotiate')}`);
+  lines.push(`enablecredsspsupport:i:1`);
+
+  const gw = val('gateway');
+  if (gw) {
+    lines.push(`gatewayhostname:s:${gw}`);
+    lines.push(`gatewayusagemethod:i:1`);
+    lines.push(`gatewayprofileusagemethod:i:1`);
+    lines.push(`gatewaycredentialssource:i:4`);
+  } else {
+    lines.push(`gatewayhostname:s:`);
+    lines.push(`gatewayusagemethod:i:4`);
+  }
+
+  const ra = val('remoteapp');
+  if (ra) { lines.push(`remoteapplicationprogram:s:${ra}`); lines.push(`remoteapplicationmode:i:1`); }
+  const sp = val('startprog'); if (sp) lines.push(`alternate shell:s:${sp}`);
+  const wd = val('workdir');   if (wd) lines.push(`working directory:s:${wd}`);
+  if (parseInt(val('timeout')) > 0) lines.push(`autoreconnection enabled:i:1`);
+
+  lines.push(`administrative session:i:0`);
+  lines.push(`connecttoadmindesktop:i:0`);
+  lines.push(`disable cursor setting:i:0`);
+  lines.push(`videoplaybackmode:i:1`);
+
+  return lines.join('\r\n') + '\r\n';
+}
+
+// ── SINGLE ────────────────────────────────────────────────────────
+function togglePreview() {
+  const pre = $('preview');
+  if (pre.classList.contains('visible')) { pre.classList.remove('visible'); return; }
+  const host = val('host') || 'localhost';
+  const port = val('port') || '3389';
+  pre.textContent = buildRDP(host, port);
+  pre.classList.add('visible');
+}
+
+function downloadSingle() {
+  const host = val('host') || 'localhost';
+  const port = val('port') || '3389';
+  const fname = makeFilename(host, val('username'));
+  triggerDL(buildRDP(host, port), fname);
+}
+
+function triggerDL(content, filename) {
+  const blob = new Blob([content], { type: 'application/rdp' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+// ── BULK ──────────────────────────────────────────────────────────
+function getRows() {
+  const rows = [];
+  $('host-rows').querySelectorAll('tr').forEach(tr => {
+    const inp  = tr.querySelectorAll('input');
+    const host = inp[0].value.trim();
+    if (!host) return;
+    rows.push({ host, port: inp[1].value.trim() || '3389' });
+  });
+  return rows;
+}
+
+function previewBulkList() {
+  const rows = getRows();
+  const pre  = $('preview');
+  if (!rows.length) { pre.textContent = '⚠ No hosts added.'; pre.classList.add('visible'); return; }
+  const user = val('username') || '(no user)';
+  pre.textContent = rows.map((r,i) =>
+    `[${String(i+1).padStart(2,'0')}]  ${makeFilename(r.host, val('username'))}  →  ${r.host}:${r.port}  user: ${user}`
+  ).join('\n');
+  pre.classList.add('visible');
+}
+
+async function downloadBulkZip() {
+  const rows = getRows();
+  if (!rows.length) { alert('Add at least one host first.'); return; }
+
+  const prog = $('progress-wrap');
+  const bar  = $('progress-bar');
+  const lbl  = $('progress-label');
+  prog.classList.add('visible');
+  bar.style.width = '0%';
+  bar.style.background = '#2563eb';
+
+  const zip  = new JSZip();
+  const used = {};
+
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    lbl.textContent = `Generating ${i+1} / ${rows.length}: ${r.host}`;
+    bar.style.width = `${Math.round((i / rows.length) * 100)}%`;
+    await new Promise(res => setTimeout(res, 0));
+
+    const content = buildRDP(r.host, r.port);
+    let   base    = makeFilename(r.host, val('username')).replace(/\.rdp$/i, '');
+    if (used[base]) { used[base]++; base = `${base}_${used[base]}`; } else { used[base] = 1; }
+    zip.file(`${base}.rdp`, content);
+  }
+
+  lbl.textContent = 'Packing ZIP…';
+  bar.style.width = '95%';
+  const blob = await zip.generateAsync({ type: 'blob' });
+
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `rdp-${val('username') || 'connections'}-${rows.length}.zip`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  bar.style.width = '100%';
+  bar.style.background = '#16a34a';
+  lbl.textContent = `✓ Downloaded ${rows.length} file${rows.length===1?'':'s'} in ZIP.`;
+  setTimeout(() => { prog.classList.remove('visible'); bar.style.background = '#2563eb'; }, 3000);
+}
+
+// init
+addRow();
+</script>
+</body>
+</html>
